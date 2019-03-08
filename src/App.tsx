@@ -2,6 +2,13 @@ import * as React from 'react';
 import MainView from './components/mainView/MainView';
 import * as FontAwesome from 'react-fontawesome';
 import MainPage from './pages/mainPage/MainPage';
+import AccessPolicies from './pages/accessPolicies/AccessPolicies';
+import Consumers from './pages/consumers/Consumers';
+import DataCatalog from './pages/dataCatalog/DataCatalog';
+import DataLineage from './pages/dataLineage/DataLineage';
+import Producers from './pages/producers/Producers';
+import Topics from './pages/topics/Topics';
+import {BrowserRouter, Route, Link} from "react-router-dom";
 
 class App extends React.Component {
   public render() {
@@ -13,7 +20,7 @@ class App extends React.Component {
     ) => {
       return (
         <li className="nav-item">
-          <a className={className} href={pathRef}>
+          <Link className={className} to={pathRef}>
             <FontAwesome
               name={fontName}
               style={{
@@ -22,29 +29,39 @@ class App extends React.Component {
               }}
             />
             {text} <span className="sr-only">(current)</span>
-          </a>
+          </Link>
         </li>
       );
     };
 
     return (
-      <div>
+      <BrowserRouter>
         <MainView
           title={'DataNAV - Verktøy for data governance'}
-          content={<MainPage />}
+          content={
+              <div>
+                  <Route  exact={true} path="/mainPage" component={MainPage}/>
+                  <Route exact={true} path="/dataCatalog" component={DataCatalog}/>
+                  <Route exact={true} path="/accessPolicies" component={AccessPolicies}/>
+                  <Route exact={true} path="/topics" component={Topics}/>
+                  <Route exact={true} path="/producers" component={Producers}/>
+                  <Route exact={true} path="/consumers" component={Consumers}/>
+                  <Route exact={true} path="/dataLineage" component={DataLineage}/>
+
+              </div>     }
           leftMenu={
             <div>
-              {makeNavigationItem('Main page', '#', 'home', 'nav-link active')}
-              {makeNavigationItem('Data catalog', '#', 'clone', 'nav-link')}
-              {makeNavigationItem('Access policies', '#', 'lock', 'nav-link')}
-              {makeNavigationItem('Topics', '#', 'object-group', 'nav-link')}
-              {makeNavigationItem('Producers', '#', 'pencil', 'nav-link')}
-              {makeNavigationItem('Consumers', '#', 'group', 'nav-link')}
-              {makeNavigationItem('Data Lineage', '#', 'crosshairs', 'nav-link')}
+              {makeNavigationItem('Main page', 'mainPage', 'home', 'nav-link active')}
+              {makeNavigationItem('Data catalog', 'dataCatalog', 'clone', 'nav-link')}
+              {makeNavigationItem('Access policies', 'accessPolicies', 'lock', 'nav-link')}
+              {makeNavigationItem('Topics', 'topics', 'object-group', 'nav-link')}
+              {makeNavigationItem('Producers', 'producers', 'pencil', 'nav-link')}
+              {makeNavigationItem('Consumers', 'consumers', 'group', 'nav-link')}
+              {makeNavigationItem('Data Lineage', 'dataLineage', 'crosshairs', 'nav-link')}
             </div>
           }
         />
-      </div>
+      </BrowserRouter>
     );
   }
 }
