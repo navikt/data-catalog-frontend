@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './styles/App.css';
 import MainView from './components/mainView/MainView';
 import * as FontAwesome from 'react-fontawesome';
 import MainPage from './pages/mainPage/MainPage';
