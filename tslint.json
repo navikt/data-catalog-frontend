@@ -5,11 +5,13 @@
       "config/**/*.js",
       "node_modules/**/*.ts",
       "coverage/lcov-report/*.js",
-      "src/dashboard.js"
+      "src/dashboard.js",
+      "src/components/**/*.*"
     ]
   },
   "rules": {
     "ordered-imports": [false],
-    "object-literal-sort-keys": [false]
+    "object-literal-sort-keys": [false],
+    "interface-name" : [false]
   }
 }
