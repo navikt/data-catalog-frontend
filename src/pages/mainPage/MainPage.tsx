@@ -1,11 +1,29 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 
-class MainPage extends React.Component {
+interface Props {
+  pathName?: string;
+}
+
+class MainPage extends React.Component<Props> {
   public render() {
+    const { pathName } = this.props;
+
     return (
       <div>
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <a href="/">Home</a>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              {pathName && pathName.slice(1)}
+            </li>
+          </ol>
+        </nav>
+
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 className="h2">Data Catalog</h1>
+          <h1 className="h2">Details</h1>
         </div>
 
         <div className="row">
@@ -143,4 +161,6 @@ class MainPage extends React.Component {
   }
 }
 
-export default MainPage;
+export default connect((state: any) => ({
+  pathName: state.router.location.pathname
+}))(MainPage);

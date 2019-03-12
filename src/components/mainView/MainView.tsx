@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default class MainView extends React.Component<Props> {
-  render() {
+  public render() {
     return (
       <div>
         <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
@@ -41,6 +41,12 @@ export default class MainView extends React.Component<Props> {
               {this.props.content}
             </main>
           </div>
+
+          <footer className=" col-md-2 fixed-bottom">
+            <hr />
+            <div>Created by NAV IT - Licenced under GPL</div>
+            <span className="text-muted">Version: 0.2</span>
+          </footer>
         </div>
       </div>
     );
