@@ -8,7 +8,7 @@ import DataCatalog from './pages/dataCatalog/DataCatalog';
 import DataLineage from './pages/dataLineage/DataLineage';
 import Producers from './pages/producers/Producers';
 import Topics from './pages/topics/Topics';
-import {BrowserRouter, Route, Link} from "react-router-dom";
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 class App extends React.Component {
   public render() {
@@ -39,26 +39,37 @@ class App extends React.Component {
         <MainView
           title={'DataNAV - Verktøy for data governance'}
           content={
-              <div>
-                  <Route  exact={true} path="/mainPage" component={MainPage}/>
-                  <Route exact={true} path="/dataCatalog" component={DataCatalog}/>
-                  <Route exact={true} path="/accessPolicies" component={AccessPolicies}/>
-                  <Route exact={true} path="/topics" component={Topics}/>
-                  <Route exact={true} path="/producers" component={Producers}/>
-                  <Route exact={true} path="/consumers" component={Consumers}/>
-                  <Route exact={true} path="/dataLineage" component={DataLineage}/>
-
-              </div>     }
-          leftMenu={
             <div>
-              {makeNavigationItem('Main page', 'mainPage', 'home', 'nav-link active')}
+              <Route exact={true} path="/" component={MainPage} />
+              <Route exact={true} path="/mainPage" component={MainPage} />
+              <Route exact={true} path="/dataCatalog" component={DataCatalog} />
+              <Route exact={true} path="/accessPolicies" component={AccessPolicies} />
+              <Route exact={true} path="/topics" component={Topics} />
+              <Route exact={true} path="/producers" component={Producers} />
+              <Route exact={true} path="/consumers" component={Consumers} />
+              <Route exact={true} path="/dataLineage" component={DataLineage} />
+            </div>
+          }
+          leftMenu={
+            <ul className="nav flex-column">
+              {makeNavigationItem('Main page', 'mainPage', 'home', 'nav-link')}
               {makeNavigationItem('Data catalog', 'dataCatalog', 'clone', 'nav-link')}
-              {makeNavigationItem('Access policies', 'accessPolicies', 'lock', 'nav-link')}
+              {makeNavigationItem(
+                'Access policies',
+                'accessPolicies',
+                'lock',
+                'nav-link'
+              )}
               {makeNavigationItem('Topics', 'topics', 'object-group', 'nav-link')}
               {makeNavigationItem('Producers', 'producers', 'pencil', 'nav-link')}
               {makeNavigationItem('Consumers', 'consumers', 'group', 'nav-link')}
-              {makeNavigationItem('Data Lineage', 'dataLineage', 'crosshairs', 'nav-link')}
-            </div>
+              {makeNavigationItem(
+                'Data Lineage',
+                'dataLineage',
+                'crosshairs',
+                'nav-link'
+              )}
+            </ul>
           }
         />
       </BrowserRouter>
