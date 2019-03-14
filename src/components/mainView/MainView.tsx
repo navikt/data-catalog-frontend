@@ -44,8 +44,8 @@ export default class MainView extends React.Component<Props> {
 
           <footer className=" col-md-2 fixed-bottom">
             <hr />
-            <div>Created by NAV IT - Licenced under GPL</div>
-            <span className="text-muted">Version: 0.2</span>
+            <div style={{ fontSize: '12px' }}>Created by NAV IT - Licenced under GPL</div>
+            <span style={{ fontSize: '12px' }}>Version: 0.2</span>
           </footer>
         </div>
       </div>

@@ -1,5 +1,5 @@
-# data-catalog-frontend
-This is frontend open source project repository for data-catalog project.
+# Data Catalog Frontend
+This is frontend open source project repository for the Data Catalog project.
 
 ## Available Scripts
 
@@ -11,14 +11,15 @@ Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
+#### `npm i &&  npm run start-with-stub`
+Runs the app in the development mode with stub data server running on [http://localhost:8080/data](http://localhost:8080/data).<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
 #### `npm test`
 
 #### `npm test -- --coverage`
 
 #### `npm run build`
-
-#### `npm run eject`
-
 
 ## Prerequisites
 
