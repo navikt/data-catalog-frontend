@@ -4,7 +4,7 @@ import { ApiError } from './modelsApi';
 import * as dataActions from './actions';
 
 export enum DataValue {
-  AllData = '*'
+  AllData = 'allRecords'
 }
 
 export type DataActions = ActionType<typeof dataActions>;
