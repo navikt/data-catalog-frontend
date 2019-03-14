@@ -28,12 +28,12 @@
       "personalData": true
     },
     {
-      "name": "Bostedsadresse",
+      "name": "Oppholdsadresse",
       "description": "Angir hvor en bruker (BEGREP-20) oppholder seg når brukeren har en postadresse (BEGREP-658). Denne adressetypen brukes i fagsystemet Arena og erstatter de to adressetypene midlertidig og bolig",
       "category": "PERSONALIA",
       "sensitivity": "5",
       "ownership": "Ytelsesavdelingen",
-      "sourceOfRecord": "Folkeregisteret",
+      "sourceOfRecord": "Bruker",
       "qualityOfData": "Middels",
       "personalData": true
     },
@@ -63,7 +63,7 @@
       "category": "INNTEKT_TRYGDE_OG_PENSJONSYTELSER",
       "sensitivity": "5",
       "ownership": "Ytelsesavdelingen",
-      "sourceOfRecord": "Folkeregisteret",
+      "sourceOfRecord": "Arbeidsgiver",
       "qualityOfData": "God",
       "personalData": true
     }
