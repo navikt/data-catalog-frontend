@@ -1,5 +1,5 @@
 export enum ApiPath {
-  DataPath = '/api/v1'
+  DataPath = '/records'
 }
 
 export interface ApiError {

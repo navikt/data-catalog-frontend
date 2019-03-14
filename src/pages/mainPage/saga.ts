@@ -2,7 +2,7 @@ import { all, call, put, select, takeEvery } from 'redux-saga/effects';
 import { get } from 'lodash';
 
 import { restGet } from '../../api';
-// import { ApiPath } from './modelsApi';
+import { ApiPath } from './modelsApi';
 import { fetchData, fetchDataFailure, fetchDataSuccess, getData } from './actions';
 import { DataActionTypes } from './types';
 
@@ -20,10 +20,10 @@ function* getDataSaga(action: ReturnType<typeof getData>) {
 
 function* fetchDataSaga(action: ReturnType<typeof fetchData>) {
   try {
-    // const url = `${ApiPath.DataPath}/${action.payload}`;
+    const url = `${ApiPath.DataPath}/${action.payload}`;
     // 'http://localhost:8080/api/v1/*'
     // const res = yield call(restGet, 'http://localhost:8080' + url);
-      const res = yield call(restGet, 'http://35.228.23.225:8080/records/nmJWe2kBBl7CDR1ZidfZ' );
+    const res = yield call(restGet, 'http://35.228.23.225:8080' + url);
     const json = yield res.json();
 
     if (res.ok) {
