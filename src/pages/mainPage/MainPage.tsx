@@ -5,7 +5,7 @@ import { DataValue, Data } from './types';
 
 interface PropsFromState {
   pathName?: string;
-  data?: Data[];
+  data?: Data;
 }
 
 interface PropsFromDispatch {
@@ -57,18 +57,19 @@ class MainPage extends React.Component<Props> {
               </thead>
               <tbody>
                 {data &&
-                  data.map(d => (
-                    <tr key={d.name}>
-                      <td>{d.name}</td>
-                      <td>{d.description}</td>
-                      <td>{d.category}</td>
-                      <td>{d.sensitivity}</td>
-                      <td>{d.ownership}</td>
-                      <td>{d.sourceOfRecord}</td>
-                      <td>{d.qualityOfData}</td>
-                      <td>{d.personalData ? 'True' : 'False'}</td>
+                  // data.map(d => (
+                    <tr key={data.name}>
+                      <td>{data.name}</td>
+                      <td>{data.description}</td>
+                      <td>{data.category}</td>
+                      <td>{data.sensitivity}</td>
+                      <td>{data.ownership}</td>
+                      <td>{data.sourceOfRecord}</td>
+                      <td>{data.qualityOfData}</td>
+                      <td>{data.personalData ? 'True' : 'False'}</td>
                     </tr>
-                  ))}
+                 // ))
+                }
               </tbody>
             </table>
           </div>
