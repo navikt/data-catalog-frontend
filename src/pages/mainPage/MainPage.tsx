@@ -39,7 +39,7 @@ class MainPage extends React.Component<Props> {
           <h1 className="h2">Details</h1>
         </div>
 
-        <div className="row" style={{marginLeft: "6px"}}>
+        <div className="row" style={{ marginLeft: '6px' }}>
           <h2>The fundamentals</h2>
           <div className="table-responsive">
             <table className="table table-striped table-sm">
