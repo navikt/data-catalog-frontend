@@ -10,8 +10,10 @@ env:
   - RELEASE_VERSION="$(git fetch --unshallow || true && git rev-list --count $TRAVIS_COMMIT)"
   - DOCKER_IMAGE_FULL_NAME="$TRAVIS_REPO_SLUG:$RELEASE_VERSION"
   - GITHUB_APP_ID=26100
+  - DOCKER_USERNAME=ketillfenne
+  - secure: fv+IbxVjGGV/Ep+QrbwIiUR3dA4oYQsau43laDbymhF2QAU3zzXkBGoBBjcGMu6UUOzDSCtGLhLRPCG4oJgfNHgiDkYAzG6w5h7XlwnMawstrZJOea4oZeBEg4ftcbILY2aQdvwJmzUXa7NjQhb8UhQgPNXtqZpJUPGqNq5XBtcPT9KJf04/ZTazpyRdRg5sXIXnCILKIF+Ga1NnzaZ7+UC056ZPZMD44IJslYMY7hsDZcCPMs6QOQAJG0YlY7pBFpUBIZyUwIZ7kndgRvc/C3iklHKvAGOfxzzdxTPaNfob6687bpwIUjcTTMCcUbZbPr+fWvFDEM/y3KjzGy0hImlg8O7JZPRF3TYbNZlc8ZF6AI1xP73pUl7yz6DZG18P1XqcxBtJD16kPiIJjWSFUJ3tG4Z67mOjLld4sCK4Tq8ztrbQJqmxdsT/D5i7IbAGm8zeeWpGiAny+0g3g3J2zwl3EcbNhxda93+4amDyPjxSMJRlJ7I8kEMGnnqDMN4juRanHR9xqxLn27m3MKaxu57o3SNHUA7dumPJfTs62Gfw2rnXt7PO3jYz7qr6+4UFzXW5xuYRET2dk7baG7VNVYDX5Ona5BjJ5fnv/RydxvszFUsSF122/PhTtBE2MxFZmawxQlZUJnqHGaMQdvIcO2ZX4woh3vaRFIeYRyDzRi4=
 script:
-- npm run test-coverage
+- npm run build
 - docker build -t "$DOCKER_IMAGE_FULL_NAME" .
 deploy:
   provider: script
@@ -26,5 +28,5 @@ after_deploy:
 before_install:
 - openssl aes-256-cbc -K $encrypted_98dcabe19c4b_key -iv $encrypted_98dcabe19c4b_iv
   -in travis/datajegerne-private-key.enc -out travis/datajegerne-private-key.pem -d
-- export GH_TOKEN=$(./travis/generate-installation-token.sh `./travis/generate-jwt.sh ./travis/datajegerne-private-key.pem
-  $GITHUB_APP_ID`)
+- export GH_TOKEN=$(./travis/generate-installation-token.sh `./travis/generate-jwt.sh
+  ./travis/datajegerne-private-key.pem $GITHUB_APP_ID`)
