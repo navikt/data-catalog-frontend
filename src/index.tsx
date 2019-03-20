@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { AppContainer } from 'react-hot-loader';
 import configStore from './configStore';
+// import { I18n } from 'react-i18nify';
 
 const history = createBrowserHistory();
 const store = configStore(history);
