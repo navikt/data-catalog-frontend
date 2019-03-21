@@ -33,6 +33,8 @@ export const LanguageJson = {
         }
       },
       words: {
+        logout: 'Logout',
+        language: 'Language',
         footerText: 'Created by NAV IT - Licenced under GPL',
         version: 'Version',
         title: 'DataNAV - Data governance tools',
@@ -157,6 +159,8 @@ export const LanguageJson = {
         }
       },
       words: {
+        logout: 'Logg ut',
+        language: 'Språk',
         footerText: 'Laget av NAV IT - lisensiert under GPL',
         version: 'Versjon',
         title: 'DataNAV - Verktøy for data governance',

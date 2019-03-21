@@ -8,6 +8,9 @@ interface Props {
   content: object;
   pathName?: string;
 }
+interface State {
+  showPopup: boolean;
+}
 
 // Toggle the side navigation
 const sidebarToggle = (e: any) => {
@@ -16,7 +19,35 @@ const sidebarToggle = (e: any) => {
   $('.sidebar').toggleClass('toggled');
 };
 
-class MainView extends React.Component<Props> {
+class MainView extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      showPopup: false
+    };
+  }
+
+  togglePopup() {
+    this.setState(state => ({
+      showPopup: state.showPopup ? false : true
+    }));
+  }
+
+  handleLanguage(l: string) {
+    localStorage.setItem('language', l);
+    window.location.reload(true);
+  }
+
+  menuText = (t1: any, t2: any) => (
+    <div>
+      <span>{t1}</span>
+      <span>{t2}</span>
+    </div>
+  );
+
+  checked = (language: any) =>
+    localStorage.getItem('language') === language && <i className="fa fa-check" />;
+
   public render() {
     return (
       <div>
@@ -54,38 +85,38 @@ class MainView extends React.Component<Props> {
             </div>
           </form>
 
-          <ul className="navbar-nav ml-auto ml-md-0">
-            <li className="nav-item dropdown no-arrow">
+          <ul className="navbar-nav ml-auto ml-md-0" onClick={() => this.togglePopup()}>
+            <li
+              className={
+                'nav-item dropdown no-arrow ' + (this.state.showPopup ? 'show' : '')
+              }
+            >
               <a
                 className="nav-link dropdown-toggle"
-                href="#"
                 id="userDropdown"
                 role="button"
                 data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
+                aria-haspopup={this.state.showPopup}
+                aria-expanded={this.state.showPopup}
               >
-                <i className="fa fa-user-circle fa-fw" />
+                <i className="fa fa-user-circle" />
               </a>
               <div
-                className="dropdown-menu dropdown-menu-right"
+                className={
+                  'dropdown-menu dropdown-menu-right ' +
+                  (this.state.showPopup ? 'show' : '')
+                }
                 aria-labelledby="userDropdown"
               >
-                <a className="dropdown-item" href="#">
-                  Settings
+                <a className="dropdown-item">{I18n.t('dataCatalog.words.language')}</a>
+                <a className="dropdown-item" onClick={() => this.handleLanguage('no')}>
+                  {this.menuText(this.checked('no'), 'NO')}
                 </a>
-                <a className="dropdown-item" href="#">
-                  Activity Log
+                <a className="dropdown-item" onClick={() => this.handleLanguage('en')}>
+                  {this.menuText(this.checked('en'), 'EN')}
                 </a>
                 <div className="dropdown-divider" />
-                <a
-                  className="dropdown-item"
-                  href="#"
-                  data-toggle="modal"
-                  data-target="#logoutModal"
-                >
-                  Logout
-                </a>
+                <a className="dropdown-item">{I18n.t('dataCatalog.words.logout')}</a>
               </div>
             </li>
           </ul>
@@ -216,44 +247,6 @@ class MainView extends React.Component<Props> {
                 </div>
               </div>
             </footer>
-          </div>
-        </div>
-
-        <div
-          className="modal fade"
-          id="logoutModal"
-          tabIndex={-1}
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">
-                  Ready to Leave?
-                </h5>
-                <button
-                  className="close"
-                  type="button"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                Select "Logout" below if you are ready to end your current session.
-              </div>
-              <div className="modal-footer">
-                <button className="btn btn-secondary" type="button" data-dismiss="modal">
-                  Cancel
-                </button>
-                <a className="btn btn-primary" href="login.html">
-                  Logout
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
