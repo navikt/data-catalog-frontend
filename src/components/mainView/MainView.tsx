@@ -4,7 +4,6 @@ import { I18n } from 'react-i18nify';
 import { connect } from 'react-redux';
 
 interface Props {
-  title: any;
   leftMenu?: object;
   content: object;
   pathName?: string;
@@ -22,8 +21,12 @@ class MainView extends React.Component<Props> {
     return (
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark static-top">
-          <a className="navbar-brand mr-1" href="#">
-            {this.props.title}
+          <a className="navbar-brand mr-1" href="/">
+            <div> {I18n.t('dataCatalog.words.titleDataNAV')} </div>
+            <div style={{ fontSize: '12px' }}>
+              {' '}
+              {I18n.t('dataCatalog.words.titleDataGovernanceTools')}{' '}
+            </div>
           </a>
 
           <button

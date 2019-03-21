@@ -26,7 +26,6 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <MainView
-          title={I18n.t('dataCatalog.words.title')}
           content={
             <div>
               <Route exact={true} path="/" component={MainPage} />

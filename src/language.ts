@@ -34,6 +34,8 @@ export const LanguageJson = {
       },
       words: {
         title: 'DataNAV - Data governance tools',
+        titleDataNAV: 'DataNAV',
+        titleDataGovernanceTools: 'Data governance tools',
         pageDetails: 'Here comes the details of the page.',
         viewDetails: 'View Details',
         home: 'Home',
@@ -154,6 +156,8 @@ export const LanguageJson = {
       },
       words: {
         title: 'DataNAV - Verktøy for data governance',
+        titleDataNAV: 'DataNAV',
+        titleDataGovernanceTools: 'Data governance tools',
         pageDetails: 'Her kommer detaljene til siden.',
         viewDetails: 'Vis detaljer',
         home: 'Hjem',
