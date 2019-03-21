@@ -1,10 +1,13 @@
 import * as React from 'react';
 import * as $ from 'jquery';
+import { I18n } from 'react-i18nify';
+import { connect } from 'react-redux';
 
 interface Props {
   title: any;
   leftMenu?: object;
   content: object;
+  pathName?: string;
 }
 
 // Toggle the side navigation
@@ -14,7 +17,7 @@ const sidebarToggle = (e: any) => {
   $('.sidebar').toggleClass('toggled');
 };
 
-export default class MainView extends React.Component<Props> {
+class MainView extends React.Component<Props> {
   public render() {
     return (
       <div>
@@ -229,27 +232,15 @@ export default class MainView extends React.Component<Props> {
                 </a>
               </div>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="charts.html">
-                <i className="fa fa-chart-area" />
-                <span>Charts</span>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="tables.html">
-                <i className="fa fa-table" />
-                <span>Tables</span>
-              </a>
-            </li>
           </ul>
 
           <div id="content-wrapper">
             <div className="container-fluid">
               <ol className="breadcrumb">
                 <li className="breadcrumb-item">
-                  <a href="#">Dashboard</a>
+                  <a href="#">{I18n.t('dataCatalog.words.home')}</a>
                 </li>
-                <li className="breadcrumb-item active">Overview</li>
+                <li className="breadcrumb-item active">{this.PageName()}</li>
               </ol>
 
               <div className="row">
@@ -257,12 +248,21 @@ export default class MainView extends React.Component<Props> {
                   <div className="card text-white bg-primary o-hidden h-100">
                     <div className="card-body">
                       <div className="card-body-icon">
-                        <i className="fa fa-comments" />
+                        <i className="fa fa-lock" />
                       </div>
-                      <div className="mr-5">26 New Messages!</div>
+                      <div className="mr-5">
+                        {'29000 ' +
+                          I18n.t('dataCatalog.pages.accessPolicies.accessPolicies') +
+                          '!'}
+                      </div>
                     </div>
-                    <a className="card-footer text-white clearfix small z-1" href="#">
-                      <span className="float-left">View Details</span>
+                    <a
+                      className="card-footer text-white clearfix small z-1"
+                      href="accessPolicies"
+                    >
+                      <span className="float-left">
+                        {I18n.t('dataCatalog.words.viewDetails')}
+                      </span>
                       <span className="float-right">
                         <i className="fa fa-angle-right" />
                       </span>
@@ -273,12 +273,19 @@ export default class MainView extends React.Component<Props> {
                   <div className="card text-white bg-warning o-hidden h-100">
                     <div className="card-body">
                       <div className="card-body-icon">
-                        <i className="fa fa-list" />
+                        <i className="fa fa-object-group" />
                       </div>
-                      <div className="mr-5">11 New Tasks!</div>
+                      <div className="mr-5">
+                        {'7890 ' + I18n.t('dataCatalog.pages.topics.topics') + '!'}
+                      </div>
                     </div>
-                    <a className="card-footer text-white clearfix small z-1" href="#">
-                      <span className="float-left">View Details</span>
+                    <a
+                      className="card-footer text-white clearfix small z-1"
+                      href="topics"
+                    >
+                      <span className="float-left">
+                        {I18n.t('dataCatalog.words.viewDetails')}
+                      </span>
                       <span className="float-right">
                         <i className="fa fa-angle-right" />
                       </span>
@@ -289,12 +296,19 @@ export default class MainView extends React.Component<Props> {
                   <div className="card text-white bg-success o-hidden h-100">
                     <div className="card-body">
                       <div className="card-body-icon">
-                        <i className="fa fa-fw fa-shopping-cart" />
+                        <i className="fa fa-pencil" />
                       </div>
-                      <div className="mr-5">123 New Orders!</div>
+                      <div className="mr-5">
+                        {'4490 ' + I18n.t('dataCatalog.pages.producers.producers') + '!'}
+                      </div>
                     </div>
-                    <a className="card-footer text-white clearfix small z-1" href="#">
-                      <span className="float-left">View Details</span>
+                    <a
+                      className="card-footer text-white clearfix small z-1"
+                      href="producers"
+                    >
+                      <span className="float-left">
+                        {I18n.t('dataCatalog.words.viewDetails')}
+                      </span>
                       <span className="float-right">
                         <i className="fa fa-angle-right" />
                       </span>
@@ -305,12 +319,19 @@ export default class MainView extends React.Component<Props> {
                   <div className="card text-white bg-danger o-hidden h-100">
                     <div className="card-body">
                       <div className="card-body-icon">
-                        <i className="fa fa-fw fa-life-ring" />
+                        <i className="fa fa-fw fa-group" />
                       </div>
-                      <div className="mr-5">13 New Tickets!</div>
+                      <div className="mr-5">
+                        {'2490 ' + I18n.t('dataCatalog.pages.consumers.consumers') + '!'}
+                      </div>
                     </div>
-                    <a className="card-footer text-white clearfix small z-1" href="#">
-                      <span className="float-left">View Details</span>
+                    <a
+                      className="card-footer text-white clearfix small z-1"
+                      href="consumers"
+                    >
+                      <span className="float-left">
+                        {I18n.t('dataCatalog.words.viewDetails')}
+                      </span>
                       <span className="float-right">
                         <i className="fa fa-angle-right" />
                       </span>
@@ -320,23 +341,7 @@ export default class MainView extends React.Component<Props> {
               </div>
 
               <div className="card mb-3">
-                <div className="card-header">
-                  <i className="fa fa-chart-area" />
-                  Area Chart Example
-                </div>
-                <div className="card-body">
-                  <canvas id="myAreaChart" width="100%" height="30" />
-                </div>
-                <div className="card-footer small text-muted">
-                  Updated yesterday at 11:59 PM
-                </div>
-              </div>
-
-              <div className="card mb-3">
-                <div className="card-header">
-                  <i className="fa fa-table" />
-                  Data Table Example
-                </div>
+                <div className="card-header">{this.PageName()}</div>
                 <div className="card-body">{this.props.content}</div>
                 <div className="card-footer small text-muted">
                   Updated yesterday at 11:59 PM
@@ -399,4 +404,20 @@ export default class MainView extends React.Component<Props> {
       </div>
     );
   }
+
+  private PageName() {
+    return (
+      this.props.pathName &&
+      I18n.t(
+        'dataCatalog.pages.' +
+          this.props.pathName.slice(1) +
+          '.' +
+          this.props.pathName.slice(1)
+      )
+    );
+  }
 }
+
+export default connect((state: any) => ({
+  pathName: state.router.location.pathname
+}))(MainView);

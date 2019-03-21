@@ -3,7 +3,15 @@ export const LanguageJson = {
     dataCatalog: {
       pages: {
         mainPage: {
-          mainPage: 'Main page'
+          mainPage: 'Main page',
+          name: 'Name',
+          description: 'Description',
+          category: 'Category',
+          sensitivity: 'Sensitivity',
+          ownership: 'Ownership',
+          sourceOfRecord: 'Source of record',
+          qualityOfData: 'Quality of data',
+          personalData: 'Personal data'
         },
         dataCatalog: {
           dataCatalog: 'Data catalog'
@@ -25,6 +33,10 @@ export const LanguageJson = {
         }
       },
       words: {
+        title: 'DataNAV - Data governance tools',
+        pageDetails: 'Here comes the details of the page.',
+        viewDetails: 'View Details',
+        home: 'Home',
         errorMainMessages: {
           applicationError: 'Application error.',
           applicationWarning: 'Application warning',
@@ -105,113 +117,124 @@ export const LanguageJson = {
         count: 'Count',
         selectedObjects: 'Selected Objects'
       }
-    },
-    no: {
-      dataCatalog: {
-        pages: {
-          mainPage: {
-            mainPage: 'Hovedside'
-          },
-          dataCatalog: {
-            dataCatalog: 'Datakatalog'
-          },
-          accessPolicies: {
-            accessPolicies: 'Access policies'
-          },
-          topics: {
-            topics: 'Topics'
-          },
-          producers: {
-            producers: 'Produsenter'
-          },
-          consumers: {
-            consumers: 'Konsumenter'
-          },
-          dataLineage: {
-            dataLineage: 'Data Lineage'
-          }
-        },
-        words: {
-          errorMessages: {
-            applicationError: 'Applikasjonsfeil.',
-            applicationWarning: 'Programvarsling',
-            networkError: 'Nettverksfeil',
-            notFound: 'Ressursen ble ikke funnet.',
-            notAllowed: 'Du har ikke tilgang.',
-            notAuthenticated: 'Du er ikke logget inn.',
-            badRequest: 'Ugyldige data ble sendt til serveren.',
-            errorCode: 'HTTP feilkode: %{status}'
-          },
-          notificationMessages: {
-            deleting: 'Sletting',
-            saving: 'Lagre',
-            moving: 'Flytting'
-          },
-          search: {
-            search: 'Søk',
-            stats:
-              'Viser %{from} - %{to} av %{total} treff. Brukte %{timeUsed} ms på søket.',
-            ready: 'Fyll inn og trykk på søk knappen',
-            noResults: 'Søket ga ingen treff.'
-          },
-          pageSizeMessage:
-            'For å forbedre ytelsen vil plasseringen av objekter / prøver ikke vises på søkeresultatet.',
-          numberRangeMessage: 'Museumsnummer-intervall må være på formen 12..13',
-          clearSearch: 'Blank søk',
-          cookiesBlockedMessage:
-            'Cookies blokkert. Du må endre innstillingene i nettleseren din til å godta cookies for å bruke denne tjenesten.',
-          conservationReport: 'Konservering report',
-          report: 'Report',
-          select: 'Legg til',
-          searchData: 'Søkedata',
-          selected: 'Valgt',
-          notSelected: 'Ikke valgt',
-          selectObjects: 'Velg objekter',
-          doNotHaveSufficientRole:
-            'Har ikke tilstrekkelig rolle for å utføre operasjonen',
-          error: 'Feilmelding',
-          freetext: 'Fritekst',
-          makeChoice: 'Vennligst velg...',
-          chooseValue: 'Velg verdi',
-          datePerformed: 'Utført dato',
-          dateRegistered: 'Opprettet dato',
-          registeredBy: 'Opprettet av',
-          performedBy: 'Utført av',
-          ok: 'OK',
-          notOk: 'Ikke OK',
-          save: 'Lagre',
-          close: 'Lukk',
-          saveTooltip: 'Lagre',
-          cancel: 'Avbryt',
-          edit: 'Endre',
-          delete: 'Slett',
-          back: 'Tilbake',
-          addObjects: 'Legg til objekter',
-          cancelTooltip: 'Avbryt registreringen',
-          magazine: 'Magasin',
-          deleteNode: 'Slett node',
-          footerText: '',
-          showConfirm: {
-            message: 'Er du sikker på dette?',
-            confirm: 'Bekrefte',
-            cancel: 'Avbryt',
-            ok: 'Ok'
-          },
-          uploadFile: 'Last opp fil',
-          browse: 'Bla gjennom',
-          yes: 'Ja',
-          no: 'Nei',
-          change: 'Endre',
-          lastUpdateBy: 'Sist endret av',
+    }
+  },
+  no: {
+    dataCatalog: {
+      pages: {
+        mainPage: {
+          mainPage: 'Hovedside',
           name: 'Navn',
-          role: 'Rolle',
-          date: 'Dato',
-          chooseRole: 'Velg rolle',
-          attachment: 'Vedlegg',
-          findActor: 'Finn aktør',
-          count: 'Antall',
-          selectedObjects: 'Antall valgte'
+          description: 'Beskrivelse',
+          category: 'Kategori',
+          sensitivity: 'Sensitivity',
+          ownership: 'Eierskap',
+          sourceOfRecord: 'Kilde',
+          qualityOfData: 'Kvalitet av data',
+          personalData: 'Personlige data'
+        },
+        dataCatalog: {
+          dataCatalog: 'Datakatalog'
+        },
+        accessPolicies: {
+          accessPolicies: 'Access policies'
+        },
+        topics: {
+          topics: 'Topics'
+        },
+        producers: {
+          producers: 'Produsenter'
+        },
+        consumers: {
+          consumers: 'Konsumenter'
+        },
+        dataLineage: {
+          dataLineage: 'Data Lineage'
         }
+      },
+      words: {
+        title: 'DataNAV - Verktøy for data governance',
+        pageDetails: 'Her kommer detaljene til siden.',
+        viewDetails: 'Vis detaljer',
+        home: 'Hjem',
+        errorMessages: {
+          applicationError: 'Applikasjonsfeil.',
+          applicationWarning: 'Programvarsling',
+          networkError: 'Nettverksfeil',
+          notFound: 'Ressursen ble ikke funnet.',
+          notAllowed: 'Du har ikke tilgang.',
+          notAuthenticated: 'Du er ikke logget inn.',
+          badRequest: 'Ugyldige data ble sendt til serveren.',
+          errorCode: 'HTTP feilkode: %{status}'
+        },
+        notificationMessages: {
+          deleting: 'Sletting',
+          saving: 'Lagre',
+          moving: 'Flytting'
+        },
+        search: {
+          search: 'Søk',
+          stats:
+            'Viser %{from} - %{to} av %{total} treff. Brukte %{timeUsed} ms på søket.',
+          ready: 'Fyll inn og trykk på søk knappen',
+          noResults: 'Søket ga ingen treff.'
+        },
+        pageSizeMessage:
+          'For å forbedre ytelsen vil plasseringen av objekter / prøver ikke vises på søkeresultatet.',
+        numberRangeMessage: 'Museumsnummer-intervall må være på formen 12..13',
+        clearSearch: 'Blank søk',
+        cookiesBlockedMessage:
+          'Cookies blokkert. Du må endre innstillingene i nettleseren din til å godta cookies for å bruke denne tjenesten.',
+        conservationReport: 'Konservering report',
+        report: 'Report',
+        select: 'Legg til',
+        searchData: 'Søkedata',
+        selected: 'Valgt',
+        notSelected: 'Ikke valgt',
+        selectObjects: 'Velg objekter',
+        doNotHaveSufficientRole: 'Har ikke tilstrekkelig rolle for å utføre operasjonen',
+        error: 'Feilmelding',
+        freetext: 'Fritekst',
+        makeChoice: 'Vennligst velg...',
+        chooseValue: 'Velg verdi',
+        datePerformed: 'Utført dato',
+        dateRegistered: 'Opprettet dato',
+        registeredBy: 'Opprettet av',
+        performedBy: 'Utført av',
+        ok: 'OK',
+        notOk: 'Ikke OK',
+        save: 'Lagre',
+        close: 'Lukk',
+        saveTooltip: 'Lagre',
+        cancel: 'Avbryt',
+        edit: 'Endre',
+        delete: 'Slett',
+        back: 'Tilbake',
+        addObjects: 'Legg til objekter',
+        cancelTooltip: 'Avbryt registreringen',
+        magazine: 'Magasin',
+        deleteNode: 'Slett node',
+        footerText: '',
+        showConfirm: {
+          message: 'Er du sikker på dette?',
+          confirm: 'Bekrefte',
+          cancel: 'Avbryt',
+          ok: 'Ok'
+        },
+        uploadFile: 'Last opp fil',
+        browse: 'Bla gjennom',
+        yes: 'Ja',
+        no: 'Nei',
+        change: 'Endre',
+        lastUpdateBy: 'Sist endret av',
+        name: 'Navn',
+        role: 'Rolle',
+        date: 'Dato',
+        chooseRole: 'Velg rolle',
+        attachment: 'Vedlegg',
+        findActor: 'Finn aktør',
+        count: 'Antall',
+        selectedObjects: 'Antall valgte'
       }
     }
   }

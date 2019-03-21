@@ -5,7 +5,10 @@
       "config/**/*.js",
       "node_modules/**/*.ts",
       "coverage/lcov-report/*.js",
-      "src/dashboard.js"
+      "src/**/*.tsx",
+      "src/index.tsx",
+      "*.ts",
+      "src/**/*.ts"
     ]
   },
   "rules": {

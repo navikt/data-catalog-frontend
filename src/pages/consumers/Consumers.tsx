@@ -1,16 +1,13 @@
 import * as React from 'react';
+import { I18n } from 'react-i18nify';
 
 class Consumers extends React.Component {
   public render() {
     return (
       <div>
-        <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 className="h2">Consumers</h1>
-        </div>
-
-        <div className="row">
-          <h2>Consumers details</h2>
-        </div>
+        <h5>{I18n.t('dataCatalog.pages.consumers.consumers')}</h5>
+        <hr style={{ height: '1px' }} />
+        <div>{I18n.t('dataCatalog.words.pageDetails')}</div>
       </div>
     );
   }

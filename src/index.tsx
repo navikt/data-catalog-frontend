@@ -10,11 +10,16 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { AppContainer } from 'react-hot-loader';
 import configStore from './configStore';
-// import { I18n } from 'react-i18nify';
+import { LanguageJson } from './language';
+import { I18n } from 'react-i18nify';
+import { loadLanguage } from './utils/language';
 
 const history = createBrowserHistory();
 const store = configStore(history);
 const rootElement = document.getElementById('root') as HTMLElement;
+
+I18n.setTranslations(LanguageJson);
+loadLanguage();
 
 const render = (Component: React.ComponentType) => {
   ReactDOM.render(

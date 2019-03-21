@@ -3,10 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.7.2",
-    "@types/enzyme": "^3.9.0",
-    "@types/jquery": "^3.3.29",
-    "bootstrap": "^4.3.1",
     "connected-react-router": "^6.3.2",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
@@ -16,7 +12,7 @@
     "react-dom": "^16.8.3",
     "react-fontawesome": "^1.6.1",
     "react-hot-loader": "^4.8.0",
-    "react-i18nify": "^1.11.14",
+    "react-i18nify": "^1.8.7",
     "react-redux": "^6.0.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
@@ -38,8 +34,11 @@
     "formatcode": "./node_modules/.bin/prettier --single-quote --trailing-comma none --ignore-path \"**/.history\" --print-width 90 --write \"{src,__{tests,mocks}__}/**/*.{js,jsx,ts,tsx,json}\""
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.7.2",
+    "@types/enzyme": "^3.9.0",
     "@types/history": "^4.7.2",
     "@types/jest": "^24.0.9",
+    "@types/jquery": "^3.3.29",
     "@types/lodash": "^4.14.122",
     "@types/moment": "^2.13.0",
     "@types/node": "^11.9.5",
@@ -50,6 +49,8 @@
     "@types/react-redux": "^7.0.3",
     "@types/react-router": "^4.4.4",
     "@types/react-router-dom": "^4.3.1",
+    "bootstrap": "^4.3.1",
+    "node-localstorage": "^1.3.1",
     "prettier": "1.16.4",
     "typescript": "^3.3.3333"
   }
