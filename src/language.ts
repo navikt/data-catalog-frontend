@@ -33,6 +33,8 @@ export const LanguageJson = {
         }
       },
       words: {
+        footerText: 'Created by NAV IT - Licenced under GPL',
+        version: 'Version',
         title: 'DataNAV - Data governance tools',
         titleDataNAV: 'DataNAV',
         titleDataGovernanceTools: 'Data governance tools',
@@ -57,6 +59,7 @@ export const LanguageJson = {
         },
         search: {
           search: 'Search',
+          searchFor: 'Search for...',
           stats:
             'Showing %{from} - %{to} out of %{total} matches. Used %{timeUsed} ms searching.',
           ready: 'Fill in the form and push the search button.',
@@ -97,7 +100,6 @@ export const LanguageJson = {
         cancelTooltip: 'Cancel registration',
         magazine: 'Storage facility',
         deleteNode: 'Delete node',
-        footerText: '',
         showConfirm: {
           message: 'Are you sure about this?',
           confirm: 'Confirm',
@@ -155,6 +157,8 @@ export const LanguageJson = {
         }
       },
       words: {
+        footerText: 'Laget av NAV IT - lisensiert under GPL',
+        version: 'Versjon',
         title: 'DataNAV - Verktøy for data governance',
         titleDataNAV: 'DataNAV',
         titleDataGovernanceTools: 'Data governance tools',
@@ -178,6 +182,7 @@ export const LanguageJson = {
         },
         search: {
           search: 'Søk',
+          searchFor: 'Søk etter...',
           stats:
             'Viser %{from} - %{to} av %{total} treff. Brukte %{timeUsed} ms på søket.',
           ready: 'Fyll inn og trykk på søk knappen',
@@ -218,7 +223,6 @@ export const LanguageJson = {
         cancelTooltip: 'Avbryt registreringen',
         magazine: 'Magasin',
         deleteNode: 'Slett node',
-        footerText: '',
         showConfirm: {
           message: 'Er du sikker på dette?',
           confirm: 'Bekrefte',

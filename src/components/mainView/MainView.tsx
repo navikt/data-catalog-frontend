@@ -42,7 +42,7 @@ class MainView extends React.Component<Props> {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Search for..."
+                placeholder={I18n.t('dataCatalog.words.search.searchFor')}
                 aria-label="Search"
                 aria-describedby="basic-addon2"
               />
@@ -55,64 +55,6 @@ class MainView extends React.Component<Props> {
           </form>
 
           <ul className="navbar-nav ml-auto ml-md-0">
-            <li className="nav-item dropdown no-arrow mx-1">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="alertsDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i className="fa fa-bell fa-fw" />
-                <span className="badge badge-danger">9+</span>
-              </a>
-              <div
-                className="dropdown-menu dropdown-menu-right"
-                aria-labelledby="alertsDropdown"
-              >
-                <a className="dropdown-item" href="#">
-                  Action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-                <div className="dropdown-divider" />
-                <a className="dropdown-item" href="#">
-                  Something else here
-                </a>
-              </div>
-            </li>
-            <li className="nav-item dropdown no-arrow mx-1">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="messagesDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i className="fa fa-envelope fa-fw" />
-                <span className="badge badge-danger">7</span>
-              </a>
-              <div
-                className="dropdown-menu dropdown-menu-right"
-                aria-labelledby="messagesDropdown"
-              >
-                <a className="dropdown-item" href="#">
-                  Action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-                <div className="dropdown-divider" />
-                <a className="dropdown-item" href="#">
-                  Something else here
-                </a>
-              </div>
-            </li>
             <li className="nav-item dropdown no-arrow">
               <a
                 className="nav-link dropdown-toggle"
@@ -147,101 +89,15 @@ class MainView extends React.Component<Props> {
               </div>
             </li>
           </ul>
-
-          {/*
-
-        <div>
-        <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-          <a className="navbar-brand col-sm-6 col-md-6 mr-0" href="#">
-            {this.props.title}
-          </a>
-          <input
-            className="form-control form-control-dark w-100"
-            type="text"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <ul className="navbar-nav px-3">
-            <li className="nav-item text-nowrap">
-              <a className="nav-link" href="#">
-                Sign out
-              </a>
-            </li>
-          </ul>
-        </nav>
-
-        <div className="container-fluid">
-          <div className="row">
-            <nav className="col-md-2 d-auto d-md-block bg-light sidebar">
-              <div className="sidebar-sticky">
-                <ul className="nav flex-column">{this.props.leftMenu}</ul>
-              </div>
-            </nav>
-
-            <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-4">
-              {this.props.content}
-            </main>
-          </div>
-
-          <footer className=" col-md-2 fixed-bottom">
-            <hr />
-            <div style={{ fontSize: '12px' }}>Created by NAV IT - Licenced under GPL</div>
-            <span style={{ fontSize: '12px' }}>Version: 0.2</span>
-          </footer>
-        </div>
-      </div>
-*/}
         </nav>
         <div id="wrapper">
-          <ul className="sidebar navbar-nav">
-            {this.props.leftMenu}
-            <li className="nav-item active">
-              <a className="nav-link" href="index.html">
-                <i className="fa fa-tachometer-alt" />
-                <span>Dashboard</span>
-              </a>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="pagesDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i className="fa fa-folder" />
-                <span>Pages</span>
-              </a>
-              <div className="dropdown-menu" aria-labelledby="pagesDropdown">
-                <h6 className="dropdown-header">Login Screens:</h6>
-                <a className="dropdown-item" href="login.html">
-                  Login
-                </a>
-                <a className="dropdown-item" href="register.html">
-                  Register
-                </a>
-                <a className="dropdown-item" href="forgot-password.html">
-                  Forgot Password
-                </a>
-                <div className="dropdown-divider" />
-                <h6 className="dropdown-header">Other Pages:</h6>
-                <a className="dropdown-item" href="404.html">
-                  404 Page
-                </a>
-                <a className="dropdown-item" href="blank.html">
-                  Blank Page
-                </a>
-              </div>
-            </li>
-          </ul>
+          <ul className="sidebar navbar-nav">{this.props.leftMenu}</ul>
 
           <div id="content-wrapper">
             <div className="container-fluid">
               <ol className="breadcrumb">
                 <li className="breadcrumb-item">
-                  <a href="#">{I18n.t('dataCatalog.words.home')}</a>
+                  <a href="/">{I18n.t('dataCatalog.words.home')}</a>
                 </li>
                 <li className="breadcrumb-item active">{this.PageName()}</li>
               </ol>
@@ -346,26 +202,22 @@ class MainView extends React.Component<Props> {
               <div className="card mb-3">
                 <div className="card-header">{this.PageName()}</div>
                 <div className="card-body">{this.props.content}</div>
-                <div className="card-footer small text-muted">
-                  Updated yesterday at 11:59 PM
-                </div>
               </div>
             </div>
 
             <footer className="sticky-footer">
               <div className="container my-auto">
                 <div className="copyright text-center my-auto">
-                  <div>Created by NAV IT - Licenced under GPL</div>
-                  <span>Version: 0.2</span>
+                  <div>{I18n.t('dataCatalog.words.footerText')}</div>
+                  <span style={{ fontWeight: 'bold' }}>
+                    {I18n.t('dataCatalog.words.version') + ': '}
+                  </span>
+                  <span>0.2</span>
                 </div>
               </div>
             </footer>
           </div>
         </div>
-
-        <a className="scroll-to-top rounded" href="#page-top">
-          <i className="fa-angle-up" />
-        </a>
 
         <div
           className="modal fade"

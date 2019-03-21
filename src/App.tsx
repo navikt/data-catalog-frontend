@@ -16,7 +16,7 @@ class App extends React.Component {
       return (
         <li className="nav-item">
           <a className="nav-link" href={pathRef}>
-            <i className={className} />
+            <i className={className} style={{ padding: '5px' }} />
             <span>{text}</span>
           </a>
         </li>
