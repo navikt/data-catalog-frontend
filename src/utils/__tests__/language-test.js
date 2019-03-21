@@ -1,4 +1,3 @@
-/*
 import { getLanguage, loadLanguage } from '../language';
 
 describe('Language', () => {
@@ -13,4 +12,3 @@ describe('Language', () => {
     expect(languageAfterUpdate).toBe('no');
   });
 });
-*/
