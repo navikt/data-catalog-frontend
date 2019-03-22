@@ -120,8 +120,7 @@ export const LanguageJson = {
         chooseRole: 'Select role',
         attachment: 'Attachment',
         findActor: 'Find actor',
-        count: 'Count',
-        selectedObjects: 'Selected Objects'
+        count: 'Count'
       }
     }
   },
@@ -245,8 +244,7 @@ export const LanguageJson = {
         chooseRole: 'Velg rolle',
         attachment: 'Vedlegg',
         findActor: 'Finn aktør',
-        count: 'Antall',
-        selectedObjects: 'Antall valgte'
+        count: 'Antall'
       }
     }
   }
