@@ -27,7 +27,7 @@ function* getResourceAvailabilitySaga() {
 }
 
 function* pollAvailabilitySaga() {
-  while (true) {
+  while (false) {
     yield call(getResourceAvailabilitySaga);
     yield call(delay, 60000);
   }
