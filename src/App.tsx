@@ -1,6 +1,5 @@
 import * as React from 'react';
 import MainView from './components/mainView/MainView';
-import * as FontAwesome from 'react-fontawesome';
 import MainPage from './pages/mainPage/MainPage';
 import AccessPolicies from './pages/accessPolicies/AccessPolicies';
 import Consumers from './pages/consumers/Consumers';
@@ -8,28 +7,18 @@ import DataCatalog from './pages/dataCatalog/DataCatalog';
 import DataLineage from './pages/dataLineage/DataLineage';
 import Producers from './pages/producers/Producers';
 import Topics from './pages/topics/Topics';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { I18n } from 'react-i18nify';
 
 class App extends React.Component {
   public render() {
-    const makeNavigationItem = (
-      text: string,
-      pathRef: string,
-      fontName: string,
-      className: string
-    ) => {
+    const makeNavigationItem = (text: string, pathRef: string, className: string) => {
       return (
         <li className="nav-item">
-          <Link className={className} to={pathRef}>
-            <FontAwesome
-              name={fontName}
-              style={{
-                fontSize: '1.5em',
-                marginRight: '5px'
-              }}
-            />
-            {text} <span className="sr-only">(current)</span>
-          </Link>
+          <a className="nav-link" href={pathRef}>
+            <i className={className} style={{ padding: '5px' }} />
+            <span>{text}</span>
+          </a>
         </li>
       );
     };
@@ -37,7 +26,6 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <MainView
-          title={'DataNAV - Verktøy for data governance'}
           content={
             <div>
               <Route exact={true} path="/" component={MainPage} />
@@ -52,22 +40,40 @@ class App extends React.Component {
           }
           leftMenu={
             <ul className="nav flex-column">
-              {makeNavigationItem('Main page', 'mainPage', 'home', 'nav-link')}
-              {makeNavigationItem('Data catalog', 'dataCatalog', 'clone', 'nav-link')}
               {makeNavigationItem(
-                'Access policies',
-                'accessPolicies',
-                'lock',
-                'nav-link'
+                I18n.t('dataCatalog.pages.mainPage.mainPage'),
+                'mainPage',
+                'fa fa-home'
               )}
-              {makeNavigationItem('Topics', 'topics', 'object-group', 'nav-link')}
-              {makeNavigationItem('Producers', 'producers', 'pencil', 'nav-link')}
-              {makeNavigationItem('Consumers', 'consumers', 'group', 'nav-link')}
               {makeNavigationItem(
-                'Data Lineage',
+                I18n.t('dataCatalog.pages.dataCatalog.dataCatalog'),
+                'dataCatalog',
+                'fa fa-clone'
+              )}
+              {makeNavigationItem(
+                I18n.t('dataCatalog.pages.accessPolicies.accessPolicies'),
+                'accessPolicies',
+                'fa fa-lock'
+              )}
+              {makeNavigationItem(
+                I18n.t('dataCatalog.pages.topics.topics'),
+                'topics',
+                'fa fa-object-group'
+              )}
+              {makeNavigationItem(
+                I18n.t('dataCatalog.pages.producers.producers'),
+                'producers',
+                'fa fa-pencil'
+              )}
+              {makeNavigationItem(
+                I18n.t('dataCatalog.pages.consumers.consumers'),
+                'consumers',
+                'fa fa-group'
+              )}
+              {makeNavigationItem(
+                I18n.t('dataCatalog.pages.dataLineage.dataLineage'),
                 'dataLineage',
-                'crosshairs',
-                'nav-link'
+                'fa fa-crosshairs'
               )}
             </ul>
           }

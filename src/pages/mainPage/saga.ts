@@ -23,7 +23,7 @@ function* fetchDataSaga(action: ReturnType<typeof fetchData>) {
     const url = `${ApiPath.DataPath}/${action.payload}`;
     // 'http://localhost:8080/api/v1/*'
     // const res = yield call(restGet, 'http://localhost:8080' + url);
-    const res = yield call(restGet, 'https://107.178.240.63/backend' + url);
+    const res = yield call(restGet, 'https://107.178.240.63' + url);
     const json = yield res.json();
 
     if (res.ok) {
