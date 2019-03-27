@@ -7,7 +7,34 @@ class Producers extends React.Component {
       <div>
         <h5>{I18n.t('dataCatalog.pages.producers.producers')}</h5>
         <hr style={{ height: '1px' }} />
-        <div>{I18n.t('dataCatalog.words.pageDetails')}</div>
+        <div className="table-responsive">
+          <table className="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>{I18n.t('dataCatalog.pages.mainPage.name')}</th>
+                <th>{I18n.t('dataCatalog.pages.mainPage.sourceOfRecord')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr key={1}>
+                <td>TPS</td>
+                <td>NAV</td>
+              </tr>
+              <tr key={2}>
+                <td>Aa-reg</td>
+                <td>NAV</td>
+              </tr>
+              <tr key={3}>
+                <td>INST</td>
+                <td>NAV</td>
+              </tr>
+              <tr key={4}>
+                <td>POPP</td>
+                <td>NAV</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

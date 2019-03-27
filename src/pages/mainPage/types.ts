@@ -33,4 +33,5 @@ export interface Data {
   sourceOfRecord: string;
   qualityOfData: string;
   personalData: boolean;
+  internalMaster: string;
 }

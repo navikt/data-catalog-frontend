@@ -120,8 +120,7 @@ export const LanguageJson = {
         chooseRole: 'Select role',
         attachment: 'Attachment',
         findActor: 'Find actor',
-        count: 'Count',
-        selectedObjects: 'Selected Objects'
+        count: 'Count'
       }
     }
   },
@@ -165,7 +164,7 @@ export const LanguageJson = {
         version: 'Versjon',
         title: 'DataNAV - Verktøy for data governance',
         titleDataNAV: 'DataNAV',
-        titleDataGovernanceTools: 'Data governance tools',
+        titleDataGovernanceTools: 'Verktøy for data governance',
         pageDetails: 'Her kommer detaljene til siden.',
         viewDetails: 'Vis detaljer',
         home: 'Hjem',
@@ -245,8 +244,7 @@ export const LanguageJson = {
         chooseRole: 'Velg rolle',
         attachment: 'Vedlegg',
         findActor: 'Finn aktør',
-        count: 'Antall',
-        selectedObjects: 'Antall valgte'
+        count: 'Antall'
       }
     }
   }
