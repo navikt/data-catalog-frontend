@@ -15,7 +15,8 @@
       "ownership": "Ytelsesavdelingen",
       "sourceOfRecord": "Folkeregisteret",
       "qualityOfData": "God",
-      "personalData": true
+      "personalData": true,
+      "internalMaster": "tps"
     },
     {
       "name": "Bostedsadresse",
@@ -25,7 +26,8 @@
       "ownership": "Ytelsesavdelingen",
       "sourceOfRecord": "Folkeregisteret",
       "qualityOfData": "God",
-      "personalData": true
+      "personalData": true,
+      "internalMaster": "tps"
     },
     {
       "name": "Oppholdsadresse",
@@ -35,7 +37,8 @@
       "ownership": "Ytelsesavdelingen",
       "sourceOfRecord": "Bruker",
       "qualityOfData": "Middels",
-      "personalData": true
+      "personalData": true,
+      "internalMaster": "tps"
     },
     {
       "name": "Fødsel",
@@ -45,7 +48,8 @@
       "ownership": "Ytelsesavdelingen",
       "sourceOfRecord": "Folkeregisteret",
       "qualityOfData": "God",
-      "personalData": true
+      "personalData": true,
+      "internalMaster": "tps"
     },
     {
       "name": "Refleksjonsperiode",
@@ -55,17 +59,19 @@
       "ownership": "Ytelsesavdelingen",
       "sourceOfRecord": "Folkeregisteret",
       "qualityOfData": "Dårlig",
-      "personalData": true
+      "personalData": true,
+      "internalMaster": "tps"
     },
     {
-      "name": "Inntekt",
-      "description": "Inntekt rapportert inn via a-ordningen, ferdiglignet PGI fra Opptjeningsregisteret eller inntekter oppgitt av bruker som beskriver brukers inntekt forut for uttak av ytelsen.",
+      "name": "Pensjonsgivende inntekt",
+      "description": "Ferdiglignet pensjonsgivende inntekt.",
       "category": "INNTEKT_TRYGDE_OG_PENSJONSYTELSER",
       "sensitivity": "5",
       "ownership": "Ytelsesavdelingen",
-      "sourceOfRecord": "Arbeidsgiver",
+      "sourceOfRecord": "Skattedirektoratet",
       "qualityOfData": "God",
-      "personalData": true
+      "personalData": true,
+      "internalMaster": "popp"
     }
   ]
 }

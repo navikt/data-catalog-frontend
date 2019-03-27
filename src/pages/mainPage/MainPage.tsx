@@ -32,11 +32,10 @@ class MainPage extends React.Component<Props> {
                 <th>{I18n.t('dataCatalog.pages.mainPage.name')}</th>
                 <th>{I18n.t('dataCatalog.pages.mainPage.description')}</th>
                 <th>{I18n.t('dataCatalog.pages.mainPage.category')}</th>
-                <th>{I18n.t('dataCatalog.pages.mainPage.sensitivity')}</th>
                 <th>{I18n.t('dataCatalog.pages.mainPage.ownership')}</th>
                 <th>{I18n.t('dataCatalog.pages.mainPage.sourceOfRecord')}</th>
-                <th>{I18n.t('dataCatalog.pages.mainPage.qualityOfData')}</th>
                 <th>{I18n.t('dataCatalog.pages.mainPage.personalData')}</th>
+                  <th>{I18n.t('dataCatalog.pages.mainPage.personalData')}</th>
               </tr>
             </thead>
             <tbody>
@@ -46,11 +45,10 @@ class MainPage extends React.Component<Props> {
                     <td>{d.name}</td>
                     <td>{d.description}</td>
                     <td>{d.category}</td>
-                    <td>{d.sensitivity}</td>
                     <td>{d.ownership}</td>
                     <td>{d.sourceOfRecord}</td>
-                    <td>{d.qualityOfData}</td>
                     <td>{d.personalData ? 'True' : 'False'}</td>
+                      <td>{d.internalMaster}</td>
                   </tr>
                 ))}
             </tbody>

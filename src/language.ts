@@ -164,7 +164,7 @@ export const LanguageJson = {
         version: 'Versjon',
         title: 'DataNAV - Verktøy for data governance',
         titleDataNAV: 'DataNAV',
-        titleDataGovernanceTools: 'Data governance tools',
+        titleDataGovernanceTools: 'Verktøy for data governance',
         pageDetails: 'Her kommer detaljene til siden.',
         viewDetails: 'Vis detaljer',
         home: 'Hjem',
