@@ -35,7 +35,7 @@ class MainPage extends React.Component<Props> {
                 <th>{I18n.t('dataCatalog.pages.mainPage.ownership')}</th>
                 <th>{I18n.t('dataCatalog.pages.mainPage.sourceOfRecord')}</th>
                 <th>{I18n.t('dataCatalog.pages.mainPage.personalData')}</th>
-                  <th>{I18n.t('dataCatalog.pages.mainPage.personalData')}</th>
+                <th>{I18n.t('dataCatalog.pages.mainPage.personalData')}</th>
               </tr>
             </thead>
             <tbody>
@@ -48,7 +48,7 @@ class MainPage extends React.Component<Props> {
                     <td>{d.ownership}</td>
                     <td>{d.sourceOfRecord}</td>
                     <td>{d.personalData ? 'True' : 'False'}</td>
-                      <td>{d.internalMaster}</td>
+                    <td>{d.internalMaster}</td>
                   </tr>
                 ))}
             </tbody>
