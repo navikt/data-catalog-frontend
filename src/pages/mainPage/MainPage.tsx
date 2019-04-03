@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getData } from '../../pages/mainPage/actions';
 import { DataValue, Data } from './types';
 import { I18n } from 'react-i18nify';
+import { Table, Column } from '../../components/table/Table';
 
 interface PropsFromState {
   pathName?: string;
@@ -54,6 +55,38 @@ class MainPage extends React.Component<Props> {
             </tbody>
           </table>
         </div>
+        <Table
+          data={data || []}
+          idKey="nodeId"
+          collapseComponent={(val: any) => val}
+          onToggleClick={(val: any) => val}
+          isLoading={true}
+          currentPage={0}
+          pageSize={10}
+          totalElements={100}
+          previousQuerySelector={(val: any) => val}
+          searchAction={(val: any) => val}
+        >
+          <Column
+            width="10%"
+            header={I18n.t('dataCatalog.pages.mainPage.name')}
+            path="name"
+            sortable
+          />
+          <Column
+            width="35%"
+            header={I18n.t('dataCatalog.pages.mainPage.description')}
+            path="description"
+            sortable
+          />
+          <Column
+            width="15%"
+            header={I18n.t('dataCatalog.pages.mainPage.category')}
+            path="category"
+            contentTransformer={(val: any) => val}
+            sortable
+          />
+        </Table>
       </div>
     );
   }
