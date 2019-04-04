@@ -144,10 +144,10 @@ export const LanguageJson = {
           dataCatalog: 'Datakatalog'
         },
         accessPolicies: {
-          accessPolicies: 'Access policies'
+          accessPolicies: 'Behandlingsgrunnlag'
         },
         topics: {
-          topics: 'Topics'
+          topics: 'Distribusjonskanaler'
         },
         producers: {
           producers: 'Produsenter'

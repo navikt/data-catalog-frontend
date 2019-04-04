@@ -48,11 +48,7 @@ class App extends React.Component {
                 'accessPolicies',
                 'fa fa-lock'
               )}
-              {makeNavigationItem(
-                I18n.t('dataCatalog.pages.topics.topics'),
-                'topics',
-                'fa fa-object-group'
-              )}
+
               {makeNavigationItem(
                 I18n.t('dataCatalog.pages.producers.producers'),
                 'producers',
@@ -62,6 +58,11 @@ class App extends React.Component {
                 I18n.t('dataCatalog.pages.consumers.consumers'),
                 'consumers',
                 'fa fa-group'
+              )}
+              {makeNavigationItem(
+                I18n.t('dataCatalog.pages.topics.topics'),
+                'topics',
+                'fa fa-object-group'
               )}
               {makeNavigationItem(
                 I18n.t('dataCatalog.pages.dataLineage.dataLineage'),

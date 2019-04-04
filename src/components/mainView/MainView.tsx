@@ -141,7 +141,7 @@ class MainView extends React.Component<Props, State> {
                         <i className="fa fa-lock" />
                       </div>
                       <div className="mr-5">
-                        {'29000 ' +
+                        {'40 ' +
                           I18n.t('dataCatalog.pages.accessPolicies.accessPolicies') +
                           '!'}
                       </div>
@@ -166,7 +166,7 @@ class MainView extends React.Component<Props, State> {
                         <i className="fa fa-object-group" />
                       </div>
                       <div className="mr-5">
-                        {'7890 ' + I18n.t('dataCatalog.pages.topics.topics') + '!'}
+                        {'365 ' + I18n.t('dataCatalog.pages.topics.topics') + '!'}
                       </div>
                     </div>
                     <a
@@ -189,7 +189,7 @@ class MainView extends React.Component<Props, State> {
                         <i className="fa fa-pencil" />
                       </div>
                       <div className="mr-5">
-                        {'4490 ' + I18n.t('dataCatalog.pages.producers.producers') + '!'}
+                        {'143 ' + I18n.t('dataCatalog.pages.producers.producers') + '!'}
                       </div>
                     </div>
                     <a
@@ -212,7 +212,7 @@ class MainView extends React.Component<Props, State> {
                         <i className="fa fa-fw fa-group" />
                       </div>
                       <div className="mr-5">
-                        {'2490 ' + I18n.t('dataCatalog.pages.consumers.consumers') + '!'}
+                        {'289 ' + I18n.t('dataCatalog.pages.consumers.consumers') + '!'}
                       </div>
                     </div>
                     <a
