@@ -26,63 +26,51 @@ class DataCatalog extends React.Component<Props> {
 
     return (
       <div className="row" style={{ marginLeft: '6px' }}>
-        <div className="table-responsive">
-          <table className="table table-striped table-sm">
-            <thead>
-              <tr>
-                <th>{I18n.t('dataCatalog.pages.mainPage.name')}</th>
-                <th>{I18n.t('dataCatalog.pages.mainPage.description')}</th>
-                <th>{I18n.t('dataCatalog.pages.mainPage.category')}</th>
-                <th>{I18n.t('dataCatalog.pages.mainPage.ownership')}</th>
-                <th>{I18n.t('dataCatalog.pages.mainPage.sourceOfRecord')}</th>
-                <th>{I18n.t('dataCatalog.pages.mainPage.personalData')}</th>
-                <th>{I18n.t('dataCatalog.pages.mainPage.internalMaster')}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data &&
-                data.map(d => (
-                  <tr key={d.name}>
-                    <td>{d.name}</td>
-                    <td>{d.description}</td>
-                    <td>{d.category}</td>
-                    <td>{d.ownership}</td>
-                    <td>{d.sourceOfRecord}</td>
-                    <td>{d.personalData ? 'True' : 'False'}</td>
-                    <td>{d.internalMaster}</td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </div>
         <Table
           data={data || []}
           idKey="nodeId"
-          collapseComponent={(val: any) => val}
+          collapseComponent={(val: any) => (
+            <div>
+              <th>{I18n.t('dataCatalog.pages.mainPage.name')}</th>
+              <th>{I18n.t('dataCatalog.pages.mainPage.description')}</th>
+              <th>{I18n.t('dataCatalog.pages.mainPage.category')}</th>
+              <th>{I18n.t('dataCatalog.pages.mainPage.ownership')}</th>
+              <th>{I18n.t('dataCatalog.pages.mainPage.sourceOfRecord')}</th>
+              <th>{I18n.t('dataCatalog.pages.mainPage.personalData')}</th>
+              <th>{I18n.t('dataCatalog.pages.mainPage.internalMaster')}</th>
+            </div>
+          )}
           onToggleClick={(val: any) => val}
           isLoading={true}
           currentPage={0}
-          pageSize={10}
+          pageSize={6}
           totalElements={100}
           previousQuerySelector={(val: any) => val}
           searchAction={(val: any) => val}
         >
           <Column
-            width="10%"
+            width="15%"
             header={I18n.t('dataCatalog.pages.mainPage.name')}
             path="name"
             sortable
           />
           <Column
-            width="35%"
+            width="55%"
             header={I18n.t('dataCatalog.pages.mainPage.description')}
             path="description"
             sortable
           />
           <Column
             width="15%"
-            header={I18n.t('dataCatalog.pages.mainPage.category')}
-            path="category"
+            header={I18n.t('dataCatalog.pages.mainPage.sourceOfRecord')}
+            path="sourceOfRecord"
+            contentTransformer={(val: any) => val}
+            sortable
+          />
+          <Column
+            width="15%"
+            header={I18n.t('dataCatalog.pages.mainPage.itSystem')}
+            path="itSystem"
             contentTransformer={(val: any) => val}
             sortable
           />

@@ -12,7 +12,7 @@ export const LanguageJson = {
           sourceOfRecord: 'Source of record',
           qualityOfData: 'Quality of data',
           personalData: 'Personal data',
-          internalMaster: 'Internal master'
+          itSystem: 'Internal master'
         },
         dataCatalog: {
           dataCatalog: 'Data catalog'
@@ -138,7 +138,7 @@ export const LanguageJson = {
           sourceOfRecord: 'Kilde',
           qualityOfData: 'Kvalitet av data',
           personalData: 'Personlige data',
-          internalMaster: 'Master i NAV'
+          itSystem: 'Master i NAV'
         },
         dataCatalog: {
           dataCatalog: 'Datakatalog'
