@@ -1,6 +1,5 @@
 import * as React from 'react';
 import MainView from './components/mainView/MainView';
-import MainPage from './pages/mainPage/MainPage';
 import AccessPolicies from './pages/accessPolicies/AccessPolicies';
 import Consumers from './pages/consumers/Consumers';
 import DataCatalog from './pages/dataCatalog/DataCatalog';
@@ -28,8 +27,7 @@ class App extends React.Component {
         <MainView
           content={
             <div>
-              <Route exact={true} path="/" component={MainPage} />
-              <Route exact={true} path="/mainPage" component={MainPage} />
+              <Route exact={true} path="/" component={DataCatalog} />
               <Route exact={true} path="/dataCatalog" component={DataCatalog} />
               <Route exact={true} path="/accessPolicies" component={AccessPolicies} />
               <Route exact={true} path="/topics" component={Topics} />
@@ -40,11 +38,6 @@ class App extends React.Component {
           }
           leftMenu={
             <ul className="nav flex-column">
-              {makeNavigationItem(
-                I18n.t('dataCatalog.pages.mainPage.mainPage'),
-                'mainPage',
-                'fa fa-home'
-              )}
               {makeNavigationItem(
                 I18n.t('dataCatalog.pages.dataCatalog.dataCatalog'),
                 'dataCatalog',
