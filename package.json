@@ -2,6 +2,7 @@
   "name": "data-catalog-frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "connected-react-router": "^6.3.2",
     "font-awesome": "^4.7.0",
