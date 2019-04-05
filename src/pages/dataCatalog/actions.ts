@@ -1,16 +1,16 @@
 import { action } from 'typesafe-actions';
 
 import { ApiError } from './modelsApi';
-import { DataActionTypes, Data, DataValue } from './types';
+import { DataActionTypes } from './types';
 
-export const getData = (dataValue: DataValue) =>
-  action(DataActionTypes.GET_DATA, dataValue);
+export const fetchData = (query: any) =>
+  action(DataActionTypes.FETCH_DATA_REQUEST, query);
 
-export const fetchData = (dataValue: DataValue) =>
-  action(DataActionTypes.FETCH_DATA_REQUEST, dataValue);
+export const fetchDataSuccess = (result: any, previousQuery: any) =>
+  action(DataActionTypes.FETCH_DATA_SUCCESS, { result, previousQuery });
 
-export const fetchDataSuccess = (dataValue: DataValue, data: Data[]) =>
-  action(DataActionTypes.FETCH_DATA_SUCCESS, { dataValue, data });
+export const fetchDataFailure = (error: ApiError) =>
+  action(DataActionTypes.FETCH_DATA_FAILURE, { error });
 
-export const fetchDataFailure = (dataValue: DataValue, error: ApiError) =>
-  action(DataActionTypes.FETCH_DATA_FAILURE, { dataValue, error });
+export const toggleExpandRow = (informationTypeId: number) =>
+  action(DataActionTypes.TOGGLE_ROW, { informationTypeId });

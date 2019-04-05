@@ -1,24 +1,27 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { getData } from './actions';
-import { DataValue, Data } from './types';
+import { fetchData, toggleExpandRow } from './actions';
+import { Result } from './types';
 import { I18n } from 'react-i18nify';
 import { Table, Column } from '../../components/table/Table';
+import { get } from 'lodash';
 
 interface PropsFromState {
   pathName?: string;
-  data?: Data[];
+  data: Result;
 }
 
 interface PropsFromDispatch {
-  getData: typeof getData;
+  fetchData: typeof fetchData;
+  onToggleClick: typeof toggleExpandRow;
+  isPending: boolean;
 }
 
 type Props = PropsFromState & PropsFromDispatch;
 
 class DataCatalog extends React.Component<Props> {
   public componentDidMount() {
-    this.props.getData(DataValue.AllData);
+    this.props.fetchData({ nodeId: 1 });
   }
 
   public render() {
@@ -27,26 +30,28 @@ class DataCatalog extends React.Component<Props> {
     return (
       <div className="row" style={{ marginLeft: '6px' }}>
         <Table
-          data={data || []}
-          idKey="nodeId"
+          data={(data && data.content) || []}
+          idKey="informationTypeId"
           collapseComponent={(val: any) => (
             <div>
-              <th>{I18n.t('dataCatalog.pages.mainPage.name')}</th>
-              <th>{I18n.t('dataCatalog.pages.mainPage.description')}</th>
-              <th>{I18n.t('dataCatalog.pages.mainPage.category')}</th>
-              <th>{I18n.t('dataCatalog.pages.mainPage.ownership')}</th>
-              <th>{I18n.t('dataCatalog.pages.mainPage.sourceOfRecord')}</th>
-              <th>{I18n.t('dataCatalog.pages.mainPage.personalData')}</th>
-              <th>{I18n.t('dataCatalog.pages.mainPage.internalMaster')}</th>
+              <div>{I18n.t('dataCatalog.pages.mainPage.name')}</div>
+              <div>{I18n.t('dataCatalog.pages.mainPage.description')}</div>
+              <div>{I18n.t('dataCatalog.pages.mainPage.category')}</div>
+              <div>{I18n.t('dataCatalog.pages.mainPage.ownership')}</div>
+              <div>{I18n.t('dataCatalog.pages.mainPage.sourceOfRecord')}</div>
+              <div>{I18n.t('dataCatalog.pages.mainPage.personalData')}</div>
+              <div>{I18n.t('dataCatalog.pages.mainPage.itSystem')}</div>
             </div>
           )}
-          onToggleClick={(val: any) => val}
-          isLoading={true}
-          currentPage={0}
-          pageSize={6}
-          totalElements={100}
-          previousQuerySelector={(val: any) => val}
-          searchAction={(val: any) => val}
+          onToggleClick={this.props.onToggleClick}
+          isLoading={this.props.isPending}
+          currentPage={this.props.data.currentPage}
+          pageSize={this.props.data.pageSize}
+          totalElements={this.props.data.totalElements}
+          previousQuerySelector={(state: any) =>
+            get(state, ['dataCatalog', 'previousQuery'])
+          }
+          searchAction={(query: any) => fetchData(query)}
         >
           <Column
             width="15%"
@@ -82,7 +87,8 @@ class DataCatalog extends React.Component<Props> {
 
 export default connect(
   (state: any) => ({
-    data: state.mainPage && state.mainPage.data && state.mainPage.data
+    data: state.dataCatalog.result,
+    isPending: state.dataCatalog.pending
   }),
-  { getData }
+  { fetchData, onToggleClick: toggleExpandRow }
 )(DataCatalog);

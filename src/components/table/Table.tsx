@@ -46,7 +46,7 @@ const TableComponent = ({
 
   return (
     <>
-      <ReactLoader loaded={isLoading} />
+      {isLoading && <ReactLoader loaded={isLoading} />}
       <div className="Table">
         <div className="Table-row header-row">
           {renderHeaders(children, previousQuery, onSortClick, !!collapseComponent)}
@@ -146,49 +146,53 @@ const renderRows = (
     return <div className="Table-row no-result center-content">Ingen resultater</div>;
   }
 
-  return data.map((d: any) => {
-    const rowClassName = 'Table-row' + (isExpandable ? ' expandable' : '');
-    return (
-      <div key={d[idKey]}>
-        <div
-          style={d.isSelected ? { backgroundColor: 'lightblue' } : {}}
-          className={rowClassName}
-          id={d[idKey]}
-          onKeyPress={() => conditionalOnToggleClick(d[idKey])}
-          onClick={() => conditionalOnToggleClick(d[idKey])}
-          tabIndex={isExpandable ? 0 : undefined}
-          role="button"
-        >
-          {columns.map((c: any) => {
-            const style = {
-              width: c.props.width ? c.props.width : ''
-            };
-            return (
-              <Cell
-                key={c.props.keyId || c.props.path}
-                style={style}
-                rowData={d}
-                columnProps={c.props}
-              />
-            );
-          })}
-          {isExpandable && (
-            <div className="Table-cell Row-toggle">
-              <i className={d.isOpen ? 'fa fa-angle-up' : 'fa fa-angle-down'} />
+  return (
+    data &&
+    data.length > 0 &&
+    data.map((d: any) => {
+      const rowClassName = 'Table-row' + (isExpandable ? ' expandable' : '');
+      return (
+        <div key={d[idKey]}>
+          <div
+            style={d.isSelected ? { backgroundColor: 'lightblue' } : {}}
+            className={rowClassName}
+            id={d[idKey]}
+            onKeyPress={() => conditionalOnToggleClick(d[idKey])}
+            onClick={() => conditionalOnToggleClick(d[idKey])}
+            tabIndex={isExpandable ? 0 : undefined}
+            role="button"
+          >
+            {columns.map((c: any) => {
+              const style = {
+                width: c.props.width ? c.props.width : ''
+              };
+              return (
+                <Cell
+                  key={c.props.keyId || c.props.path}
+                  style={style}
+                  rowData={d}
+                  columnProps={c.props}
+                />
+              );
+            })}
+            {isExpandable && (
+              <div className="Table-cell Row-toggle">
+                <i className={d.isOpen ? 'fa fa-angle-up' : 'fa fa-angle-down'} />
+              </div>
+            )}
+          </div>
+
+          {isExpandable && d.isOpen && (
+            <div className="Table-row">
+              <div className="collapse-content">
+                <CollapseComponent {...d} />
+              </div>
             </div>
           )}
         </div>
-
-        {isExpandable && d.isOpen && (
-          <div className="Table-row">
-            <div className="collapse-content">
-              <CollapseComponent {...d} />
-            </div>
-          </div>
-        )}
-      </div>
-    );
-  });
+      );
+    })
+  );
 };
 
 interface CellProps {

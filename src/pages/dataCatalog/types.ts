@@ -1,11 +1,6 @@
 import { ActionType } from 'typesafe-actions';
 
-import { ApiError } from './modelsApi';
 import * as dataActions from './actions';
-
-export enum DataValue {
-  AllData = 'allRecords'
-}
 
 export type DataActions = ActionType<typeof dataActions>;
 
@@ -13,18 +8,29 @@ export const enum DataActionTypes {
   GET_DATA = '@data/GET_DATA',
   FETCH_DATA_REQUEST = '@data/FETCH_DATA_REQUEST',
   FETCH_DATA_SUCCESS = '@data/FETCH_DATA_SUCCESS',
-  FETCH_DATA_FAILURE = '@data/FETCH_DATA_FAILURE'
+  FETCH_DATA_FAILURE = '@data/FETCH_DATA_FAILURE',
+  TOGGLE_ROW = '@data//TOGGLE_ROW'
 }
 
-export type DataState = {
-  [dataValue in DataValue]?: {
-    isPending: boolean;
-    error?: ApiError;
-    data: Data[];
-  }
+export type DataState =
+  | {
+      pending: boolean;
+      error: String | null;
+      previousQuery: String | null;
+      result: Result;
+    }
+  | undefined;
+
+export type Result = {
+  currentPage: number;
+  pageSize: number;
+  totalPages: number;
+  totalElements: number;
+  content: InformationType[];
 };
 
-export interface Data {
+export interface InformationType {
+  informationTypeId: number;
   name: string;
   description: string;
   category: string;
@@ -34,4 +40,5 @@ export interface Data {
   qualityOfData: string;
   personalData: boolean;
   internalMaster: string;
+  isOpen?: boolean;
 }

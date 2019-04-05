@@ -1,31 +1,57 @@
 import { Reducer } from 'redux';
 
-import { DataActions, DataActionTypes, DataState } from './types';
+import { DataActions, DataActionTypes, DataState, InformationType } from './types';
 
-const initialState = {};
+export const initialState: DataState = {
+  result: {
+    currentPage: 0,
+    pageSize: 6,
+    totalPages: 10,
+    totalElements: 55,
+    content: []
+  },
+  pending: false,
+  error: null,
+  previousQuery: null
+};
 
-const reducer: Reducer<DataState, DataActions> = (state = initialState, action) => {
+const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
   switch (action.type) {
     case DataActionTypes.FETCH_DATA_REQUEST:
       return {
         ...state,
-        isPending: true,
-        error: undefined,
-        data: []
+        pending: true
       };
     case DataActionTypes.FETCH_DATA_SUCCESS:
       return {
         ...state,
-        data: action.payload.data,
+        result: { ...state.result, content: action.payload.result },
         error: undefined,
-        isPending: false
+        pending: false,
+        previousQuery: action.payload.previousQuery
       };
     case DataActionTypes.FETCH_DATA_FAILURE:
       return {
         ...state,
-        data: [],
+        result: [],
         error: action.payload.error,
-        isPending: false
+        pending: false
+      };
+    case DataActionTypes.TOGGLE_ROW:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content: state.result.content.map((e: InformationType) => {
+            if (e.informationTypeId === action.payload.informationTypeId) {
+              return {
+                ...e,
+                isOpen: !e.isOpen
+              };
+            }
+            return e;
+          })
+        }
       };
     default:
       return state;
