@@ -5,7 +5,7 @@ import { DataActions, DataActionTypes, DataState, InformationType } from './type
 export const initialState: DataState = {
   result: {
     currentPage: 0,
-    pageSize: 6,
+    pageSize: 7,
     totalPages: 10,
     totalElements: 55,
     content: []

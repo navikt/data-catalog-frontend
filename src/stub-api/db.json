@@ -56,6 +56,27 @@
       "sourceOfRecord": "Skattedirektoratet",
       "personalData": true,
       "itSystem": "popp"
+    },
+    {
+      "informationTypeId": 7,
+      "name": "Arbeidsforhold",
+      "description": "Avtaleforhold hvor den ene part, arbeidstakeren, forplikter seg til å utføre arbeid mot lønn eller annen godtgjørelse for den annen part, arbeidsgiveren, i henhold til dennes ledelse.",
+      "category": "ARBEIDSFORHOLD",
+      "sourceOfRecord": "Arbeidsgiver",
+      "personalData": true,
+      "itSystem": "aa-reg",
+      "ownership": "Ytelsesavdelingen"
+    },
+
+    {
+      "informationTypeId": 8,
+      "name": "Telefonnummer",
+      "description": "Telefonnummer for å komme i kontakt med bruker.",
+      "category": "ADRESSE_OG_KONTAKTOPPLYSNINGER",
+      "sourceOfRecord": "Bruker",
+      "personalData": true,
+      "itSystem": "tps",
+      "ownership": "Ytelsesavdelingen",
     }
   ]
 }
