@@ -183,10 +183,8 @@ const renderRows = (
           </div>
 
           {isExpandable && d.isOpen && (
-            <div className="Table-row">
-              <div className="collapse-content">
-                <CollapseComponent {...d} />
-              </div>
+            <div className="collapse-content">
+              <CollapseComponent {...d} />
             </div>
           )}
         </div>

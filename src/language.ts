@@ -12,7 +12,8 @@ export const LanguageJson = {
           sourceOfRecord: 'Source of record',
           qualityOfData: 'Quality of data',
           personalData: 'Personal data',
-          itSystem: 'Internal master'
+          itSystem: 'Internal master',
+          businessGlossary: 'Business glossary'
         },
         dataCatalog: {
           dataCatalog: 'Data catalog'
@@ -137,8 +138,9 @@ export const LanguageJson = {
           ownership: 'Eierskap',
           sourceOfRecord: 'Kilde',
           qualityOfData: 'Kvalitet av data',
-          personalData: 'Personlige data',
-          itSystem: 'Master i NAV'
+          personalData: 'Personopplysning',
+          itSystem: 'Master i NAV',
+          businessGlossary: 'Begrepskatalog'
         },
         dataCatalog: {
           dataCatalog: 'Datakatalog'

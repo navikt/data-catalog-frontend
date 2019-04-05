@@ -48,16 +48,6 @@
       "itSystem": "tps"
     },
     {
-      "informationTypeId": 5,
-      "name": "Refleksjonsperiode",
-      "description": "Midlertidig arbeids- eller oppholdstillatelse som innvilges personer som er identifisert som offer for menneskehandel, og som ikke har lovlig opphold i Norge. Tillatelsen blir gitt for seks måneder og kan ikke fornyes.",
-      "category": "PERSONALIA",
-      "ownership": "Ytelsesavdelingen",
-      "sourceOfRecord": "Folkeregisteret",
-      "personalData": true,
-      "itSystem": "tps"
-    },
-    {
       "informationTypeId": 6,
       "name": "Pensjonsgivende inntekt",
       "description": "Ferdiglignet pensjonsgivende inntekt.",

@@ -39,6 +39,6 @@ export interface InformationType {
   sourceOfRecord: string;
   qualityOfData: string;
   personalData: boolean;
-  internalMaster: string;
+  itSystem: string;
   isOpen?: boolean;
 }

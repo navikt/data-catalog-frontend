@@ -1,10 +1,12 @@
 import * as React from 'react';
+import { memo } from 'react';
 import { connect } from 'react-redux';
 import { fetchData, toggleExpandRow } from './actions';
-import { Result } from './types';
+import { InformationType, Result } from './types';
 import { I18n } from 'react-i18nify';
 import { Table, Column } from '../../components/table/Table';
 import { get } from 'lodash';
+import { InformationTypeComponent } from './InformationTypeComponent';
 
 interface PropsFromState {
   pathName?: string;
@@ -21,7 +23,7 @@ type Props = PropsFromState & PropsFromDispatch;
 
 class DataCatalog extends React.Component<Props> {
   public componentDidMount() {
-    this.props.fetchData({ nodeId: 1 });
+    this.props.fetchData({});
   }
 
   public render() {
@@ -32,17 +34,7 @@ class DataCatalog extends React.Component<Props> {
         <Table
           data={(data && data.content) || []}
           idKey="informationTypeId"
-          collapseComponent={(val: any) => (
-            <div>
-              <div>{I18n.t('dataCatalog.pages.mainPage.name')}</div>
-              <div>{I18n.t('dataCatalog.pages.mainPage.description')}</div>
-              <div>{I18n.t('dataCatalog.pages.mainPage.category')}</div>
-              <div>{I18n.t('dataCatalog.pages.mainPage.ownership')}</div>
-              <div>{I18n.t('dataCatalog.pages.mainPage.sourceOfRecord')}</div>
-              <div>{I18n.t('dataCatalog.pages.mainPage.personalData')}</div>
-              <div>{I18n.t('dataCatalog.pages.mainPage.itSystem')}</div>
-            </div>
-          )}
+          collapseComponent={CollapseComponent}
           onToggleClick={this.props.onToggleClick}
           isLoading={this.props.isPending}
           currentPage={this.props.data.currentPage}
@@ -84,6 +76,12 @@ class DataCatalog extends React.Component<Props> {
     );
   }
 }
+
+const CollapseComponent = memo((props: InformationType) => (
+  <div style={{ marginTop: '20px' }}>
+    <InformationTypeComponent {...props} />
+  </div>
+));
 
 export default connect(
   (state: any) => ({
