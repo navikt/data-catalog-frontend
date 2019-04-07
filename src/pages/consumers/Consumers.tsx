@@ -7,7 +7,7 @@ class Consumers extends React.Component {
       <div>
         <h5>{I18n.t('dataCatalog.pages.consumers.consumers')}</h5>
         <hr style={{ height: '1px' }} />
-        <table className="table table-responsive table-striped table-sm">
+        <table className="table table-striped table-responsive-sm">
           <thead>
             <tr>
               <th>{I18n.t('dataCatalog.pages.mainPage.itSystemOrConsumer')}</th>
