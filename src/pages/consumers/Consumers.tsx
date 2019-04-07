@@ -7,12 +7,12 @@ class Consumers extends React.Component {
       <div>
         <h5>{I18n.t('dataCatalog.pages.consumers.consumers')}</h5>
         <hr style={{ height: '1px' }} />
-        <table className="table table-striped table-sm">
+        <table className="table table-striped table-responsive-sm">
           <thead>
             <tr>
-              <th>Application name</th>
-              <th>Information type</th>
-              <th>Purposes</th>
+              <th>{I18n.t('dataCatalog.pages.mainPage.itSystemOrConsumer')}</th>
+              <th>{I18n.t('dataCatalog.pages.mainPage.typeOfIntegration')}</th>
+              <th>{I18n.t('dataCatalog.pages.mainPage.purpose')}</th>
             </tr>
           </thead>
           <tbody>

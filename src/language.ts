@@ -12,7 +12,16 @@ export const LanguageJson = {
           sourceOfRecord: 'Source of record',
           qualityOfData: 'Quality of data',
           personalData: 'Personal data',
-          internalMaster: 'Internal master'
+          itSystem: 'Internal master',
+          businessGlossary: 'Business glossary',
+          Policies: 'Policies',
+          itSystemOrConsumer: 'IT system/consumer',
+          purpose: 'purpose',
+          rightBasis: 'rightBasis',
+          distributionMessage:
+            'Distribution (ideally with reference to the Service Catalog)',
+          typeOfIntegration: 'Type of integration',
+          apiOrTopics: 'API / Topic'
         },
         dataCatalog: {
           dataCatalog: 'Data catalog'
@@ -137,17 +146,25 @@ export const LanguageJson = {
           ownership: 'Eierskap',
           sourceOfRecord: 'Kilde',
           qualityOfData: 'Kvalitet av data',
-          personalData: 'Personlige data',
-          internalMaster: 'Master i NAV'
+          personalData: 'Personopplysning',
+          itSystem: 'Master i NAV',
+          businessGlossary: 'Begrepskatalog',
+          Policies: 'Behandlingsgrunnlag',
+          itSystemOrConsumer: 'IT-system/konsument',
+          purpose: 'Formål',
+          rightBasis: 'Rettsgrunnlag',
+          distributionMessage: 'Distribusjon (ideelt med referanse til Tjenestekatalog)',
+          typeOfIntegration: 'Type integrasjon',
+          apiOrTopics: 'API / Topic'
         },
         dataCatalog: {
           dataCatalog: 'Datakatalog'
         },
         accessPolicies: {
-          accessPolicies: 'Access policies'
+          accessPolicies: 'Behandlingsgrunnlag'
         },
         topics: {
-          topics: 'Topics'
+          topics: 'Distribusjonskanaler'
         },
         producers: {
           producers: 'Produsenter'

@@ -1,18 +1,18 @@
 import { combineReducers } from 'redux';
 import { connectRouter, RouterState } from 'connected-react-router';
 import { History } from 'history';
-import { dataReducer } from '../pages/mainPage/reducer';
-import { DataState } from '../pages/mainPage/types';
+import { dataReducer } from '../pages/dataCatalog/reducer';
+import { DataState } from '../pages/dataCatalog/types';
 import configReducer from '../config/configReducer';
 
 export interface AppState {
   router: RouterState;
-  mainPage: DataState;
+  dataCatalog: DataState;
 }
 
 const reducers = {
   config: configReducer,
-  mainPage: dataReducer
+  dataCatalog: dataReducer
 };
 
 export default (history: History) =>
