@@ -35,8 +35,14 @@ export class InformationTypeComponent extends React.Component<Props> {
       </div>
     );
     return (
-      <div>
-        <div className="row" style={{ marginBottom: '50px' }}>
+      <div
+        style={{
+          borderColor: 'lightblue',
+          borderBlockWidth: '2px',
+          borderStyle: 'solid'
+        }}
+      >
+        <div className="row" style={{ margin: '20px 10px 10px 10px' }}>
           <div className="col-md-6">
             {getOptionField('name', this.props.name)}
             {getOptionField('itSystem', this.props.itSystem)}
@@ -49,7 +55,7 @@ export class InformationTypeComponent extends React.Component<Props> {
             )}
           </div>
 
-          <div className="col-md-6" style={{ backgroundColor: 'white' }}>
+          <div className="col-md-6" style={{ backgroundColor: 'lightBlue' }}>
             <div className="row">
               <div
                 className="col-md-4"
@@ -60,6 +66,85 @@ export class InformationTypeComponent extends React.Component<Props> {
             </div>
             {getTextAreaField('description', this.props.description)}
           </div>
+        </div>
+        <div
+          className="row"
+          style={{ margin: '20px 10px 10px 10px', backgroundColor: 'lightGreen' }}
+        >
+          <h5>{I18n.t('dataCatalog.pages.mainPage.Policies')}</h5>
+          <hr style={{ height: '1px' }} />
+          <table className="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>{I18n.t('dataCatalog.pages.mainPage.itSystemOrConsumer')}</th>
+                <th>{I18n.t('dataCatalog.pages.mainPage.purpose')}</th>
+                <th>{I18n.t('dataCatalog.pages.mainPage.rightBasis')}</th>
+                <th />
+              </tr>
+            </thead>
+            <tbody>
+              <tr key={1}>
+                <td>Pesys</td>
+                <td>PEN - Pensjon</td>
+                <td>BLA BLA</td>
+                <td>
+                  <i className="fa fa-angle-right" />
+                </td>
+              </tr>
+              <tr key={2}>
+                <td>Arena</td>
+                <td>AAP - Arbeidsavklaringspenger</td>
+                <td>BLA BLA</td>
+                <td>
+                  <i className="fa fa-angle-right" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div
+          className="row"
+          style={{ margin: '20px 10px 10px 10px', backgroundColor: 'lightSkyBlue' }}
+        >
+          <h5>{I18n.t('dataCatalog.pages.mainPage.distributionMessage')}</h5>
+          <hr style={{ height: '1px' }} />
+          <table className="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>{I18n.t('dataCatalog.pages.mainPage.itSystemOrConsumer')}</th>
+                <th>{I18n.t('dataCatalog.pages.mainPage.typeOfIntegration')}</th>
+                <th>{I18n.t('dataCatalog.pages.mainPage.apiOrTopics')}</th>
+                <th />
+              </tr>
+            </thead>
+            <tbody>
+              <tr key={1}>
+                <td>Pesys</td>
+                <td>SOAP</td>
+                <td>virksomhet:Person_v3</td>
+                <td>
+                  <i className="fa fa-angle-right" />
+                </td>
+              </tr>
+              <tr key={2}>
+                <td>Vedtakskomp</td>
+                <td>Kafka</td>
+                <td>BLA BLA</td>
+                <td>
+                  <i className="fa fa-angle-right" />
+                </td>
+              </tr>
+              <tr key={3}>
+                <td>Personopplysning</td>
+                <td>REST</td>
+                <td>hentPerson</td>
+                <td>
+                  <i className="fa fa-angle-right" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     );

@@ -78,9 +78,7 @@ class DataCatalog extends React.Component<Props> {
 }
 
 const CollapseComponent = memo((props: InformationType) => (
-  <div style={{ marginTop: '20px' }}>
-    <InformationTypeComponent {...props} />
-  </div>
+  <InformationTypeComponent {...props} />
 ));
 
 export default connect(

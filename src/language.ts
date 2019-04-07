@@ -13,7 +13,15 @@ export const LanguageJson = {
           qualityOfData: 'Quality of data',
           personalData: 'Personal data',
           itSystem: 'Internal master',
-          businessGlossary: 'Business glossary'
+          businessGlossary: 'Business glossary',
+          Policies: 'Policies',
+          itSystemOrConsumer: 'IT system/consumer',
+          purpose: 'purpose',
+          rightBasis: 'rightBasis',
+          distributionMessage:
+            'Distribution (ideally with reference to the Service Catalog)',
+          typeOfIntegration: 'Type of integration',
+          apiOrTopics: 'API / Topic'
         },
         dataCatalog: {
           dataCatalog: 'Data catalog'
@@ -140,7 +148,14 @@ export const LanguageJson = {
           qualityOfData: 'Kvalitet av data',
           personalData: 'Personopplysning',
           itSystem: 'Master i NAV',
-          businessGlossary: 'Begrepskatalog'
+          businessGlossary: 'Begrepskatalog',
+          Policies: 'Behandlingsgrunnlag',
+          itSystemOrConsumer: 'IT-system/konsument',
+          purpose: 'Formål',
+          rightBasis: 'Rettsgrunnlag',
+          distributionMessage: 'Distribusjon (ideelt med referanse til Tjenestekatalog)',
+          typeOfIntegration: 'Type integrasjon',
+          apiOrTopics: 'API / Topic'
         },
         dataCatalog: {
           dataCatalog: 'Datakatalog'

@@ -10,9 +10,9 @@ class Consumers extends React.Component {
         <table className="table table-striped table-sm">
           <thead>
             <tr>
-              <th>Application name</th>
-              <th>Information type</th>
-              <th>Purposes</th>
+              <th>{I18n.t('dataCatalog.pages.mainPage.itSystemOrConsumer')}</th>
+              <th>{I18n.t('dataCatalog.pages.mainPage.typeOfIntegration')}</th>
+              <th>{I18n.t('dataCatalog.pages.mainPage.purpose')}</th>
             </tr>
           </thead>
           <tbody>

@@ -9,7 +9,8 @@
 
 .Table-row {
     display: flex;
-    border-bottom: 1px solid lightgray}
+    border-bottom: 1px solid lightgray;
+border-top: 1px solid lightgray}
 
 .Table-row.no-result {
      height: 5rem;
@@ -17,7 +18,7 @@
  }
 
 .Table-row.header-row {
-     border-bottom: 1px solid gray;
+    border-bottom: 1px solid gray;
  }
 
 .Table-row.expandable {
@@ -26,7 +27,7 @@
 
 .Table-row:focus {
      outline: 0;
-     box-shadow: 0 0 0 3px orange;
+     box-shadow: 0 0 0 3px lightblue;
      border-radius: 2px;
  }
 

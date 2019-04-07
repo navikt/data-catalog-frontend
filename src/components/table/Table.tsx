@@ -154,7 +154,7 @@ const renderRows = (
       return (
         <div key={d[idKey]}>
           <div
-            style={d.isSelected ? { backgroundColor: 'lightblue' } : {}}
+            style={d.isOpen ? { backgroundColor: 'lightblue' } : {}}
             className={rowClassName}
             id={d[idKey]}
             onKeyPress={() => conditionalOnToggleClick(d[idKey])}
@@ -182,7 +182,7 @@ const renderRows = (
             )}
           </div>
 
-          {isExpandable && !d.isOpen && (
+          {isExpandable && d.isOpen && (
             <div className="collapse-content">
               <CollapseComponent {...d} />
             </div>
