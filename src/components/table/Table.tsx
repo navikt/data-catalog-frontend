@@ -182,7 +182,7 @@ const renderRows = (
             )}
           </div>
 
-          {isExpandable && d.isOpen && (
+          {isExpandable && !d.isOpen && (
             <div className="collapse-content">
               <CollapseComponent {...d} />
             </div>
