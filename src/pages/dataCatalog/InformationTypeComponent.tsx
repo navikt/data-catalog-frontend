@@ -73,7 +73,7 @@ export class InformationTypeComponent extends React.Component<Props> {
         >
           <h5>{I18n.t('dataCatalog.pages.mainPage.Policies')}</h5>
           <hr style={{ height: '1px' }} />
-          <table className="table table-striped table-sm">
+          <table className="table table-responsive table-striped table-sm">
             <thead>
               <tr>
                 <th>{I18n.t('dataCatalog.pages.mainPage.itSystemOrConsumer')}</th>
@@ -109,7 +109,7 @@ export class InformationTypeComponent extends React.Component<Props> {
         >
           <h5>{I18n.t('dataCatalog.pages.mainPage.distributionMessage')}</h5>
           <hr style={{ height: '1px' }} />
-          <table className="table table-striped table-sm">
+          <table className="table table-responsive table-striped table-sm">
             <thead>
               <tr>
                 <th>{I18n.t('dataCatalog.pages.mainPage.itSystemOrConsumer')}</th>

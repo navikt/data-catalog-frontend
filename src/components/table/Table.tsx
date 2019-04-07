@@ -95,7 +95,7 @@ const renderHeaders = (
 ) => (
   <>
     {columns.map((c: any) => {
-      const style = { width: c.props.width ? c.props.width : '' };
+      const style = { width: c.props.width ? c.props.width : '', marginRight: '10px' };
       if (c.props.sortable) {
         const previousSort = get(previousQuery, 'sort', ',').split(',');
         const sortPath = c.props.customSortPath ? c.props.customSortPath : c.props.path;

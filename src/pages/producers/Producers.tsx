@@ -8,7 +8,7 @@ class Producers extends React.Component {
         <h5>{I18n.t('dataCatalog.pages.producers.producers')}</h5>
         <hr style={{ height: '1px' }} />
         <div className="table-responsive">
-          <table className="table table-striped table-sm">
+          <table className="table table-responsive table-striped table-sm">
             <thead>
               <tr>
                 <th>{I18n.t('dataCatalog.pages.mainPage.name')}</th>

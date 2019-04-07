@@ -1,8 +1,8 @@
 
 .Paginator {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+    flex: 1 1 auto;
+    align-items: center;
+    text-align: right;
 }
 .PagingButton {
     background-color: white;
