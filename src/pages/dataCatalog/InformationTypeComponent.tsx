@@ -55,7 +55,7 @@ export class InformationTypeComponent extends React.Component<Props> {
             )}
           </div>
 
-          <div className="col-md-6" style={{ backgroundColor: 'lightBlue' }}>
+          <div className="col-md-6" style={{ backgroundColor: '#fef9e7' }}>
             <div className="row">
               <div
                 className="col-md-4"
@@ -69,7 +69,7 @@ export class InformationTypeComponent extends React.Component<Props> {
         </div>
         <div
           className="row"
-          style={{ margin: '20px 10px 10px 10px', backgroundColor: 'lightGreen' }}
+          style={{ margin: '20px 10px 10px 10px', backgroundColor: '#d4efdf' }}
         >
           <h5>{I18n.t('dataCatalog.pages.mainPage.Policies')}</h5>
           <hr style={{ height: '1px' }} />
@@ -105,7 +105,7 @@ export class InformationTypeComponent extends React.Component<Props> {
 
         <div
           className="row"
-          style={{ margin: '20px 10px 10px 10px', backgroundColor: 'lightSkyBlue' }}
+          style={{ margin: '20px 10px 10px 10px', backgroundColor: '#ebf5fb' }}
         >
           <h5>{I18n.t('dataCatalog.pages.mainPage.distributionMessage')}</h5>
           <hr style={{ height: '1px' }} />
