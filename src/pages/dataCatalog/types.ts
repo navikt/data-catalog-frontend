@@ -30,7 +30,8 @@ export type Result = {
 };
 
 export interface InformationType {
-  informationTypeId: number;
+  id: number;
+  informationTypeId?: number;
   name: string;
   description: string;
   category: string;
