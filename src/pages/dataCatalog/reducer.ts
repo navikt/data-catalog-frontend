@@ -43,7 +43,7 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         result: {
           ...state.result,
           content: state.result.content.map((e: InformationType) => {
-            if (e.informationTypeId === action.payload.informationTypeId) {
+            if (e.id === action.payload.id) {
               return {
                 ...e,
                 isOpen: !e.isOpen

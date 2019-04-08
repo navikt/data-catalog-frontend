@@ -33,7 +33,7 @@ class DataCatalog extends React.Component<Props> {
       <div className="row" style={{ marginLeft: '6px' }}>
         <Table
           data={(data && data.content) || []}
-          idKey="informationTypeId"
+          idKey="id"
           collapseComponent={CollapseComponent}
           onToggleClick={this.props.onToggleClick}
           isLoading={this.props.isPending}
