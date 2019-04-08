@@ -1,5 +1,7 @@
 # Data Catalog Frontend
-This is frontend open source project repository for the Data Catalog project.
+This is frontend open source project repository for the Data Catalog project. You can find the running application at [DataCatalog application link](https://107.178.240.63/)
+
+
 
 ## Available Scripts
 
