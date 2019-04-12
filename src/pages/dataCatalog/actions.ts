@@ -1,10 +1,15 @@
 import { action } from 'typesafe-actions';
-
+import { get } from 'lodash';
 import { ApiError } from './modelsApi';
 import { DataActionTypes } from './types';
 
 export const fetchData = (query: any) =>
-  action(DataActionTypes.FETCH_DATA_REQUEST, query);
+  action(DataActionTypes.FETCH_DATA_REQUEST, {
+    query: {
+      ...query,
+      sort: get(query, 'sort')
+    }
+  });
 
 export const fetchDataSuccess = (result: any, previousQuery: any) =>
   action(DataActionTypes.FETCH_DATA_SUCCESS, { result, previousQuery });

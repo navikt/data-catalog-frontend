@@ -102,7 +102,6 @@ export class InformationTypeComponent extends React.Component<Props> {
             </tbody>
           </table>
         </div>
-
         <div
           className="row"
           style={{ margin: '20px 10px 10px 10px', backgroundColor: '#ebf5fb' }}

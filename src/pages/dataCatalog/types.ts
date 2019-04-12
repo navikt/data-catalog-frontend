@@ -24,7 +24,7 @@ export type DataState =
 export type Result = {
   currentPage: number;
   pageSize: number;
-  totalPages: number;
+  totalPages?: number;
   totalElements: number;
   content: InformationType[];
 };
