@@ -5,9 +5,11 @@ import * as Yup from 'yup';
 import { fetchData } from './actions';
 import { push } from 'connected-react-router';
 import { I18n } from 'react-i18nify';
+import { FocusEventHandler } from 'react';
+import { ChangeEventHandler } from 'react';
 
 interface PropsFromState {
-  isDnr?: boolean;
+  field?: boolean;
 }
 
 interface PropsFromDispatch {
@@ -38,69 +40,54 @@ export class InformationTypeSearchComponentInner extends React.Component<
       handleChange,
       handleBlur,
       //   setFieldValue,
-      //   currentKjoenn,
       handleReset
     } = this.props;
 
+    const createField = (
+      label: string,
+      value: any,
+      handleChange: ChangeEventHandler,
+      handleBlur: FocusEventHandler
+    ) => (
+      <div className="form-group" style={{marginRight:"40px"}}>
+        <div>{I18n.t('dataCatalog.pages.mainPage.' + label)}</div>
+        <input
+          name={label}
+          value={values.name}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+      </div>
+    );
 
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{marginLeft:"20px"}}>
         <div className="row">
-          <div className="col-md-2 col-sm-offset-4 col-sm-offset-8">
-            {I18n.t('dataCatalog.pages.mainPage.name')}
-            <input
-              name="name"
-              value={values.name}
+          {createField('name', values.name, handleChange, handleBlur)}
+          {createField('description', values.description, handleChange, handleBlur)}
+          {createField('sourceOfRecord', values.sourceOfRecord, handleChange, handleBlur)}
+          <div className="form-group" style={{marginRight:"40px"}}>
+            <div>{I18n.t('dataCatalog.pages.mainPage.personalData')}</div>
+            <select
+              className="form-control"
+              id="personalData"
               onChange={handleChange}
               onBlur={handleBlur}
-            />
+            >
+              <option />
+              <option value="yes">{I18n.t('dataCatalog.words.yes')}</option>
+              <option value="no">{I18n.t('dataCatalog.words.no')}</option>
+            </select>
           </div>
-
-            <div className="col-md-2 col-sm-offset-4 col-sm-offset-8">
-                {I18n.t('dataCatalog.pages.mainPage.description')}
-            <input
-              name="description"
-              value={values.description}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          </div>
-
-            <div className="col-md-2 col-sm-offset-4 col-sm-offset-8">
-                {I18n.t('dataCatalog.pages.mainPage.sourceOfRecord')}
-            <input
-              name="sourceOfRecord"
-              value={values.sourceOfRecord}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          </div>
-            <div className="col-md-2 col-sm-offset-4 col-sm-offset-8">
-                {I18n.t('dataCatalog.pages.mainPage.personalData')}
-            <input
-              name="personalData"
-              value={values.personalData ? 'yes' : 'no'}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          </div>
-            <div className="col-md-2 col-sm-offset-4 col-sm-offset-8">
-                {I18n.t('dataCatalog.pages.mainPage.itSystem')}
-            <input
-              name="itSystem"
-              value={values.itSystem}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          </div>
+          {createField('itSystem', values.itSystem, handleChange, handleBlur)}
         </div>
 
-          <div className="row">
-            <div className="col-md-2 col-sm-offset-4 col-sm-offset-8">
-            <button type="submit">{I18n.t('dataCatalog.words.search.search')}</button>
+        <div className="row">
+          <div className="col-md-2 col-sm-offset-4 col-sm-offset-8">
+            <button type="submit" className="btn btn-primary">{I18n.t('dataCatalog.words.search.search')}</button>
           </div>
-            <div className="col-md-2 col-sm-offset-4 col-sm-offset-8">
-                <button type="button" onClick={handleReset}>
+          <div className="col-md-2 col-sm-offset-4 col-sm-offset-8">
+            <button type="button" className="btn btn-primary" onClick={handleReset}>
               {I18n.t('dataCatalog.words.search.reset')}
             </button>
           </div>
