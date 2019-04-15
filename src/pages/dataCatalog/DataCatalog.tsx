@@ -7,6 +7,7 @@ import { I18n } from 'react-i18nify';
 import { Table, Column } from '../../components/table/Table';
 import { get } from 'lodash';
 import { InformationTypeComponent } from './InformationTypeComponent';
+import Basic from './InformationTypeSearchComponent';
 
 interface PropsFromState {
   pathName?: string;
@@ -31,9 +32,10 @@ class DataCatalog extends React.Component<Props> {
 
     return (
       <div className="row" style={{ marginLeft: '6px' }}>
+        <Basic />
         <Table
           data={(data && data.content) || []}
-          idKey="id"
+          idKey="informationTypeId"
           collapseComponent={CollapseComponent}
           onToggleClick={this.props.onToggleClick}
           isLoading={this.props.isPending}
