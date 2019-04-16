@@ -14,7 +14,27 @@
         "description": "En overordnet kategori som beskriver en persons forhold til en annen person.",
         "sourceOfRecord": "Folkeregisteret",
         "personalData": true,
-        "itSystem": "tps"
+        "itSystem": "tps",
+        "policy": [
+          {
+            "purposeId": 123,
+            "code": "Pensjon",
+            "name": "Pensjon",
+
+            "legalBasis": [{ "legalBasisid": 1, "type": "§ FTL 14", "ref": "ref 1" }]
+          },
+          {
+            "purposeId": 456,
+            "code": "For.pen.",
+            "name": "For.pen.",
+
+            "legalBasis": [
+              { "legalBasisid": 2, "type": "§ FTL 17a", "ref": "ref 1" },
+              { "legalBasisid": 3, "type": "§ FTL 17b", "ref": "ref 2" },
+              { "legalBasisid": 1, "type": "§ FTL 14", "ref": "ref 3" }
+            ]
+          }
+        ]
       },
       {
         "informationTypeId": 2,

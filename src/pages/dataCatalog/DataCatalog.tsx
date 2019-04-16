@@ -7,7 +7,7 @@ import { I18n } from 'react-i18nify';
 import { Table, Column } from '../../components/table/Table';
 import { get } from 'lodash';
 import { InformationTypeComponent } from './InformationTypeComponent';
-import Basic from './InformationTypeSearchComponent';
+import InformationTypeSearchComponent from './InformationTypeSearchComponent';
 
 interface PropsFromState {
   pathName?: string;
@@ -31,49 +31,51 @@ class DataCatalog extends React.Component<Props> {
     const { data } = this.props;
 
     return (
-      <div className="row" style={{ marginLeft: '6px' }}>
-        <Basic />
-        <Table
-          data={(data && data.content) || []}
-          idKey="informationTypeId"
-          collapseComponent={CollapseComponent}
-          onToggleClick={this.props.onToggleClick}
-          isLoading={this.props.isPending}
-          currentPage={this.props.data.currentPage}
-          pageSize={this.props.data.pageSize}
-          totalElements={this.props.data.totalElements}
-          previousQuerySelector={(state: any) =>
-            get(state, ['dataCatalog', 'previousQuery'])
-          }
-          searchAction={(query: any) => fetchData(query)}
-        >
-          <Column
-            width="15%"
-            header={I18n.t('dataCatalog.pages.mainPage.name')}
-            path="name"
-            sortable
-          />
-          <Column
-            width="55%"
-            header={I18n.t('dataCatalog.pages.mainPage.description')}
-            path="description"
-            sortable
-          />
-          <Column
-            width="15%"
-            header={I18n.t('dataCatalog.pages.mainPage.sourceOfRecord')}
-            path="sourceOfRecord"
-            contentTransformer={(val: any) => val}
-            sortable
-          />
-          <Column
-            width="15%"
-            header={I18n.t('dataCatalog.pages.mainPage.itSystem')}
-            path="itSystem"
-            contentTransformer={(val: any) => val}
-            sortable
-          />
-        </Table>
+      <div>
+        <InformationTypeSearchComponent />
+        <div className="row" style={{ marginLeft: '6px' }}>
+          <Table
+            data={(data && data.content) || []}
+            idKey="informationTypeId"
+            collapseComponent={CollapseComponent}
+            onToggleClick={this.props.onToggleClick}
+            isLoading={this.props.isPending}
+            currentPage={this.props.data.currentPage}
+            pageSize={this.props.data.pageSize}
+            totalElements={this.props.data.totalElements}
+            previousQuerySelector={(state: any) =>
+              get(state, ['dataCatalog', 'previousQuery'])
+            }
+            searchAction={(query: any) => fetchData(query)}
+          >
+            <Column
+              width="15%"
+              header={I18n.t('dataCatalog.pages.mainPage.name')}
+              path="name"
+              sortable
+            />
+            <Column
+              width="55%"
+              header={I18n.t('dataCatalog.pages.mainPage.description')}
+              path="description"
+              sortable
+            />
+            <Column
+              width="15%"
+              header={I18n.t('dataCatalog.pages.mainPage.sourceOfRecord')}
+              path="sourceOfRecord"
+              contentTransformer={(val: any) => val}
+              sortable
+            />
+            <Column
+              width="15%"
+              header={I18n.t('dataCatalog.pages.mainPage.itSystem')}
+              path="itSystem"
+              contentTransformer={(val: any) => val}
+              sortable
+            />
+          </Table>
+        </div>
       </div>
     );
   }

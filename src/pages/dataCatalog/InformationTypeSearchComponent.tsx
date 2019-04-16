@@ -35,11 +35,11 @@ export class InformationTypeSearchComponentInner extends React.Component<
     const {
       values,
       // errors,
-      //  touched,
+      // touched,
       handleSubmit,
       handleChange,
       handleBlur,
-      //   setFieldValue,
+      //setFieldValue,
       handleReset
     } = this.props;
 
@@ -47,27 +47,37 @@ export class InformationTypeSearchComponentInner extends React.Component<
       label: string,
       value: any,
       handleChange: ChangeEventHandler,
-      handleBlur: FocusEventHandler
+      handleBlur: FocusEventHandler,
+      md: number
     ) => (
-      <div className="form-group" style={{marginRight:"40px"}}>
-        <div>{I18n.t('dataCatalog.pages.mainPage.' + label)}</div>
+      <div className={`col-md-${md} col-sm-12`}>
+        <label>{I18n.t('dataCatalog.pages.mainPage.' + label)}</label>
         <input
           name={label}
-          value={values.name}
+          id={label}
+          value={value}
           onChange={handleChange}
           onBlur={handleBlur}
+          className="form-control"
         />
       </div>
     );
 
     return (
-      <form onSubmit={handleSubmit} style={{marginLeft:"20px"}}>
+      <form onSubmit={handleSubmit} style={{ marginLeft: '20px' }}>
         <div className="row">
-          {createField('name', values.name, handleChange, handleBlur)}
-          {createField('description', values.description, handleChange, handleBlur)}
-          {createField('sourceOfRecord', values.sourceOfRecord, handleChange, handleBlur)}
-          <div className="form-group" style={{marginRight:"40px"}}>
-            <div>{I18n.t('dataCatalog.pages.mainPage.personalData')}</div>
+          {createField('name', values.name, handleChange, handleBlur, 3)}
+          {createField('description', values.description, handleChange, handleBlur, 3)}
+          {createField(
+            'sourceOfRecord',
+            values.sourceOfRecord,
+            handleChange,
+            handleBlur,
+            2
+          )}
+          {createField('itSystem', values.itSystem, handleChange, handleBlur, 2)}
+          <div className="form-group  col-md-2 col-sm-12">
+            <label>{I18n.t('dataCatalog.pages.mainPage.personalData')}</label>
             <select
               className="form-control"
               id="personalData"
@@ -79,14 +89,15 @@ export class InformationTypeSearchComponentInner extends React.Component<
               <option value="no">{I18n.t('dataCatalog.words.no')}</option>
             </select>
           </div>
-          {createField('itSystem', values.itSystem, handleChange, handleBlur)}
         </div>
 
         <div className="row">
-          <div className="col-md-2 col-sm-offset-4 col-sm-offset-8">
-            <button type="submit" className="btn btn-primary">{I18n.t('dataCatalog.words.search.search')}</button>
+          <div className="col-md-2 col-sm-6 col-6">
+            <button type="submit" className="btn btn-primary">
+              {I18n.t('dataCatalog.words.search.search')}
+            </button>
           </div>
-          <div className="col-md-2 col-sm-offset-4 col-sm-offset-8">
+          <div className="col-md-2  col-sm-6 col-6">
             <button type="button" className="btn btn-primary" onClick={handleReset}>
               {I18n.t('dataCatalog.words.search.reset')}
             </button>
