@@ -30,15 +30,10 @@ export type Result = {
 };
 
 export interface InformationType {
-  id: number;
-  informationTypeId?: number;
+  informationTypeId: number;
   name: string;
   description: string;
-  category: string;
-  sensitivity: string;
-  ownership: string;
   sourceOfRecord: string;
-  qualityOfData: string;
   personalData: boolean;
   itSystem: string;
   isOpen?: boolean;
