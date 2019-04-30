@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { InformationType } from './types';
 import { I18n } from 'react-i18nify';
-
+import SaveCancel from '../../components/saveCancel/SaveCancel';
 type Props = InformationType;
 
 export class InformationTypeComponent extends React.Component<Props> {
@@ -145,6 +145,7 @@ export class InformationTypeComponent extends React.Component<Props> {
             </tbody>
           </table>
         </div>
+        <SaveCancel/>
       </div>
     );
   }
