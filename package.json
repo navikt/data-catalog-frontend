@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:8080",
   "dependencies": {
+    "classnames": "^2.2.6",
     "connected-react-router": "^6.3.2",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
@@ -23,7 +24,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-saga": "^0.16.2",
     "redux-saga-test-plan": "^3.7.0",
-    "typesafe-actions": "^3.2.1"
+    "typesafe-actions": "^3.2.1",
+    "yup": "^0.27.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",
@@ -32,11 +34,12 @@
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "stub-server": "json-server --watch ./src/stub-api/db.json --port 8080 --routes ./src/stub-api/routes.json --delay 1000",
-    "coverage": "npm test a -- --coverage --collectCoverageFrom='src/!(_poc*)**/*.{js,jsx,ts,tsx}'",
+    "coverage": "npm test a -- --coverage --collectCoverageFrom='src/!(_poc*)**/*.{js,jsx,ts,id}'",
     "formatcode": "./node_modules/.bin/prettier --single-quote --trailing-comma none --ignore-path \"**/.history\" --print-width 90 --write \"{src,__{tests,mocks}__}/**/*.{js,jsx,ts,tsx,json}\""
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
+    "@types/classnames": "^2.2.7",
     "@types/enzyme": "^3.9.0",
     "@types/history": "^4.7.2",
     "@types/jest": "^24.0.9",
@@ -52,8 +55,10 @@
     "@types/react-redux": "^7.0.3",
     "@types/react-router": "^4.4.4",
     "@types/react-router-dom": "^4.3.1",
+    "@types/yup": "^0.26.12",
     "bootstrap": "^4.3.1",
     "enzyme": "^3.9.0",
+    "formik": "^1.5.2",
     "jest-enzyme": "^7.0.2",
     "node-localstorage": "^1.3.1",
     "prettier": "1.16.4",

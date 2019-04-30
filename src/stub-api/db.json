@@ -6,77 +6,87 @@
       "personEndre": true
     }
   },
-  "data": [
-    {
-      "id": 1,
-      "name": "Sivilstand",
-      "description": "En overordnet kategori som beskriver en persons forhold til en annen person.",
-      "category": "PERSONALIA",
-      "ownership": "Ytelsesavdelingen",
-      "sourceOfRecord": "Folkeregisteret",
-      "personalData": true,
-      "itSystem": "tps"
-    },
-    {
-      "id": 2,
-      "name": "Bostedsadresse",
-      "description": "En geografisk adresse fra Folkeregisteret som angir hvor en fysisk person bor i juridisk forstand. Adressen angir hvor den gitte personen er regnet som bosatt etter folkeregisterlovgivningen. Bostedsadressen fastsettes i et enkeltvedtak av Skatteetaten. Bostedsadressen vil alltid være en norsk stedsadresse eller en norsk gateadresse, og er en av tre godkjente geografiske adressetyper i TPS.",
-      "category": "PERSONALIA",
-      "ownership": "Ytelsesavdelingen",
-      "sourceOfRecord": "Folkeregisteret",
-      "personalData": true,
-      "itSystem": "tps"
-    },
-    {
-      "id": 3,
-      "name": "Oppholdsadresse",
-      "description": "Angir hvor en bruker (BEGREP-20) oppholder seg når brukeren har en postadresse (BEGREP-658). Denne adressetypen brukes i fagsystemet Arena og erstatter de to adressetypene midlertidig og bolig",
-      "category": "PERSONALIA",
-      "ownership": "Ytelsesavdelingen",
-      "sourceOfRecord": "Bruker",
-      "personalData": true,
-      "itSystem": "tps"
-    },
-    {
-      "id": 4,
-      "name": "Fødsel",
-      "description": "En nedkomst av ett eller flere barn. Fødselsbegrepet omfatter alle levendefødte barn uansett fødselstidspunkt, og dødfødt i 26. svangerskapsuke eller senere.",
-      "category": "PERSONALIA",
-      "ownership": "Ytelsesavdelingen",
-      "sourceOfRecord": "Folkeregisteret",
-      "personalData": true,
-      "itSystem": "tps"
-    },
-    {
-      "id": 6,
-      "name": "Pensjonsgivende inntekt",
-      "description": "Ferdiglignet pensjonsgivende inntekt.",
-      "category": "INNTEKT_TRYGDE_OG_PENSJONSYTELSER",
-      "ownership": "Ytelsesavdelingen",
-      "sourceOfRecord": "Skattedirektoratet",
-      "personalData": true,
-      "itSystem": "popp"
-    },
-    {
-      "id": 7,
-      "name": "Arbeidsforhold",
-      "description": "Avtaleforhold hvor den ene part, arbeidstakeren, forplikter seg til å utføre arbeid mot lønn eller annen godtgjørelse for den annen part, arbeidsgiveren, i henhold til dennes ledelse.",
-      "category": "ARBEIDSFORHOLD",
-      "sourceOfRecord": "Arbeidsgiver",
-      "personalData": true,
-      "itSystem": "aa-reg",
-      "ownership": "Ytelsesavdelingen"
-    },
+  "data": {
+    "content": [
+      {
+        "informationTypeId": 1,
+        "name": "Sivilstand",
+        "description": "En overordnet kategori som beskriver en persons forhold til en annen person.",
+        "sourceOfRecord": "Folkeregisteret",
+        "personalData": true,
+        "itSystem": "tps",
+        "policy": [
+          {
+            "purposeId": 123,
+            "code": "Pensjon",
+            "name": "Pensjon",
 
-    {
-      "id": 8,
-      "name": "Telefonnummer",
-      "description": "Telefonnummer for å komme i kontakt med bruker.",
-      "category": "ADRESSE_OG_KONTAKTOPPLYSNINGER",
-      "sourceOfRecord": "Bruker",
-      "personalData": true,
-      "itSystem": "tps",
-      "ownership": "Ytelsesavdelingen"
-    }
-  ]
+            "legalBasis": [{ "legalBasisid": 1, "type": "§ FTL 14", "ref": "ref 1" }]
+          },
+          {
+            "purposeId": 456,
+            "code": "For.pen.",
+            "name": "For.pen.",
+
+            "legalBasis": [
+              { "legalBasisid": 2, "type": "§ FTL 17a", "ref": "ref 1" },
+              { "legalBasisid": 3, "type": "§ FTL 17b", "ref": "ref 2" },
+              { "legalBasisid": 1, "type": "§ FTL 14", "ref": "ref 3" }
+            ]
+          }
+        ]
+      },
+      {
+        "informationTypeId": 2,
+        "name": "Bostedsadresse",
+        "description": "En geografisk adresse fra Folkeregisteret som angir hvor en fysisk person bor i juridisk forstand. Adressen angir hvor den gitte personen er regnet som bosatt etter folkeregisterlovgivningen. Bostedsadressen fastsettes i et enkeltvedtak av Skatteetaten. Bostedsadressen vil alltid være en norsk stedsadresse eller en norsk gateadresse, og er en av tre godkjente geografiske adressetyper i TPS.",
+        "sourceOfRecord": "Folkeregisteret",
+        "personalData": true,
+        "itSystem": "tps"
+      },
+      {
+        "informationTypeId": 3,
+        "name": "Oppholdsadresse",
+        "description": "Angir hvor en bruker (BEGREP-20) oppholder seg når brukeren har en postadresse (BEGREP-658). Denne adressetypen brukes i fagsystemet Arena og erstatter de to adressetypene midlertidig og bolig",
+        "sourceOfRecord": "Bruker",
+        "personalData": true,
+        "itSystem": "tps"
+      },
+      {
+        "informationTypeId": 4,
+        "name": "Fødsel",
+        "description": "En nedkomst av ett eller flere barn. Fødselsbegrepet omfatter alle levendefødte barn uansett fødselstidspunkt, og dødfødt i 26. svangerskapsuke eller senere.",
+        "sourceOfRecord": "Folkeregisteret",
+        "personalData": true,
+        "itSystem": "tps"
+      },
+      {
+        "informationTypeId": 6,
+        "name": "Pensjonsgivende inntekt",
+        "description": "Ferdiglignet pensjonsgivende inntekt.",
+        "sourceOfRecord": "Skattedirektoratet",
+        "personalData": true,
+        "itSystem": "popp"
+      },
+      {
+        "informationTypeId": 7,
+        "name": "Arbeidsforhold",
+        "description": "Avtaleforhold hvor den ene part, arbeidstakeren, forplikter seg til å utføre arbeid mot lønn eller annen godtgjørelse for den annen part, arbeidsgiveren, i henhold til dennes ledelse.",
+        "sourceOfRecord": "Arbeidsgiver",
+        "personalData": true,
+        "itSystem": "aa-reg"
+      },
+      {
+        "informationTypeId": 8,
+        "name": "Telefonnummer",
+        "description": "Telefonnummer for å komme i kontakt med bruker.",
+        "sourceOfRecord": "Bruker",
+        "personalData": true,
+        "itSystem": "tps"
+      }
+    ],
+    "currentPage": 0,
+    "pageSize": 3,
+    "totalElements": 8
+  }
 }

@@ -24,21 +24,16 @@ export type DataState =
 export type Result = {
   currentPage: number;
   pageSize: number;
-  totalPages: number;
+  totalPages?: number;
   totalElements: number;
   content: InformationType[];
 };
 
 export interface InformationType {
-  id: number;
-  informationTypeId?: number;
+  informationTypeId: number;
   name: string;
   description: string;
-  category: string;
-  sensitivity: string;
-  ownership: string;
   sourceOfRecord: string;
-  qualityOfData: string;
   personalData: boolean;
   itSystem: string;
   isOpen?: boolean;

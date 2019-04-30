@@ -5,9 +5,8 @@ import { DataActions, DataActionTypes, DataState, InformationType } from './type
 export const initialState: DataState = {
   result: {
     currentPage: 0,
-    pageSize: 7,
-    totalPages: 10,
-    totalElements: 55,
+    pageSize: 10,
+    totalElements: 0,
     content: []
   },
   pending: false,
@@ -25,7 +24,7 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
     case DataActionTypes.FETCH_DATA_SUCCESS:
       return {
         ...state,
-        result: { ...state.result, content: action.payload.result },
+        result: action.payload.result,
         error: undefined,
         pending: false,
         previousQuery: action.payload.previousQuery
@@ -43,7 +42,7 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         result: {
           ...state.result,
           content: state.result.content.map((e: InformationType) => {
-            if (e.id === action.payload.id) {
+            if (e.informationTypeId === action.payload.informationTypeId) {
               return {
                 ...e,
                 isOpen: !e.isOpen
