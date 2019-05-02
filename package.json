@@ -4,8 +4,6 @@
   "private": true,
   "proxy": "http://localhost:8080",
   "dependencies": {
-    "@types/sinon": "^7.0.11",
-    "D": "^1.0.0",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.3.2",
     "enzyme-to-json": "^3.3.5",
@@ -42,6 +40,7 @@
     "formatcode": "./node_modules/.bin/prettier --single-quote --trailing-comma none --ignore-path \"**/.history\" --print-width 90 --write \"{src,__{tests,mocks}__}/**/*.{js,jsx,ts,tsx,json}\""
   },
   "devDependencies": {
+    "@types/sinon": "^7.0.11",
     "@fortawesome/fontawesome-free": "^5.7.2",
     "@types/classnames": "^2.2.7",
     "@types/enzyme": "^3.9.0",
