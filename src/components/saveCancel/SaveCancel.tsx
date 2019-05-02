@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { I18n } from 'react-i18nify';
-import {MouseEventHandler} from "react";
+import { MouseEventHandler } from 'react';
 
 interface SaveCancelProps {
   id?: string;
@@ -13,10 +13,10 @@ interface SaveCancelProps {
   translate?: Function;
 }
 
-
-const SaveCancel: React.SFC<SaveCancelProps> = props => (
-  <div className={"row"}>
-    <div className="col-xs-6 col-sm-5 col-md-2 col-mdOffset-d"
+const SaveCancel = (props: SaveCancelProps) => (
+  <div className={'row'}>
+    <div
+      className="col-xs-6 col-sm-5 col-md-2 col-mdOffset-d"
       style={{ border: 'none', textAlign: 'center' }}
     >
       <button
@@ -29,7 +29,10 @@ const SaveCancel: React.SFC<SaveCancelProps> = props => (
         {props.saveLabel || I18n.t('dataCatalog.words.save')}
       </button>
     </div>
-    <div className="col-xs-6 col-sm-5 col-md-2 " style={{ border: 'none', textAlign: 'center' }}>
+    <div
+      className="col-xs-6 col-sm-5 col-md-2 "
+      style={{ border: 'none', textAlign: 'center' }}
+    >
       <button
         id={`Cancel_${props.id || 1}`}
         onClick={props.onClickCancel}
