@@ -3,10 +3,6 @@ import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 import SaveCancel from '../SaveCancel';
 import * as sinon from 'sinon';
-import * as Enzyme from 'enzyme';
-import * as Adapter from 'enzyme-adapter-react-16';
-
-Enzyme.configure({ adapter: new Adapter() });
 
 describe('SaveCancel snapshot', () => {
   it('should match snapshot', () => {

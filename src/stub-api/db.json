@@ -34,7 +34,8 @@
               { "legalBasisid": 1, "type": "§ FTL 14", "ref": "ref 3" }
             ]
           }
-        ]
+        ],
+        "isOpen": true
       },
       {
         "informationTypeId": 2,

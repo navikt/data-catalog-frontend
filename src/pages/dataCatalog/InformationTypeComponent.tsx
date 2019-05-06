@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { InformationType } from './types';
 import { I18n } from 'react-i18nify';
-import SaveCancel from '../../components/saveCancel/SaveCancel';
+import Toolbar from '../../components/toolbar/Toolbar';
+
 type Props = InformationType;
 
 export class InformationTypeComponent extends React.Component<Props> {
@@ -42,6 +43,21 @@ export class InformationTypeComponent extends React.Component<Props> {
           borderStyle: 'solid'
         }}
       >
+        <div className="row" style={{ margin: '20px 10px 10px 20px' }}>
+          <button
+            key="btn-edit"
+            className="btn btn-primary"
+            disabled={false}
+            onClick={e => e}
+            title={
+              1 === 1
+                ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
+                : I18n.t('dataCatalog.words.edit')
+            }
+          >
+            {I18n.t('dataCatalog.words.edit')}
+          </button>
+        </div>
         <div className="row" style={{ margin: '20px 10px 10px 10px' }}>
           <div className="col-md-6">
             {getOptionField('name', this.props.name)}
@@ -71,8 +87,46 @@ export class InformationTypeComponent extends React.Component<Props> {
           className="row"
           style={{ margin: '20px 10px 10px 10px', backgroundColor: '#d4efdf' }}
         >
-          <h5>{I18n.t('dataCatalog.pages.mainPage.Policies')}</h5>
-          <hr style={{ height: '1px' }} />
+          <div className="col-12">
+            <h5>{I18n.t('dataCatalog.pages.mainPage.Policies')}</h5>
+          </div>
+
+          <div className="col-9">
+            <button
+              key="btn-add"
+              className="btn btn-primary"
+              disabled={false}
+              onClick={e => e}
+              title={
+                1 === 1
+                  ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
+                  : I18n.t('dataCatalog.words.addNew')
+              }
+            >
+              {I18n.t('dataCatalog.words.addNew')}
+            </button>
+          </div>
+          <div className="col-2">
+            <select id="selectPolicy" className="form-control">
+              <option>Psys</option>
+              <option>Arena</option>
+            </select>
+          </div>
+          <div className="col-1">
+            <button
+              key="btn-addSelected"
+              className="btn btn-primary"
+              disabled={false}
+              onClick={e => e}
+              title={
+                1 === 1
+                  ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
+                  : I18n.t('dataCatalog.words.addSelected')
+              }
+            >
+              {I18n.t('dataCatalog.words.addSelected')}
+            </button>
+          </div>
           <table className="table table-responsive-sm table-striped">
             <thead>
               <tr>
@@ -145,7 +199,7 @@ export class InformationTypeComponent extends React.Component<Props> {
             </tbody>
           </table>
         </div>
-        <SaveCancel />
+        <Toolbar />
       </div>
     );
   }

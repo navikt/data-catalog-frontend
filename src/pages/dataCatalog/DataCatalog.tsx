@@ -33,6 +33,25 @@ class DataCatalog extends React.Component<Props> {
     return (
       <div>
         <InformationTypeSearchComponent />
+        <div className="row">
+          <div className="col-md-11" />
+          <div className="col-md-1">
+            <button
+              key="btn-add"
+              className="btn btn-primary"
+              disabled={false}
+              onClick={e => e}
+              title={
+                1 === 1
+                  ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
+                  : I18n.t('dataCatalog.words.add')
+              }
+              style={{ margin: '20px 10px 10px 20px' }}
+            >
+              {I18n.t('dataCatalog.words.add')}
+            </button>
+          </div>
+        </div>
         <div className="row" style={{ marginLeft: '6px' }}>
           <Table
             data={(data && data.content) || []}
