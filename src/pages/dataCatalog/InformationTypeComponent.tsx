@@ -91,7 +91,7 @@ export class InformationTypeComponent extends React.Component<Props> {
             <h5>{I18n.t('dataCatalog.pages.mainPage.Policies')}</h5>
           </div>
 
-          <div className="col-9">
+          <div className="col-md-9 col-sm-12">
             <button
               key="btn-add"
               className="btn btn-primary"
@@ -106,13 +106,13 @@ export class InformationTypeComponent extends React.Component<Props> {
               {I18n.t('dataCatalog.words.addNew')}
             </button>
           </div>
-          <div className="col-2">
+          <div className="col-md-2 col-6">
             <select id="selectPolicy" className="form-control">
               <option>Psys</option>
               <option>Arena</option>
             </select>
           </div>
-          <div className="col-1">
+          <div className="col-md-1 col-6">
             <button
               key="btn-addSelected"
               className="btn btn-primary"

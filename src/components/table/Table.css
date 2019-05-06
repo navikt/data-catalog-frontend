@@ -5,12 +5,10 @@
     overflow-x: auto;
 }
 
-
-
 .Table-row {
     display: flex;
     border-bottom: 1px solid lightgray;
-border-top: 1px solid lightgray}
+    border-top: 1px solid lightgray}
 
 .Table-row.no-result {
      height: 5rem;
@@ -35,15 +33,13 @@ border-top: 1px solid lightgray}
     width: 100%;
 }
 
-
-
 .Table-header {
     font-weight: bold;
     padding: 0.5rem;
     text-align: left;
     white-space: nowrap;
+    min-width: 120px;
 }
-
 
 .Table-header.sortable {
      cursor: pointer;
@@ -54,7 +50,6 @@ border-top: 1px solid lightgray}
      box-shadow: 0 0 0 3px orange;
      border-radius: 2px;
  }
-
 
 .Table-cell {
     padding: 0.5rem;
@@ -78,8 +73,6 @@ border-top: 1px solid lightgray}
 .Table-body.is-loading {
      opacity: 1;
  }
-
-
 
 .arrow-down {
     content: '';

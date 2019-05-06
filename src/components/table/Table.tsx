@@ -7,7 +7,7 @@ import { Paginator } from './paginator/Paginator';
 import { sortColumn } from '../../common/pagination/sortingAndPagingActions';
 
 import './Table.css';
-import {I18n} from "react-i18nify";
+import { I18n } from 'react-i18nify';
 
 interface TableComponentProps {
   data: any;
@@ -51,19 +51,19 @@ const TableComponent = ({
       <div className="Table">
         <div className="Table-row header-row">
           {renderHeaders(children, previousQuery, onSortClick, !!collapseComponent)}
-          <div className="Table-header" >
+          <div className="Table-header" style={{ marginLeft: '2px' }}>
             <button
-                key="btn-add"
-                className="btn btn-primary"
-                disabled={false}
-                onClick={e => e}
-                title={
-                    1 === 1
-                        ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
-                        : I18n.t('dataCatalog.words.add')
-                }
+              key="btn-add"
+              className="btn btn-primary"
+              disabled={false}
+              onClick={e => e}
+              title={
+                1 === 1
+                  ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
+                  : I18n.t('dataCatalog.words.add')
+              }
             >
-                {I18n.t('dataCatalog.words.add')}
+              {I18n.t('dataCatalog.words.add')}
             </button>
           </div>
         </div>
