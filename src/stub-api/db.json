@@ -12,27 +12,101 @@
         "informationTypeId": 1,
         "name": "Sivilstand",
         "description": "En overordnet kategori som beskriver en persons forhold til en annen person.",
-        "sourceOfRecord": "Folkeregisteret",
+        "category": {
+          "codeListId": 1,
+          "listName": "CATEGORY",
+          "code": "PERSONALIA",
+          "description": "Personalia",
+          "createdBy": "Datajeger",
+          "createdDate": "'2019-01-01 08:45:00 GMT+1'",
+          "lastModifiedBy": "",
+          "lastModifiedDate": ""
+        },
+        "producer": {
+          "codeListId": 12,
+          "listName": "PRODUCER",
+          "code": "BRUKER",
+          "description": "Informasjon oppgitt av bruker",
+          "createdBy": "Datajeger",
+          "createdDate": "'2019-01-01 08:45:00 GMT+1'",
+          "lastModifiedBy": "",
+          "lastModifiedDate": ""
+        },
+        "system": {
+          "codeListId": 21,
+          "listName": "SYSTEM",
+          "code": "TPS",
+          "description": "Tjenestebasert PersondataSystem",
+          "createdBy": "Datajeger",
+          "createdDate": "'2019-01-01 08:45:00 GMT+1'",
+          "lastModifiedBy": "",
+          "lastModifiedDate": ""
+        },
         "personalData": true,
+
+        "sourceOfRecord": "Folkeregisteret",
         "itSystem": "tps",
+
+        "elasticsearchId": "",
+        "elasticsearchStatus": "",
+        "createdBy": "Datajeger",
+        "createdDate": "'2019-01-01 08:45:00 GMT+1'",
+        "lastModifiedBy": "",
+        "lastModifiedDate": "",
         "policy": [
           {
-            "purposeId": 123,
-            "code": "Pensjon",
-            "name": "Pensjon",
+            "policyId": 1234,
 
-            "legalBasis": [{ "legalBasisid": 1, "type": "§ FTL 14", "ref": "ref 1" }]
+            "purpose": {
+              "purposeId": 1111,
+              "purposeCode": "AAP",
+              "description": "Arbeidsavklaringspenger",
+              "createdBy": "Datajeger",
+              "createdDate": "'2019-01-01 08:45:00 GMT+1'",
+              "lastModifiedBy": "",
+              "lastModifiedDate": ""
+            },
+
+            "legalBasisDescription": "???",
+            "legalBasis": {
+              "legalBasisid": 1,
+              "description": "§ FTL 14",
+              "createdBy": "Datajeger",
+              "createdDate": "'2019-01-01 08:45:00 GMT+1'",
+              "lastModifiedBy": "",
+              "lastModifiedDate": ""
+            },
+            "createdBy": "Datajeger",
+            "createdDate": "'2019-01-01 08:45:00 GMT+1'",
+            "lastModifiedBy": "",
+            "lastModifiedDate": ""
           },
           {
-            "purposeId": 456,
-            "code": "For.pen.",
-            "name": "For.pen.",
+            "policyId": 2345,
 
-            "legalBasis": [
-              { "legalBasisid": 2, "type": "§ FTL 17a", "ref": "ref 1" },
-              { "legalBasisid": 3, "type": "§ FTL 17b", "ref": "ref 2" },
-              { "legalBasisid": 1, "type": "§ FTL 14", "ref": "ref 3" }
-            ]
+            "purpose": {
+              "purposeId": 1211,
+              "purposeCode": "AAR",
+              "description": "Aa-registeret",
+              "createdBy": "Datajeger",
+              "createdDate": "'2019-01-01 08:45:00 GMT+1'",
+              "lastModifiedBy": "",
+              "lastModifiedDate": ""
+            },
+
+            "legalBasisDescription": "???",
+            "legalBasis": {
+              "legalBasisid": 2,
+              "description": "§ FTL 17a, § FTL 17b, § FTL 14",
+              "createdBy": "Datajeger",
+              "createdDate": "'2019-01-01 08:45:00 GMT+1'",
+              "lastModifiedBy": "",
+              "lastModifiedDate": ""
+            },
+            "createdBy": "Datajeger",
+            "createdDate": "'2019-01-01 08:45:00 GMT+1'",
+            "lastModifiedBy": "",
+            "lastModifiedDate": ""
           }
         ],
         "isOpen": true
