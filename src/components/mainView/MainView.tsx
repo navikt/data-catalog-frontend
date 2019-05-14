@@ -52,7 +52,7 @@ class MainView extends React.Component<Props, State> {
     return (
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark static-top">
-          <a className="navbar-brand mr-1" href="/">
+          <a className="navbar-brand mr-1" href="/about">
             <div> {I18n.t('dataCatalog.words.titleDataNAV')} </div>
             <div style={{ fontSize: '12px' }}>
               {' '}

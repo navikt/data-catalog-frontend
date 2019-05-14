@@ -7,6 +7,7 @@ import { push } from 'connected-react-router';
 import { I18n } from 'react-i18nify';
 import { FocusEventHandler } from 'react';
 import { ChangeEventHandler } from 'react';
+import { InformationTypeView } from './types';
 
 interface PropsFromState {
   field?: boolean;
@@ -20,13 +21,7 @@ interface PropsFromDispatch {
 
 type FormProps = PropsFromState & PropsFromDispatch;
 
-interface FormValues {
-  name: string;
-  description: string;
-  sourceOfRecord: string;
-  personalData?: boolean;
-  itSystem: string;
-}
+type FormValues = InformationTypeView;
 
 export class InformationTypeSearchComponentInner extends React.Component<
   InjectedFormikProps<FormProps, FormValues>
@@ -69,13 +64,13 @@ export class InformationTypeSearchComponentInner extends React.Component<
           {createField('name', values.name, handleChange, handleBlur, 3)}
           {createField('description', values.description, handleChange, handleBlur, 3)}
           {createField(
-            'sourceOfRecord',
-            values.sourceOfRecord,
+            'producer',
+            values.producer && values.producer.code,
             handleChange,
             handleBlur,
             2
           )}
-          {createField('itSystem', values.itSystem, handleChange, handleBlur, 2)}
+          {createField('system', values.system, handleChange, handleBlur, 2)}
           <div className="form-group  col-md-2 col-sm-12">
             <label>{I18n.t('dataCatalog.pages.mainPage.personalData')}</label>
             <select
@@ -110,11 +105,11 @@ export class InformationTypeSearchComponentInner extends React.Component<
 
 const InformationTypeSearchComponent = withFormik<FormProps, FormValues>({
   mapPropsToValues: () => ({
-    informationTypeId: '',
+    informationTypeId: -1,
     name: '',
     description: '',
-    sourceOfRecord: '',
-    itSystem: ''
+    producer: undefined,
+    system: undefined
   }),
   handleSubmit: (values, { props }) => {
     props.fetchData(values);

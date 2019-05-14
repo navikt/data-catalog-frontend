@@ -2,11 +2,11 @@ import * as React from 'react';
 import { memo } from 'react';
 import { connect } from 'react-redux';
 import { fetchData, toggleExpandRow } from './actions';
-import { InformationType, Result } from './types';
+import { InformationTypeView, Result } from './types';
 import { I18n } from 'react-i18nify';
 import { Table, Column } from '../../components/table/Table';
 import { get } from 'lodash';
-import { InformationTypeComponent } from './InformationTypeComponent';
+import { InformationTypeViewComponent } from './InformationTypeViewComponent';
 import InformationTypeSearchComponent from './InformationTypeSearchComponent';
 
 interface PropsFromState {
@@ -62,15 +62,15 @@ class DataCatalog extends React.Component<Props> {
             />
             <Column
               width="15%"
-              header={I18n.t('dataCatalog.pages.mainPage.sourceOfRecord')}
-              path="sourceOfRecord"
+              header={I18n.t('dataCatalog.pages.mainPage.producer')}
+              path="producer.code"
               contentTransformer={(val: any) => val}
               sortable
             />
             <Column
               width="15%"
-              header={I18n.t('dataCatalog.pages.mainPage.itSystem')}
-              path="itSystem"
+              header={I18n.t('dataCatalog.pages.mainPage.system')}
+              path="system.code"
               contentTransformer={(val: any) => val}
               sortable
             />
@@ -81,8 +81,8 @@ class DataCatalog extends React.Component<Props> {
   }
 }
 
-const CollapseComponent = memo((props: InformationType) => (
-  <InformationTypeComponent {...props} />
+const CollapseComponent = memo((props: InformationTypeView) => (
+  <InformationTypeViewComponent {...props} />
 ));
 
 export default connect(

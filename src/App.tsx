@@ -7,6 +7,8 @@ import DataLineage from './pages/dataLineage/DataLineage';
 import Producers from './pages/producers/Producers';
 import Topics from './pages/topics/Topics';
 import { BrowserRouter, Route } from 'react-router-dom';
+import About from './about/AboutPage';
+
 import { I18n } from 'react-i18nify';
 
 class App extends React.Component {
@@ -28,6 +30,7 @@ class App extends React.Component {
           content={
             <div>
               <Route exact={true} path="/" component={DataCatalog} />
+              <Route exact={true} path="/about" component={About} />
               <Route exact={true} path="/dataCatalog" component={DataCatalog} />
               <Route exact={true} path="/accessPolicies" component={AccessPolicies} />
               <Route exact={true} path="/topics" component={Topics} />
