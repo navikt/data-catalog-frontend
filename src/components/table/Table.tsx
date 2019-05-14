@@ -24,6 +24,7 @@ interface TableComponentProps {
   previousQuery?: any;
   children: any;
   className?: string;
+  disabledPaginator?: boolean;
 }
 
 const TableComponent = ({
@@ -40,7 +41,8 @@ const TableComponent = ({
   searchAction,
   previousQuery,
   children,
-  className
+  className,
+  disabledPaginator
 }: TableComponentProps) => {
   //const tableClassName = 'Table' + (className ? (' ' + className) : '');
   const tableBodyClassName = 'Table-body' + (isLoading ? ' is-loading' : '');
@@ -71,13 +73,15 @@ const TableComponent = ({
           {renderRows(data, idKey, collapseComponent, onToggleClick, children, isLoading)}
         </div>
       </div>
-      <Paginator
-        currentPage={currentPage + 1}
-        pageSize={pageSize}
-        totalElements={totalElements}
-        previousQuerySelector={previousQuerySelector}
-        searchAction={searchAction}
-      />
+      {!disabledPaginator && (
+        <Paginator
+          currentPage={currentPage + 1}
+          pageSize={pageSize}
+          totalElements={totalElements}
+          previousQuerySelector={previousQuerySelector}
+          searchAction={searchAction}
+        />
+      )}
     </>
   );
 };
@@ -240,6 +244,7 @@ interface Prop {
   currentPage: number;
   pageSize: number;
   totalElements: number;
+  disabledPaginator?: boolean;
 }
 
 export const Table = connect(

@@ -22,7 +22,7 @@ export class PolicyComponent extends React.Component<Props> {
   public render() {
     const { policy } = this.props;
     return (
-      <div className="row" style={{ marginLeft: '6px' }}>
+      <div className="row" style={{ marginLeft: '6px', marginRight: '6px' }}>
         <Table
           data={policy || []}
           idKey="informationTypeId"
@@ -38,6 +38,7 @@ export class PolicyComponent extends React.Component<Props> {
             get(state, ['dataCatalog', 'previousQuery'])
           }
           searchAction={(query: any) => fetchData(query)}
+          disabledPaginator={true}
         >
           <Column
             width="25%"
