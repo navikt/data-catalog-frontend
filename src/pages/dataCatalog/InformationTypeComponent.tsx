@@ -60,9 +60,16 @@ export class InformationTypeComponent extends React.Component<Props> {
         </div>
         <div className="row" style={{ margin: '20px 10px 10px 10px' }}>
           <div className="col-md-6">
-            {getOptionField('name', this.props.name)}
-            {getOptionField('itSystem', this.props.itSystem)}
-            {getInputField('sourceOfRecord', this.props.sourceOfRecord)}
+            {getInputField('name', this.props.name)}
+            {getOptionField('system', this.props.system ? this.props.system.code : '')}
+            {getOptionField(
+              'producer',
+              this.props.producer ? this.props.producer.code : ''
+            )}
+            {getOptionField(
+              'category',
+              this.props.category ? this.props.category.code : ''
+            )}
             {getOptionField(
               'personalData',
               this.props.personalData

@@ -44,9 +44,6 @@
         },
         "personalData": true,
 
-        "sourceOfRecord": "Folkeregisteret",
-        "itSystem": "tps",
-
         "elasticsearchId": "",
         "elasticsearchStatus": "",
         "createdBy": "Datajeger",

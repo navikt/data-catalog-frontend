@@ -62,15 +62,15 @@ class DataCatalog extends React.Component<Props> {
             />
             <Column
               width="15%"
-              header={I18n.t('dataCatalog.pages.mainPage.sourceOfRecord')}
-              path="sourceOfRecord"
+              header={I18n.t('dataCatalog.pages.mainPage.producer')}
+              path="producer.code"
               contentTransformer={(val: any) => val}
               sortable
             />
             <Column
               width="15%"
-              header={I18n.t('dataCatalog.pages.mainPage.itSystem')}
-              path="itSystem"
+              header={I18n.t('dataCatalog.pages.mainPage.system')}
+              path="system.code"
               contentTransformer={(val: any) => val}
               sortable
             />

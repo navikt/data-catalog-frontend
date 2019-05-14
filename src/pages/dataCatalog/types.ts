@@ -29,12 +29,31 @@ export type Result = {
   content: InformationType[];
 };
 
+export interface CodeList {
+  codeListId: number;
+  listName: string;
+  code: string;
+  description: string;
+  createdBy?: string;
+  createdDate?: string;
+  lastModifiedBy?: string;
+  lastModifiedDate?: string;
+}
+
 export interface InformationType {
   informationTypeId: number;
   name: string;
   description: string;
-  sourceOfRecord: string;
-  personalData: boolean;
-  itSystem: string;
+  personalData?: boolean;
   isOpen?: boolean;
+  category?: CodeList;
+  producer?: CodeList;
+  system?: CodeList;
+
+  elasticsearchId?: number;
+  elasticsearchStatus?: string;
+  createdBy?: string;
+  createdDate?: string;
+  lastModifiedBy?: string;
+  lastModifiedDate?: string;
 }
