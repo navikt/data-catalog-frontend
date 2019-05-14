@@ -7,7 +7,7 @@ import { push } from 'connected-react-router';
 import { I18n } from 'react-i18nify';
 import { FocusEventHandler } from 'react';
 import { ChangeEventHandler } from 'react';
-import { InformationType } from './types';
+import { InformationTypeView } from './types';
 
 interface PropsFromState {
   field?: boolean;
@@ -21,7 +21,7 @@ interface PropsFromDispatch {
 
 type FormProps = PropsFromState & PropsFromDispatch;
 
-type FormValues = InformationType;
+type FormValues = InformationTypeView;
 
 export class InformationTypeSearchComponentInner extends React.Component<
   InjectedFormikProps<FormProps, FormValues>

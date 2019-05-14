@@ -26,21 +26,24 @@ export type Result = {
   pageSize: number;
   totalPages?: number;
   totalElements: number;
-  content: InformationType[];
+  content: InformationTypeView[];
 };
 
-export interface CodeList {
-  codeListId: number;
-  listName: string;
-  code: string;
-  description: string;
+export interface Auditable {
   createdBy?: string;
   createdDate?: string;
   lastModifiedBy?: string;
   lastModifiedDate?: string;
 }
 
-export interface InformationType {
+export interface CodeList extends Auditable {
+  codeListId: number;
+  listName: string;
+  code: string;
+  description: string;
+}
+
+export interface InformationType extends Auditable {
   informationTypeId: number;
   name: string;
   description: string;
@@ -52,8 +55,26 @@ export interface InformationType {
 
   elasticsearchId?: number;
   elasticsearchStatus?: string;
-  createdBy?: string;
-  createdDate?: string;
-  lastModifiedBy?: string;
-  lastModifiedDate?: string;
+}
+
+export interface Purpose extends Auditable {
+  purposeId: number;
+  purposeCode: string;
+  description: string;
+}
+
+export interface LegalBasis extends Auditable {
+  legalBasisid: number;
+  description: string;
+}
+
+export interface Policy extends Auditable {
+  policyId: number;
+  purpose: Purpose;
+  legalBasisDescription?: string;
+  legalBasis?: LegalBasis;
+}
+
+export interface InformationTypeView extends InformationType {
+  policy?: Policy[];
 }

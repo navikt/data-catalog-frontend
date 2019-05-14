@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { DataActions, DataActionTypes, DataState, InformationType } from './types';
+import { DataActions, DataActionTypes, DataState, InformationTypeView } from './types';
 
 export const initialState: DataState = {
   result: {
@@ -41,7 +41,7 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         ...state,
         result: {
           ...state.result,
-          content: state.result.content.map((e: InformationType) => {
+          content: state.result.content.map((e: InformationTypeView) => {
             if (e.informationTypeId === action.payload.informationTypeId) {
               return {
                 ...e,

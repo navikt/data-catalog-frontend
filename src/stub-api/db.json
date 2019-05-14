@@ -25,8 +25,8 @@
         "producer": {
           "codeListId": 12,
           "listName": "PRODUCER",
-          "code": "BRUKER",
-          "description": "Informasjon oppgitt av bruker",
+          "code": "FOLKEREGISTERET",
+          "description": "Informasjon fra Skatt",
           "createdBy": "Datajeger",
           "createdDate": "'2019-01-01 08:45:00 GMT+1'",
           "lastModifiedBy": "",
