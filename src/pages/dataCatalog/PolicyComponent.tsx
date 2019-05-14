@@ -42,12 +42,6 @@ export class PolicyComponent extends React.Component<Props> {
         >
           <Column
             width="25%"
-            header={I18n.t('dataCatalog.pages.mainPage.purposeCode')}
-            path="purpose.purposeCode"
-            sortable
-          />
-          <Column
-            width="25%"
             header={I18n.t('dataCatalog.pages.mainPage.purposeDescription')}
             path="purpose.description"
             sortable
