@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 interface PropsFromState {
   pathName?: string;
   policy: Policy[];
+  isEdit?: boolean;
 }
 
 interface PropsFromDispatch {
@@ -36,6 +37,7 @@ class PolicyComponent extends React.Component<Props> {
           previousQuerySelector={(e: any) => e}
           searchAction={(e: any) => e}
           disabledPaginator={true}
+          isEdit={this.props.isEdit}
         >
           <Column
             width="25%"

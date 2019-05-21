@@ -219,7 +219,9 @@
         "category": "7",
         "producer": "1",
         "system": "28",
-        "personalData": true
+        "personalData": true,
+        "isOpen": true,
+        "isEdit": true
       },
       {
         "createdBy": "Ketill Fenne",

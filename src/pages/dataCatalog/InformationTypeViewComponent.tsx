@@ -8,31 +8,45 @@ type Props = InformationTypeView;
 
 export class InformationTypeViewComponent extends React.Component<Props> {
   public render() {
-    const getOptionField = (text: string, value: string) => (
+    const getOptionField = (text: string, value: string, isEdit: boolean) => (
       <div className="row" style={{ marginBottom: '10px' }}>
         <div className="col-md-4">{I18n.t('dataCatalog.pages.mainPage.' + text)}</div>
         <div className="col-md-6">
-          <select className="form-control" id={text}>
-            <option>{value}</option>
-          </select>
+          {isEdit ? (
+            <select className="form-control" id={text}>
+              <option>{value}</option>
+            </select>
+          ) : (
+            ': ' + value
+          )}
         </div>
       </div>
     );
-    const getInputField = (text: string, value: string) => (
+    const getInputField = (text: string, value: string, isEdit: boolean) => (
       <div className="row" style={{ marginBottom: '10px' }}>
         <div className="col-md-4">{I18n.t('dataCatalog.pages.mainPage.' + text)}</div>
         <div className="col-md-6">
-          <input type="text" className="form-control" id={text} value={value} />
+          {isEdit ? (
+            <input type="text" className="form-control" id={text} value={value} />
+          ) : (
+            ': ' + value
+          )}
         </div>
       </div>
     );
-    const getTextAreaField = (text: string, value: string) => (
+    const getTextAreaField = (text: string, value: string, isEdit: boolean) => (
       <div className="row" style={{ marginBottom: '10px' }}>
-        <div className="col-md-3">{I18n.t('dataCatalog.pages.mainPage.' + text)}</div>
+        <div className="col-md-3">
+          {I18n.t('dataCatalog.pages.mainPage.' + text + (isEdit ? '' : ' : '))}
+        </div>
         <div className="col-md-9">
-          <textarea className="form-control" id={text} rows={5}>
-            {value}
-          </textarea>
+          {isEdit ? (
+            <textarea className="form-control" id={text} rows={5}>
+              {value}
+            </textarea>
+          ) : (
+            value
+          )}
         </div>
       </div>
     );
@@ -44,21 +58,23 @@ export class InformationTypeViewComponent extends React.Component<Props> {
           borderStyle: 'solid'
         }}
       >
-        <div className="row" style={{ margin: '20px 10px 10px 20px' }}>
-          <button
-            key="btn-edit"
-            className="btn btn-primary"
-            disabled={false}
-            onClick={e => e}
-            title={
-              1 === 1
-                ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
-                : I18n.t('dataCatalog.words.edit')
-            }
-          >
-            {I18n.t('dataCatalog.words.edit')}
-          </button>
-        </div>
+        {!this.props.isEdit && (
+          <div className="row" style={{ margin: '20px 10px 10px 20px' }}>
+            <button
+              key="btn-edit"
+              className="btn btn-primary"
+              disabled={false}
+              onClick={e => e}
+              title={
+                1 === 1
+                  ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
+                  : I18n.t('dataCatalog.words.edit')
+              }
+            >
+              {I18n.t('dataCatalog.words.edit')}
+            </button>
+          </div>
+        )}
 
         {this.getInformationTypeComponent(
           getInputField,
@@ -75,32 +91,35 @@ export class InformationTypeViewComponent extends React.Component<Props> {
           </div>
 
           <div className="col-md-8 col-sm-12" />
-
-          <div className="col-md-2 col-6">
-            <select id="selectPolicy" className="form-control">
-              <option>Psys</option>
-              <option>Arena</option>
-            </select>
-          </div>
-          <div className="col-md-2 col-6">
-            <button
-              key="btn-addSelected"
-              className="btn btn-primary"
-              disabled={false}
-              onClick={e => e}
-              title={
-                1 === 1
-                  ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
-                  : I18n.t('dataCatalog.words.addSelected')
-              }
-            >
-              {I18n.t('dataCatalog.words.addSelected')}
-            </button>
-          </div>
+          {this.props.isEdit && (
+            <div className="col-md-2 col-6">
+              <select id="selectPolicy" className="form-control">
+                <option>Psys</option>
+                <option>Arena</option>
+              </select>
+            </div>
+          )}
+          {this.props.isEdit && (
+            <div className="col-md-2 col-6">
+              <button
+                key="btn-addSelected"
+                className="btn btn-primary"
+                disabled={false}
+                onClick={e => e}
+                title={
+                  1 === 1
+                    ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
+                    : I18n.t('dataCatalog.words.addSelected')
+                }
+              >
+                {I18n.t('dataCatalog.words.addSelected')}
+              </button>
+            </div>
+          )}
         </div>
-        <PolicyComponent policy={this.props.policy || []} />
+        <PolicyComponent policy={this.props.policy || []} isEdit={this.props.isEdit} />
 
-        <Toolbar />
+        {this.props.isEdit && <Toolbar />}
       </div>
     );
   }
@@ -113,15 +132,16 @@ export class InformationTypeViewComponent extends React.Component<Props> {
     return (
       <div className="row" style={{ margin: '20px 10px 10px 10px' }}>
         <div className="col-md-6">
-          {getInputField('name', this.props.name)}
-          {getOptionField('system', this.props.system)}
-          {getOptionField('producer', this.props.producer)}
-          {getOptionField('category', this.props.category)}
+          {getInputField('name', this.props.name, this.props.isEdit)}
+          {getOptionField('system', this.props.system, this.props.isEdit)}
+          {getOptionField('producer', this.props.producer, this.props.isEdit)}
+          {getOptionField('category', this.props.category, this.props.isEdit)}
           {getOptionField(
             'personalData',
             this.props.personalData
               ? I18n.t('dataCatalog.words.yes')
-              : I18n.t('dataCatalog.words.no')
+              : I18n.t('dataCatalog.words.no'),
+            this.props.isEdit
           )}
         </div>
 
@@ -131,7 +151,7 @@ export class InformationTypeViewComponent extends React.Component<Props> {
               {I18n.t('dataCatalog.pages.mainPage.businessGlossary')}
             </div>
           </div>
-          {getTextAreaField('description', this.props.description)}
+          {getTextAreaField('description', this.props.description, this.props.isEdit)}
         </div>
       </div>
     );

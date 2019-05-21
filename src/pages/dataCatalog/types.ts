@@ -50,6 +50,7 @@ export interface InformationType extends Auditable {
   description: string;
   personalData?: boolean;
   isOpen?: boolean;
+  isEdit?: boolean;
   category?: CodeList;
   producer?: CodeList;
   system?: CodeList;

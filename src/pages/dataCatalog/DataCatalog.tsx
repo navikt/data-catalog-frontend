@@ -47,6 +47,7 @@ class DataCatalog extends React.Component<Props> {
               get(state, ['dataCatalog', 'previousQuery'])
             }
             searchAction={(query: any) => fetchData(query)}
+            isEdit={true}
           >
             <Column
               width="15%"
