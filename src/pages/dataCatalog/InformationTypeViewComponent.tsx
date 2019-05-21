@@ -3,10 +3,16 @@ import { InformationTypeView } from './types';
 import { I18n } from 'react-i18nify';
 import Toolbar from '../../components/toolbar/Toolbar';
 import PolicyComponent from './PolicyComponent';
+import { toggleEditView } from './actions';
+import { connect } from 'react-redux';
 
-type Props = InformationTypeView;
+interface PropsFromDispatch {
+  toggleEditView: typeof toggleEditView;
+}
 
-export class InformationTypeViewComponent extends React.Component<Props> {
+type Props = InformationTypeView & PropsFromDispatch;
+
+class InformationTypeViewComponent extends React.Component<Props> {
   public render() {
     const getOptionField = (text: string, value: string, isEdit: boolean) => (
       <div className="row" style={{ marginBottom: '10px' }}>
@@ -64,7 +70,7 @@ export class InformationTypeViewComponent extends React.Component<Props> {
               key="btn-edit"
               className="btn btn-primary"
               disabled={false}
-              onClick={e => e}
+              onClick={() => this.props.toggleEditView(this.props.informationTypeId)}
               title={
                 1 === 1
                   ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
@@ -119,7 +125,11 @@ export class InformationTypeViewComponent extends React.Component<Props> {
         </div>
         <PolicyComponent policy={this.props.policy || []} isEdit={this.props.isEdit} />
 
-        {this.props.isEdit && <Toolbar />}
+        {this.props.isEdit && (
+          <Toolbar
+            cancelOnClick={() => this.props.toggleEditView(this.props.informationTypeId)}
+          />
+        )}
       </div>
     );
   }
@@ -157,3 +167,8 @@ export class InformationTypeViewComponent extends React.Component<Props> {
     );
   }
 }
+
+export default connect(
+  null,
+  { toggleEditView: toggleEditView }
+)(InformationTypeViewComponent);

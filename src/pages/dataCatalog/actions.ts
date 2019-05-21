@@ -22,3 +22,6 @@ export const toggleExpandRow = (informationTypeId: number) =>
 
 export const toggleExpandRowPolicy = (informationTypeId: number, policyId: number) =>
   action(DataActionTypes.TOGGLE_ROW_POLICY, { informationTypeId, policyId });
+
+export const toggleEditView = (informationTypeId: number) =>
+  action(DataActionTypes.TOGGLE_EDIT_VIEW, { informationTypeId });

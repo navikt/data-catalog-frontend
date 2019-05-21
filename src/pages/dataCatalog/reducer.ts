@@ -68,6 +68,22 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
           })
         }
       };
+    case DataActionTypes.TOGGLE_EDIT_VIEW:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content: state.result.content.map((e: InformationTypeView) => {
+            if (e.informationTypeId === action.payload.informationTypeId) {
+              return {
+                ...e,
+                isEdit: !e.isEdit
+              };
+            }
+            return e;
+          })
+        }
+      };
     default:
       return state;
   }
