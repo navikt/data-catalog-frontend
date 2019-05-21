@@ -63,13 +63,7 @@ export class InformationTypeSearchComponentInner extends React.Component<
         <div className="row">
           {createField('name', values.name, handleChange, handleBlur, 3)}
           {createField('description', values.description, handleChange, handleBlur, 3)}
-          {createField(
-            'producer',
-            values.producer && values.producer.code,
-            handleChange,
-            handleBlur,
-            2
-          )}
+          {createField('producer', values.producer, handleChange, handleBlur, 2)}
           {createField('system', values.system, handleChange, handleBlur, 2)}
           <div className="form-group  col-md-2 col-sm-12">
             <label>{I18n.t('dataCatalog.pages.mainPage.personalData')}</label>
