@@ -2,7 +2,7 @@ import * as React from 'react';
 import { InformationTypeView } from './types';
 import { I18n } from 'react-i18nify';
 import Toolbar from '../../components/toolbar/Toolbar';
-import { PolicyComponent } from './PolicyComponent';
+import PolicyComponent from './PolicyComponent';
 
 type Props = InformationTypeView;
 

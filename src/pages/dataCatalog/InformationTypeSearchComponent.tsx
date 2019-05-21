@@ -105,7 +105,7 @@ export class InformationTypeSearchComponentInner extends React.Component<
 
 const InformationTypeSearchComponent = withFormik<FormProps, FormValues>({
   mapPropsToValues: () => ({
-    informationTypeId: -1,
+    informationTypeId: undefined!,
     name: '',
     description: '',
     producer: undefined,

@@ -52,6 +52,22 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
           })
         }
       };
+    case DataActionTypes.TOGGLE_ROW_POLICY:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content: state.result.content.map((e: InformationTypeView) => {
+            if (e.informationTypeId === action.payload.informationTypeId) {
+              return {
+                ...e,
+                isOpen: !e.isOpen
+              };
+            }
+            return e;
+          })
+        }
+      };
     default:
       return state;
   }
