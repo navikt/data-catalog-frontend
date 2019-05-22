@@ -84,6 +84,26 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
           })
         }
       };
+    case DataActionTypes.FETCH_POLICY_FOR_INFORMATION_TYPE_REQUEST:
+      return {
+        ...state,
+        pending: true
+      };
+    case DataActionTypes.FETCH_POLICY_FOR_INFORMATION_TYPE_SUCCESS:
+      return {
+        ...state,
+        result: action.payload.result,
+        error: undefined,
+        pending: false,
+        previousQuery: action.payload.previousQuery
+      };
+    case DataActionTypes.FETCH_POLICY_FOR_INFORMATION_TYPE_FAILURE:
+      return {
+        ...state,
+        result: [],
+        error: action.payload.error,
+        pending: false
+      };
     default:
       return state;
   }
