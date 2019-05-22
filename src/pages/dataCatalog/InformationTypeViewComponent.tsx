@@ -97,31 +97,6 @@ class InformationTypeViewComponent extends React.Component<Props> {
           </div>
 
           <div className="col-md-8 col-sm-12" />
-          {this.props.isEdit && (
-            <div className="col-md-2 col-6">
-              <select id="selectPolicy" className="form-control">
-                <option>Psys</option>
-                <option>Arena</option>
-              </select>
-            </div>
-          )}
-          {this.props.isEdit && (
-            <div className="col-md-2 col-6">
-              <button
-                key="btn-addSelected"
-                className="btn btn-primary"
-                disabled={false}
-                onClick={e => e}
-                title={
-                  1 === 1
-                    ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
-                    : I18n.t('dataCatalog.words.addSelected')
-                }
-              >
-                {I18n.t('dataCatalog.words.addSelected')}
-              </button>
-            </div>
-          )}
         </div>
         <PolicyComponent policy={this.props.policy || []} isEdit={this.props.isEdit} />
 
