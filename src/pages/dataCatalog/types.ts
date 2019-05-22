@@ -9,7 +9,9 @@ export const enum DataActionTypes {
   FETCH_DATA_REQUEST = '@data/FETCH_DATA_REQUEST',
   FETCH_DATA_SUCCESS = '@data/FETCH_DATA_SUCCESS',
   FETCH_DATA_FAILURE = '@data/FETCH_DATA_FAILURE',
-  TOGGLE_ROW = '@data//TOGGLE_ROW'
+  TOGGLE_ROW = '@data//TOGGLE_ROW',
+  TOGGLE_ROW_POLICY = '@data//TOGGLE_ROW_POLICY',
+  TOGGLE_EDIT_VIEW = '@data//TOGGLE_EDIT_VIEW'
 }
 
 export type DataState =
@@ -49,6 +51,7 @@ export interface InformationType extends Auditable {
   description: string;
   personalData?: boolean;
   isOpen?: boolean;
+  isEdit?: boolean;
   category?: CodeList;
   producer?: CodeList;
   system?: CodeList;

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { memo } from 'react';
 import { connect } from 'react-redux';
-import { fetchData, toggleExpandRow } from './actions';
+import { fetchData, toggleEditView, toggleExpandRow } from './actions';
 import { InformationTypeView, Result } from './types';
 import { I18n } from 'react-i18nify';
 import { Table, Column } from '../../components/table/Table';
 import { get } from 'lodash';
-import { InformationTypeViewComponent } from './InformationTypeViewComponent';
+import InformationTypeViewComponent from './InformationTypeViewComponent';
 import InformationTypeSearchComponent from './InformationTypeSearchComponent';
 
 interface PropsFromState {
@@ -17,6 +17,7 @@ interface PropsFromState {
 interface PropsFromDispatch {
   fetchData: typeof fetchData;
   onToggleClick: typeof toggleExpandRow;
+  onToggleViewClick: typeof toggleEditView;
   isPending: boolean;
 }
 
@@ -47,6 +48,7 @@ class DataCatalog extends React.Component<Props> {
               get(state, ['dataCatalog', 'previousQuery'])
             }
             searchAction={(query: any) => fetchData(query)}
+            isEdit={true}
           >
             <Column
               width="15%"

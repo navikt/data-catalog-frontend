@@ -2,50 +2,43 @@ import * as React from 'react';
 import { Policy } from './types';
 import { I18n } from 'react-i18nify';
 import { Column, Table } from '../../components/table/Table';
-import { fetchData, toggleExpandRow } from './actions';
-import { get } from 'lodash';
+import { fetchData, toggleExpandRowPolicy } from './actions';
+import { memo } from 'react';
+import { connect } from 'react-redux';
 
 interface PropsFromState {
   pathName?: string;
   policy: Policy[];
+  isEdit?: boolean;
 }
 
 interface PropsFromDispatch {
   fetchData?: typeof fetchData;
-  onToggleClick?: typeof toggleExpandRow;
+  onToggleClick: any;
   isPending?: boolean;
 }
 
 type Props = PropsFromState & PropsFromDispatch;
 
-export class PolicyComponent extends React.Component<Props> {
+class PolicyComponent extends React.Component<Props> {
   public render() {
     const { policy } = this.props;
     return (
       <div className="row" style={{ marginLeft: '6px', marginRight: '6px' }}>
         <Table
           data={policy || []}
-          idKey="informationTypeId"
-          collapseComponent={<div>Hi</div>}
-          onToggleClick={
-            this.props.onToggleClick ? this.props.onToggleClick : (e: any) => e
-          }
+          idKey="policyId"
+          collapseComponent={CollapseComponent}
+          onToggleClick={this.props.onToggleClick(1)}
           isLoading={this.props.isPending ? this.props.isPending : true}
           currentPage={0}
           pageSize={0}
           totalElements={0}
-          previousQuerySelector={(state: any) =>
-            get(state, ['dataCatalog', 'previousQuery'])
-          }
-          searchAction={(query: any) => fetchData(query)}
+          previousQuerySelector={(e: any) => e}
+          searchAction={(e: any) => e}
           disabledPaginator={true}
+          isEdit={this.props.isEdit}
         >
-          <Column
-            width="25%"
-            header={I18n.t('dataCatalog.pages.mainPage.purposeCode')}
-            path="purpose.purposeCode"
-            sortable
-          />
           <Column
             width="25%"
             header={I18n.t('dataCatalog.pages.mainPage.purposeDescription')}
@@ -64,3 +57,10 @@ export class PolicyComponent extends React.Component<Props> {
     );
   }
 }
+
+const CollapseComponent = memo((props: any) => <div>HI</div>);
+
+export default connect(
+  null,
+  { onToggleClick: toggleExpandRowPolicy }
+)(PolicyComponent);

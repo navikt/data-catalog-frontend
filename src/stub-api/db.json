@@ -52,7 +52,7 @@
         "lastModifiedDate": "",
         "policy": [
           {
-            "policyId": 1234,
+            "policyId": 1,
 
             "purpose": {
               "purposeId": 1111,
@@ -155,6 +155,42 @@
         "sourceOfRecord": "Bruker",
         "personalData": true,
         "itSystem": "tps"
+      }
+    ],
+    "currentPage": 0,
+    "pageSize": 3,
+    "totalElements": 8
+  },
+  "informationType": {
+    "content": [
+      {
+        "createdBy": "Ketill Fenne",
+        "createdDate": 1558421034760,
+        "lastModifiedBy": null,
+        "lastModifiedDate": null,
+        "informationTypeId": 2,
+        "name": "Sivilstand",
+        "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176",
+        "category": { "code": "code for 7", "description": "description for 7" },
+        "producer": { "code": "code for 1", "description": "description for 1" },
+        "system": { "code": "code for 28", "description": "description for 28" },
+        "personalData": true,
+        "isOpen": true,
+        "isEdit": true
+      },
+      {
+        "createdBy": "Ketill Fenne",
+        "createdDate": 1558421304143,
+        "lastModifiedBy": null,
+        "lastModifiedDate": null,
+        "informationTypeId": 3,
+        "name": "Arbeidsforhold",
+        "description": "Avtaleforhold hvor den ene part, arbeidstakeren, forplikter seg til å utføre arbeid mot lønn eller annen godtgjørelse for den annen part, arbeidsgiveren, i henhold til dennes ledelse. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-390",
+        "category": { "code": "code for 7", "description": "description for 7" },
+        "producer": { "code": "code for 1", "description": "description for 1" },
+        "system": { "code": "code for 28", "description": "description for 28" },
+        "personalData": true,
+        "isOpen": true
       }
     ],
     "currentPage": 0,

@@ -1,4 +1,5 @@
 {
   "/backend/records/allRecords?*": "/data",
-  "/backend/records/allRecords": "/data"
+  "/backend/records/allRecords": "/data",
+  "/backend/informationtype": "/informationtype"
 }

@@ -70,7 +70,13 @@ export class InformationTypeSearchComponentInner extends React.Component<
             handleBlur,
             2
           )}
-          {createField('system', values.system, handleChange, handleBlur, 2)}
+          {createField(
+            'system',
+            values.system && values.system.code,
+            handleChange,
+            handleBlur,
+            2
+          )}
           <div className="form-group  col-md-2 col-sm-12">
             <label>{I18n.t('dataCatalog.pages.mainPage.personalData')}</label>
             <select
@@ -105,7 +111,7 @@ export class InformationTypeSearchComponentInner extends React.Component<
 
 const InformationTypeSearchComponent = withFormik<FormProps, FormValues>({
   mapPropsToValues: () => ({
-    informationTypeId: -1,
+    informationTypeId: undefined!,
     name: '',
     description: '',
     producer: undefined,
