@@ -143,9 +143,21 @@ class InformationTypeViewComponent extends React.Component<Props> {
       <div className="row" style={{ margin: '20px 10px 10px 10px' }}>
         <div className="col-md-6">
           {getInputField('name', this.props.name, this.props.isEdit)}
-          {getOptionField('system', this.props.system, this.props.isEdit)}
-          {getOptionField('producer', this.props.producer, this.props.isEdit)}
-          {getOptionField('category', this.props.category, this.props.isEdit)}
+          {getOptionField(
+            'system',
+            this.props.system ? this.props.system.code : '',
+            this.props.isEdit
+          )}
+          {getOptionField(
+            'producer',
+            this.props.producer ? this.props.producer.code : '',
+            this.props.isEdit
+          )}
+          {getOptionField(
+            'category',
+            this.props.category ? this.props.category.code : '',
+            this.props.isEdit
+          )}
           {getOptionField(
             'personalData',
             this.props.personalData
