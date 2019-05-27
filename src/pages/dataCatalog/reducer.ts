@@ -1,6 +1,12 @@
 import { Reducer } from 'redux';
 
-import { DataActions, DataActionTypes, DataState, InformationTypeView } from './types';
+import {
+  DataActions,
+  DataActionTypes,
+  DataState,
+  InformationTypeView,
+  Policy
+} from './types';
 
 export const initialState: DataState = {
   result: {
@@ -61,7 +67,28 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
             if (e.informationTypeId === action.payload.informationTypeId) {
               return {
                 ...e,
-                isOpen: !e.isOpen
+                policy: {
+                  ...e.policy,
+                  result: {
+                    currentPage:
+                      e.policy && e.policy.result ? e.policy.result.currentPage : 0,
+                    pageSize: e.policy && e.policy.result ? e.policy.result.pageSize : 10,
+                    totalElements:
+                      e.policy && e.policy.result ? e.policy.result.totalElements : 0,
+                    content:
+                      e.policy && e.policy.result && e.policy.result.content
+                        ? e.policy.result.content.map((p: Policy) => {
+                            if (p.policyId === action.payload.policyId) {
+                              return {
+                                ...p,
+                                isOpen: !p.isOpen
+                              };
+                            }
+                            return p;
+                          })
+                        : []
+                  }
+                }
               };
             }
             return e;
@@ -87,22 +114,54 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
     case DataActionTypes.FETCH_POLICY_FOR_INFORMATION_TYPE_REQUEST:
       return {
         ...state,
-        pending: true
+        result: {
+          ...state.result,
+          content: state.result.content.map((e: InformationTypeView) => {
+            if (e.informationTypeId === action.payload.informationTypeId) {
+              return {
+                ...e,
+                policy: { pending: true }
+              };
+            }
+            return e;
+          })
+        }
       };
     case DataActionTypes.FETCH_POLICY_FOR_INFORMATION_TYPE_SUCCESS:
       return {
         ...state,
-        result: action.payload.result,
-        error: undefined,
-        pending: false,
-        previousQuery: action.payload.previousQuery
+        result: {
+          ...state.result,
+          content: state.result.content.map((e: InformationTypeView) => {
+            if (e.informationTypeId === action.payload.informationTypeId) {
+              return {
+                ...e,
+                policy: {
+                  result: action.payload.result,
+                  error: undefined,
+                  pending: false,
+                  previousQuery: action.payload.previousQuery
+                }
+              };
+            }
+            return e;
+          })
+        }
       };
     case DataActionTypes.FETCH_POLICY_FOR_INFORMATION_TYPE_FAILURE:
       return {
         ...state,
-        result: [],
-        error: action.payload.error,
-        pending: false
+        result: {
+          ...state.result,
+          content: state.result.content.map((e: InformationTypeView) => {
+            if (e.informationTypeId === action.payload.informationTypeId) {
+              return {
+                policy: { result: [], error: action.payload.error, pending: false }
+              };
+            }
+            return e;
+          })
+        }
       };
     default:
       return state;

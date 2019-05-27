@@ -80,8 +80,33 @@ export interface Policy extends Auditable {
   purpose: Purpose;
   legalBasisDescription?: string;
   legalBasis?: LegalBasis;
+  isOpen?: boolean;
 }
 
 export interface InformationTypeView extends InformationType {
-  policy?: Policy[];
+  policy?: PolicyResult;
 }
+
+export interface PolicyResult {
+  result: {
+    currentPage: number;
+    pageSize: number;
+    totalElements: number;
+    content: Policy[];
+  };
+  pending: boolean;
+  error: string | null;
+  previousQuery: string | null;
+}
+
+export const PolicyResultDefaultValue = {
+  result: {
+    currentPage: 0,
+    pageSize: 10,
+    totalElements: 0,
+    content: []
+  },
+  pending: false,
+  error: null,
+  previousQuery: null
+};

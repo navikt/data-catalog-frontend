@@ -26,19 +26,31 @@ export const toggleExpandRowPolicy = (informationTypeId: number, policyId: numbe
 export const toggleEditView = (informationTypeId: number) =>
   action(DataActionTypes.TOGGLE_EDIT_VIEW, { informationTypeId });
 
-export const fetchPolicyForInformationType = (query: any) =>
+export const fetchPolicyForInformationType = (query: any, informationTypeId: number) =>
   action(DataActionTypes.FETCH_POLICY_FOR_INFORMATION_TYPE_REQUEST, {
     query: {
       ...query,
       sort: get(query, 'sort')
-    }
+    },
+    informationTypeId
   });
 
-export const fetchPolicyForInformationTypeSuccess = (result: any, previousQuery: any) =>
+export const fetchPolicyForInformationTypeSuccess = (
+  result: any,
+  previousQuery: any,
+  informationTypeId: number
+) =>
   action(DataActionTypes.FETCH_POLICY_FOR_INFORMATION_TYPE_SUCCESS, {
     result,
-    previousQuery
+    previousQuery,
+    informationTypeId
   });
 
-export const fetchPolicyForInformationTypeFailure = (error: ApiError) =>
-  action(DataActionTypes.FETCH_POLICY_FOR_INFORMATION_TYPE_FAILURE, { error });
+export const fetchPolicyForInformationTypeFailure = (
+  error: ApiError,
+  informationTypeId: number
+) =>
+  action(DataActionTypes.FETCH_POLICY_FOR_INFORMATION_TYPE_FAILURE, {
+    error,
+    informationTypeId
+  });

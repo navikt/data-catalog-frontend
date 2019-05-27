@@ -1,42 +1,50 @@
 import * as React from 'react';
-import { Policy } from './types';
+import { PolicyResult } from './types';
 import { I18n } from 'react-i18nify';
 import { Column, Table } from '../../components/table/Table';
-import { fetchData, toggleExpandRowPolicy } from './actions';
+import { fetchPolicyForInformationType, toggleExpandRowPolicy } from './actions';
 import { memo } from 'react';
 import { connect } from 'react-redux';
+import { get } from 'lodash';
 
 interface PropsFromState {
   pathName?: string;
-  policy: Policy[];
+  policy: PolicyResult;
   isEdit?: boolean;
+  informationTypeId: number;
 }
 
 interface PropsFromDispatch {
-  fetchData?: typeof fetchData;
-  onToggleClick: any;
-  isPending?: boolean;
+  fetchPolicyForInformationType: typeof fetchPolicyForInformationType;
+  onToggleClick: typeof toggleExpandRowPolicy;
 }
 
 type Props = PropsFromState & PropsFromDispatch;
 
 class PolicyComponent extends React.Component<Props> {
+  public componentDidMount() {
+    this.props.fetchPolicyForInformationType({}, this.props.informationTypeId);
+  }
+
   public render() {
-    const { policy } = this.props;
     return (
       <div className="row" style={{ marginLeft: '6px', marginRight: '6px' }}>
         <Table
-          data={policy || []}
+          data={get(this.props, ['policy', 'result', 'content']) || []}
           idKey="policyId"
+          parentId={this.props.informationTypeId}
           collapseComponent={CollapseComponent}
-          onToggleClick={this.props.onToggleClick(1)}
-          isLoading={this.props.isPending ? this.props.isPending : true}
-          currentPage={0}
-          pageSize={0}
-          totalElements={0}
-          previousQuerySelector={(e: any) => e}
-          searchAction={(e: any) => e}
-          disabledPaginator={true}
+          onToggleClick={this.props.onToggleClick}
+          isLoading={this.props.policy.pending}
+          currentPage={get(this.props, ['policy', 'result', 'currentPage'])}
+          pageSize={get(this.props, ['policy', 'result', 'pageSize'])}
+          totalElements={get(this.props, ['policy', 'result', 'totalElements'])}
+          previousQuerySelector={(state: any) =>
+            get(state, ['dataCatalog', 'previousQuery'])
+          }
+          searchAction={(query: any) =>
+            fetchPolicyForInformationType(query, this.props.informationTypeId)
+          }
           isEdit={this.props.isEdit}
         >
           <Column
@@ -62,5 +70,5 @@ const CollapseComponent = memo((props: any) => <div>HI</div>);
 
 export default connect(
   null,
-  { onToggleClick: toggleExpandRowPolicy }
+  { fetchPolicyForInformationType, onToggleClick: toggleExpandRowPolicy }
 )(PolicyComponent);

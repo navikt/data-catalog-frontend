@@ -49,12 +49,22 @@ function* fetchPolicyForInformationtypeSaga(
     const json = yield res.json();
 
     if (res.ok) {
-      yield put(fetchPolicyForInformationTypeSuccess(json, query));
+      yield put(
+        fetchPolicyForInformationTypeSuccess(
+          json,
+          query,
+          action.payload.informationTypeId
+        )
+      );
     } else {
-      yield put(fetchPolicyForInformationTypeFailure(json));
+      yield put(
+        fetchPolicyForInformationTypeFailure(json, action.payload.informationTypeId)
+      );
     }
   } catch (error) {
-    yield put(fetchPolicyForInformationTypeFailure(error));
+    yield put(
+      fetchPolicyForInformationTypeFailure(error, action.payload.informationTypeId)
+    );
   }
 }
 

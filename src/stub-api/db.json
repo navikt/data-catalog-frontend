@@ -279,11 +279,12 @@
         "createdBy": "Datajeger",
         "createdDate": "'2019-01-01 08:45:00 GMT+1'",
         "lastModifiedBy": "",
-        "lastModifiedDate": ""
+        "lastModifiedDate": "",
+        "isOpen": true
       }
     ],
     "currentPage": 0,
-    "pageSize": 3,
-    "totalElements": 8
+    "pageSize": 10,
+    "totalElements": 2
   }
 }

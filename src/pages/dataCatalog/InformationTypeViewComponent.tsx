@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { InformationTypeView } from './types';
+import { InformationTypeView, PolicyResultDefaultValue } from './types';
 import { I18n } from 'react-i18nify';
 import Toolbar from '../../components/toolbar/Toolbar';
 import PolicyComponent from './PolicyComponent';
@@ -98,7 +98,11 @@ class InformationTypeViewComponent extends React.Component<Props> {
 
           <div className="col-md-8 col-sm-12" />
         </div>
-        <PolicyComponent policy={this.props.policy || []} isEdit={this.props.isEdit} />
+        <PolicyComponent
+          policy={this.props.policy || PolicyResultDefaultValue}
+          isEdit={this.props.isEdit}
+          informationTypeId={this.props.informationTypeId}
+        />
 
         {this.props.isEdit && (
           <Toolbar
