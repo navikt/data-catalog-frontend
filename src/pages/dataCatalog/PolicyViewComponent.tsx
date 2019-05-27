@@ -28,10 +28,19 @@ class PolicyViewComponent extends React.Component<Props> {
   }
 
   public render() {
+    const addIsEdit = (content: Policy[], isEdit: boolean) =>
+      content && content.length >= 0
+        ? content.map((c: Policy) => {
+            return { ...c, isEdit };
+          })
+        : [];
     return (
       <div className="row" style={{ marginLeft: '6px', marginRight: '6px' }}>
         <Table
-          data={get(this.props, ['policy', 'result', 'content']) || []}
+          data={addIsEdit(
+            get(this.props, ['policy', 'result', 'content']) || [],
+            this.props.isEdit || false
+          )}
           idKey="policyId"
           parentId={this.props.informationTypeId}
           collapseComponent={CollapseComponent}
