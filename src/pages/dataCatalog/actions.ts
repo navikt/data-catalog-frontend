@@ -30,7 +30,8 @@ export const fetchPolicyForInformationType = (query: any, informationTypeId: num
   action(DataActionTypes.FETCH_POLICY_FOR_INFORMATION_TYPE_REQUEST, {
     query: {
       ...query,
-      sort: get(query, 'sort')
+      sort: get(query, 'sort'),
+      informationTypeId
     },
     informationTypeId
   });
