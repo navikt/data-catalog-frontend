@@ -11,7 +11,7 @@ import {
 export const initialState: DataState = {
   result: {
     currentPage: 0,
-    pageSize: 10,
+    pageSize: 20,
     totalElements: 0,
     content: []
   },
@@ -72,7 +72,7 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
                   result: {
                     currentPage:
                       e.policy && e.policy.result ? e.policy.result.currentPage : 0,
-                    pageSize: e.policy && e.policy.result ? e.policy.result.pageSize : 10,
+                    pageSize: e.policy && e.policy.result ? e.policy.result.pageSize : 20,
                     totalElements:
                       e.policy && e.policy.result ? e.policy.result.totalElements : 0,
                     content:
