@@ -226,10 +226,10 @@
           "lastModifiedDate": ""
         },
 
-        "legalBasisDescription": "???",
+        "legalBasisDescription": "§ FTL 14",
         "legalBasis": {
           "legalBasisid": 1,
-          "description": "§ FTL 14",
+          "description": "?",
           "createdBy": "Datajeger",
           "createdDate": "'2019-01-01 08:45:00 GMT+1'",
           "lastModifiedBy": "",
@@ -267,10 +267,10 @@
           "lastModifiedDate": ""
         },
 
-        "legalBasisDescription": "???",
+        "legalBasisDescription": "§ FTL 17a, § FTL 17b, § FTL 14",
         "legalBasis": {
           "legalBasisid": 2,
-          "description": "§ FTL 17a, § FTL 17b, § FTL 14",
+          "description": "???",
           "createdBy": "Datajeger",
           "createdDate": "'2019-01-01 08:45:00 GMT+1'",
           "lastModifiedBy": "",

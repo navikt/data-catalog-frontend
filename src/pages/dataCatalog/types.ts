@@ -81,6 +81,7 @@ export interface Policy extends Auditable {
   legalBasisDescription?: string;
   legalBasis?: LegalBasis;
   isOpen?: boolean;
+  isEdit?: boolean;
 }
 
 export interface InformationTypeView extends InformationType {
