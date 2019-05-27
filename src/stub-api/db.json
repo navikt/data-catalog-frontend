@@ -196,5 +196,95 @@
     "currentPage": 0,
     "pageSize": 3,
     "totalElements": 8
+  },
+  "policy": {
+    "content": [
+      {
+        "policyId": 1,
+
+        "informationType": {
+          "informationTypeId": 2,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176",
+          "category": { "code": "code for 7", "description": "description for 7" },
+          "producer": { "code": "code for 1", "description": "description for 1" },
+          "system": { "code": "code for 28", "description": "description for 28" },
+          "personalData": true,
+          "createdBy": "Ketill Fenne",
+          "createdDate": 1558421034760,
+          "lastModifiedBy": null,
+          "lastModifiedDate": null
+        },
+
+        "purpose": {
+          "purposeId": 1111,
+          "purposeCode": "AAP",
+          "description": "Arbeidsavklaringspenger",
+          "createdBy": "Datajeger",
+          "createdDate": "'2019-01-01 08:45:00 GMT+1'",
+          "lastModifiedBy": "",
+          "lastModifiedDate": ""
+        },
+
+        "legalBasisDescription": "§ FTL 14",
+        "legalBasis": {
+          "legalBasisid": 1,
+          "description": "?",
+          "createdBy": "Datajeger",
+          "createdDate": "'2019-01-01 08:45:00 GMT+1'",
+          "lastModifiedBy": "",
+          "lastModifiedDate": ""
+        },
+        "createdBy": "Datajeger",
+        "createdDate": "'2019-01-01 08:45:00 GMT+1'",
+        "lastModifiedBy": "",
+        "lastModifiedDate": ""
+      },
+      {
+        "policyId": 2345,
+
+        "informationType": {
+          "informationTypeId": 2,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176",
+          "category": { "code": "code for 7", "description": "description for 7" },
+          "producer": { "code": "code for 1", "description": "description for 1" },
+          "system": { "code": "code for 28", "description": "description for 28" },
+          "personalData": true,
+          "createdBy": "Ketill Fenne",
+          "createdDate": 1558421034760,
+          "lastModifiedBy": null,
+          "lastModifiedDate": null
+        },
+
+        "purpose": {
+          "purposeId": 1211,
+          "purposeCode": "AAR",
+          "description": "Aa-registeret",
+          "createdBy": "Datajeger",
+          "createdDate": "'2019-01-01 08:45:00 GMT+1'",
+          "lastModifiedBy": "",
+          "lastModifiedDate": ""
+        },
+
+        "legalBasisDescription": "§ FTL 17a, § FTL 17b, § FTL 14",
+        "legalBasis": {
+          "legalBasisid": 2,
+          "description": "???",
+          "createdBy": "Datajeger",
+          "createdDate": "'2019-01-01 08:45:00 GMT+1'",
+          "lastModifiedBy": "",
+          "lastModifiedDate": ""
+        },
+        "createdBy": "Datajeger",
+        "createdDate": "'2019-01-01 08:45:00 GMT+1'",
+        "lastModifiedBy": "",
+        "lastModifiedDate": "",
+        "isOpen": true
+      }
+    ],
+    "currentPage": 0,
+    "pageSize": 10,
+    "totalElements": 2
   }
 }

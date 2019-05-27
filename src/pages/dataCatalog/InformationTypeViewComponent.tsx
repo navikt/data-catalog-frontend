@@ -1,10 +1,15 @@
 import * as React from 'react';
-import { InformationTypeView } from './types';
+import { InformationTypeView, PolicyResultDefaultValue } from './types';
 import { I18n } from 'react-i18nify';
 import Toolbar from '../../components/toolbar/Toolbar';
-import PolicyComponent from './PolicyComponent';
+import PolicyViewComponent from './PolicyViewComponent';
 import { toggleEditView } from './actions';
 import { connect } from 'react-redux';
+import {
+  createInputField,
+  createOptionField,
+  createTextAreaField
+} from './commonComponents';
 
 interface PropsFromDispatch {
   toggleEditView: typeof toggleEditView;
@@ -14,48 +19,6 @@ type Props = InformationTypeView & PropsFromDispatch;
 
 class InformationTypeViewComponent extends React.Component<Props> {
   public render() {
-    const getOptionField = (text: string, value: string, isEdit: boolean) => (
-      <div className="row" style={{ marginBottom: '10px' }}>
-        <div className="col-md-4">{I18n.t('dataCatalog.pages.mainPage.' + text)}</div>
-        <div className="col-md-6">
-          {isEdit ? (
-            <select className="form-control" id={text}>
-              <option>{value}</option>
-            </select>
-          ) : (
-            ': ' + value
-          )}
-        </div>
-      </div>
-    );
-    const getInputField = (text: string, value: string, isEdit: boolean) => (
-      <div className="row" style={{ marginBottom: '10px' }}>
-        <div className="col-md-4">{I18n.t('dataCatalog.pages.mainPage.' + text)}</div>
-        <div className="col-md-6">
-          {isEdit ? (
-            <input type="text" className="form-control" id={text} value={value} />
-          ) : (
-            ': ' + value
-          )}
-        </div>
-      </div>
-    );
-    const getTextAreaField = (text: string, value: string, isEdit: boolean) => (
-      <div className="row" style={{ marginBottom: '10px' }}>
-        <div className="col-md-3">
-          {I18n.t('dataCatalog.pages.mainPage.' + text + (isEdit ? '' : ' : '))}
-        </div>
-        <div className="col-md-9">
-          {isEdit ? (
-            <textarea className="form-control" id={text} rows={5}>
-              {value}
-            </textarea>
-          ) : (
-            value
-          )}
-        </div>
-      </div>
-    );
     return (
       <div
         style={{
@@ -82,10 +45,10 @@ class InformationTypeViewComponent extends React.Component<Props> {
           </div>
         )}
 
-        {this.getInformationTypeComponent(
-          getInputField,
-          getOptionField,
-          getTextAreaField
+        {this.createInformationTypeComponent(
+          createInputField,
+          createOptionField,
+          createTextAreaField
         )}
 
         <div
@@ -98,7 +61,11 @@ class InformationTypeViewComponent extends React.Component<Props> {
 
           <div className="col-md-8 col-sm-12" />
         </div>
-        <PolicyComponent policy={this.props.policy || []} isEdit={this.props.isEdit} />
+        <PolicyViewComponent
+          policy={this.props.policy || PolicyResultDefaultValue}
+          isEdit={this.props.isEdit}
+          informationTypeId={this.props.informationTypeId}
+        />
 
         {this.props.isEdit && (
           <Toolbar
@@ -109,31 +76,31 @@ class InformationTypeViewComponent extends React.Component<Props> {
     );
   }
 
-  private getInformationTypeComponent(
-    getInputField: Function,
-    getOptionField: Function,
-    getTextAreaField: Function
+  private createInformationTypeComponent(
+    createInputField: Function,
+    createOptionField: Function,
+    createTextAreaField: Function
   ) {
     return (
       <div className="row" style={{ margin: '20px 10px 10px 10px' }}>
         <div className="col-md-6">
-          {getInputField('name', this.props.name, this.props.isEdit)}
-          {getOptionField(
+          {createInputField('name', this.props.name, this.props.isEdit)}
+          {createOptionField(
             'system',
             this.props.system ? this.props.system.code : '',
             this.props.isEdit
           )}
-          {getOptionField(
+          {createOptionField(
             'producer',
             this.props.producer ? this.props.producer.code : '',
             this.props.isEdit
           )}
-          {getOptionField(
+          {createOptionField(
             'category',
             this.props.category ? this.props.category.code : '',
             this.props.isEdit
           )}
-          {getOptionField(
+          {createOptionField(
             'personalData',
             this.props.personalData
               ? I18n.t('dataCatalog.words.yes')
@@ -148,7 +115,7 @@ class InformationTypeViewComponent extends React.Component<Props> {
               {I18n.t('dataCatalog.pages.mainPage.businessGlossary')}
             </div>
           </div>
-          {getTextAreaField('description', this.props.description, this.props.isEdit)}
+          {createTextAreaField('description', this.props.description, this.props.isEdit)}
         </div>
       </div>
     );

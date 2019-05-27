@@ -1,7 +1,7 @@
 import { all, call } from 'redux-saga/effects';
 import { configSaga } from '../config/configSaga';
-import { dataSaga } from '../pages/dataCatalog/saga';
+import { dataSaga, policyForInformationtypeSaga } from '../pages/dataCatalog/saga';
 
 export function* rootSaga() {
-  yield all([call(configSaga), call(dataSaga)]);
+  yield all([call(configSaga), call(dataSaga), call(policyForInformationtypeSaga)]);
 }

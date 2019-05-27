@@ -18,6 +18,7 @@ export const LanguageJson = {
           purposeCode: 'Purpose',
           purposeDescription: 'Purpose description',
           legalBasis: 'Legal basis',
+          legalBasisDescription: 'Legal basis',
           itSystemOrConsumer: 'IT system/consumer',
           purpose: 'purpose',
           rightBasis: 'rightBasis',
@@ -160,6 +161,7 @@ export const LanguageJson = {
           purposeCode: 'Formål',
           purposeDescription: 'Formålsbeskrivelse',
           legalBasis: 'Rettsgrunnlag',
+          legalBasisDescription: 'Rettsgrunnlag',
 
           itSystemOrConsumer: 'IT-system/konsument',
           purpose: 'Formål',

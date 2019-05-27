@@ -12,6 +12,7 @@ import { I18n } from 'react-i18nify';
 interface TableComponentProps {
   data: any;
   idKey: any;
+  parentId?: number;
   collapseComponent?: any;
   onToggleClick: Function;
   isLoading: boolean;
@@ -33,6 +34,7 @@ const TableComponent = ({
   idKey,
   collapseComponent,
   onToggleClick,
+  parentId,
   isLoading,
   currentPage,
   pageSize,
@@ -74,7 +76,15 @@ const TableComponent = ({
           )}
         </div>
         <div className={tableBodyClassName}>
-          {renderRows(data, idKey, collapseComponent, onToggleClick, children, isLoading)}
+          {renderRows(
+            data,
+            idKey,
+            collapseComponent,
+            onToggleClick,
+            children,
+            isLoading,
+            parentId
+          )}
         </div>
       </div>
       {!disabledPaginator && (
@@ -157,12 +167,13 @@ const renderRows = (
   CollapseComponent: any,
   onToggleClick: Function,
   columns: any,
-  isLoading: boolean
+  isLoading: boolean,
+  parentId?: number
 ) => {
   const isExpandable = !!CollapseComponent;
   const conditionalOnToggleClick = isExpandable
     ? (key: any) => {
-        onToggleClick(key);
+        parentId ? onToggleClick(parentId, key) : onToggleClick(key);
       }
     : (key: any) => {};
 

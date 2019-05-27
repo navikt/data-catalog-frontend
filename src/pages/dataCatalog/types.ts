@@ -11,7 +11,11 @@ export const enum DataActionTypes {
   FETCH_DATA_FAILURE = '@data/FETCH_DATA_FAILURE',
   TOGGLE_ROW = '@data//TOGGLE_ROW',
   TOGGLE_ROW_POLICY = '@data//TOGGLE_ROW_POLICY',
-  TOGGLE_EDIT_VIEW = '@data//TOGGLE_EDIT_VIEW'
+  TOGGLE_EDIT_VIEW = '@data//TOGGLE_EDIT_VIEW',
+
+  FETCH_POLICY_FOR_INFORMATION_TYPE_REQUEST = '@data/FETCH_POLICY_FOR_INFORMATION_TYPE_REQUEST',
+  FETCH_POLICY_FOR_INFORMATION_TYPE_SUCCESS = '@data/FETCH_POLICY_FOR_INFORMATION_TYPE_SUCCESS',
+  FETCH_POLICY_FOR_INFORMATION_TYPE_FAILURE = '@data/FETCH_POLICY_FOR_INFORMATION_TYPE_FAILURE'
 }
 
 export type DataState =
@@ -76,8 +80,34 @@ export interface Policy extends Auditable {
   purpose: Purpose;
   legalBasisDescription?: string;
   legalBasis?: LegalBasis;
+  isOpen?: boolean;
+  isEdit?: boolean;
 }
 
 export interface InformationTypeView extends InformationType {
-  policy?: Policy[];
+  policy?: PolicyResult;
 }
+
+export interface PolicyResult {
+  result: {
+    currentPage: number;
+    pageSize: number;
+    totalElements: number;
+    content: Policy[];
+  };
+  pending: boolean;
+  error: string | null;
+  previousQuery: string | null;
+}
+
+export const PolicyResultDefaultValue = {
+  result: {
+    currentPage: 0,
+    pageSize: 10,
+    totalElements: 0,
+    content: []
+  },
+  pending: false,
+  error: null,
+  previousQuery: null
+};

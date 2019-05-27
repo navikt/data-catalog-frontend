@@ -27,10 +27,12 @@ export const sortingAndPagingMiddleware = (store: any) => (next: any) => (
   if (action.type === PREV_PAGE || action.type === NEXT_PAGE) {
     const previousQuery = action.previousQuerySelector(store.getState());
     const currentPage = get(previousQuery, 'page', 0);
+    const pageSize = get(previousQuery, 'pageSize', 20);
 
     const query = {
       ...previousQuery,
-      page: action.type === PREV_PAGE ? currentPage - 1 : currentPage + 1
+      page: action.type === PREV_PAGE ? currentPage - 1 : currentPage + 1,
+      pageSize: pageSize
     };
 
     return store.dispatch(action.searchAction(query));
