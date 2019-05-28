@@ -25,7 +25,7 @@
 
 .Table-row:focus {
      outline: 0;
-     box-shadow: 0 0 0 3px lightblue;
+     box-shadow: 0 0 0 0px blue;
      border-radius: 2px;
  }
 

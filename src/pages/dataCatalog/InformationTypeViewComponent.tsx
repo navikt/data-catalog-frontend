@@ -22,7 +22,7 @@ class InformationTypeViewComponent extends React.Component<Props> {
     return (
       <div
         style={{
-          borderColor: 'lightblue',
+          borderColor: 'blue',
           borderBlockWidth: '2px',
           borderStyle: 'solid'
         }}

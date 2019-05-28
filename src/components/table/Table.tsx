@@ -200,7 +200,7 @@ const renderRows = (
       return (
         <div key={d[idKey]}>
           <div
-            style={d.isOpen && !parentId ? { backgroundColor: 'lightblue' } : {}}
+            style={d.isOpen && !parentId ? { backgroundColor: '#bae9f7' } : {}}
             className={rowClassName}
             id={d[idKey]}
             onKeyPress={() => conditionalOnToggleClick(d[idKey])}
