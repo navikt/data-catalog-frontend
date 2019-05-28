@@ -27,7 +27,7 @@ const Toolbar = ({
       {!deleteHide && (
         <button
           key="btn-delete"
-          className="btn btn-primary"
+          className="btn btn-outline-primary"
           disabled={deleteDisabled}
           onClick={deleteOnClick}
           style={{ marginRight: 55 }}
@@ -48,7 +48,7 @@ const Toolbar = ({
         </button>
         <button
           key="btn-save"
-          className="btn btn-primary"
+          className="btn btn-outline-primary"
           disabled={saveDisabled}
           onClick={saveOnClick}
         >

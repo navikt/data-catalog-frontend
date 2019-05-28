@@ -10,7 +10,7 @@ exports[`Test Toolbar Test Toobbar is created 1`] = `
   }
 >
   <button
-    className="btn btn-primary"
+    className="btn btn-outline-primary"
     key="btn-delete"
     style={
       Object {
@@ -39,7 +39,7 @@ exports[`Test Toolbar Test Toobbar is created 1`] = `
       Avbryt
     </button>
     <button
-      className="btn btn-primary"
+      className="btn btn-outline-primary"
       key="btn-save"
     >
       Lagre

@@ -58,10 +58,10 @@ const TableComponent = ({
         <div className="Table-row header-row">
           {renderHeaders(children, previousQuery, onSortClick, !!collapseComponent)}
           {isEdit && (
-            <div className="Table-header" style={{ marginLeft: '2px' }}>
+            <div className="Table-header" style={{ marginLeft: '2px', overflow: 'true' }}>
               <button
                 key="btn-add"
-                className="btn btn-primary"
+                className="btn btn-outline-primary"
                 disabled={false}
                 onClick={e => e}
                 title={
@@ -189,7 +189,7 @@ const renderRows = (
       return (
         <div key={d[idKey]}>
           <div
-            style={d.isOpen ? { backgroundColor: 'lightblue' } : {}}
+            style={d.isOpen && !parentId ? { backgroundColor: 'lightblue' } : {}}
             className={rowClassName}
             id={d[idKey]}
             onKeyPress={() => conditionalOnToggleClick(d[idKey])}

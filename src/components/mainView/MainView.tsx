@@ -78,7 +78,7 @@ class MainView extends React.Component<Props, State> {
                 aria-describedby="basic-addon2"
               />
               <div className="input-group-append">
-                <button className="btn btn-primary" type="button">
+                <button className="btn btn-outline-primary" type="button">
                   <i className="fa fa-search" />
                 </button>
               </div>

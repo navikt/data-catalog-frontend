@@ -58,13 +58,13 @@ class PolicyViewComponent extends React.Component<Props> {
           isEdit={this.props.isEdit}
         >
           <Column
-            width="25%"
+            width="50%"
             header={I18n.t('dataCatalog.pages.mainPage.purposeDescription')}
             path="purpose.description"
             sortable
           />
           <Column
-            width="25%"
+            width="50%"
             header={I18n.t('dataCatalog.pages.mainPage.legalBasis')}
             path="legalBasisDescription"
             contentTransformer={(val: any) => val}

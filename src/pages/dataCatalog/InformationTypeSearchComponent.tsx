@@ -94,12 +94,16 @@ export class InformationTypeSearchComponentInner extends React.Component<
 
         <div className="row">
           <div className="col-md-2 col-sm-6 col-6">
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-outline-primary">
               {I18n.t('dataCatalog.words.search.search')}
             </button>
           </div>
           <div className="col-md-2  col-sm-6 col-6">
-            <button type="button" className="btn btn-primary" onClick={handleReset}>
+            <button
+              type="button"
+              className="btn btn-outline-primary"
+              onClick={handleReset}
+            >
               {I18n.t('dataCatalog.words.search.reset')}
             </button>
           </div>
