@@ -52,7 +52,6 @@ const TableComponent = ({
   onEditClick,
   disabledEdit
 }: TableComponentProps) => {
-  //const tableClassName = 'Table' + (className ? (' ' + className) : '');
   const tableBodyClassName = 'Table-body' + (isLoading ? ' is-loading' : '');
 
   return (
@@ -66,7 +65,7 @@ const TableComponent = ({
               href="#"
               className="Table-cell action-item mr-2"
               data-toggle="tooltip"
-              style={{ marginRight: '200px' }}
+              style={{ marginRight: '100px' }}
               key="btn-add"
               onClick={e => {
                 alert(I18n.t('dataCatalog.words.doNotHaveSufficientRole'));
@@ -79,7 +78,7 @@ const TableComponent = ({
               }
               role="button"
             >
-              <i className="fa fa-plus" />
+              <i className="fa fa-plus" style={{ fontSize: '18px' }} />
             </a>
           )}
           {!!collapseComponent && <div className="Row-toggle-header" />}
@@ -222,50 +221,57 @@ const renderRows = (
                 />
               );
             })}
-            {!disabledEdit && !d.isEdit && (
-              <a
-                href="#"
-                className="Table-cell action-item mr-2"
-                data-toggle="tooltip"
-                style={{ marginRight: '200px' }}
-                key="btn-edit"
-                onClick={e => {
-                  onEditClick(d[idKey]);
-                  return e.stopPropagation();
-                }}
-                title={
-                  1 !== 1
-                    ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
-                    : I18n.t('dataCatalog.words.edit')
-                }
-                role="button"
-              >
-                <i className="fa fa-pencil" />
-              </a>
-            )}
-            <a
-              href="#"
-              className="Table-cell action-item text-danger mr-2"
-              data-toggle="tooltip"
-              style={{ marginRight: '200px' }}
-              key="btn-delete"
-              onClick={e => {
-                alert(I18n.t('dataCatalog.words.doNotHaveSufficientRole'));
-                return e.stopPropagation();
-              }}
-              title={
-                1 !== 1
-                  ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
-                  : I18n.t('dataCatalog.words.delete')
-              }
-              role="button"
-            >
-              <i className="fa fa-trash" />
-            </a>
 
             {isExpandable && (
-              <div className="Table-cell Row-toggle">
-                <i className={d.isOpen ? 'fa fa-angle-up' : 'fa fa-angle-down'} />
+              <div className="Table-cell Row-toggle" style={{ fontSize: '18px' }}>
+                <i
+                  className={
+                    d.isOpen
+                      ? 'Table-cell fa fa-angle-up action-item mr-4'
+                      : 'Table-cell fa fa-angle-down action-item mr-4'
+                  }
+                />
+                {!disabledEdit && d.isOpen && (
+                  <a
+                    href="#"
+                    className="Table-cell action-item mr-2"
+                    data-toggle="tooltip"
+                    style={!d.isEdit ? {} : { color: 'grey' }}
+                    key="btn-edit"
+                    onClick={e => {
+                      !d.isEdit && onEditClick(d[idKey]);
+                      return e.stopPropagation();
+                    }}
+                    title={
+                      1 !== 1
+                        ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
+                        : I18n.t('dataCatalog.words.edit')
+                    }
+                    role="button"
+                  >
+                    <i className="fa fa-pencil" />
+                  </a>
+                )}
+                {d.isEdit && d.isOpen && (
+                  <a
+                    href="#"
+                    className="Table-cell action-item mr-2"
+                    data-toggle="tooltip"
+                    key="btn-delete"
+                    onClick={e => {
+                      alert(I18n.t('dataCatalog.words.doNotHaveSufficientRole'));
+                      return e.stopPropagation();
+                    }}
+                    title={
+                      1 !== 1
+                        ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
+                        : I18n.t('dataCatalog.words.delete')
+                    }
+                    role="button"
+                  >
+                    <i className="fa fa-trash" />
+                  </a>
+                )}
               </div>
             )}
           </div>

@@ -57,12 +57,13 @@
 
 .Row-toggle {
     text-align: center;
-    width: 5%;
+    width: 10%;
     margin-left: auto;
+    display: flex;
 }
 
 .Row-toggle-header {
-    width: 7%;
+    width: 7.5%;
     margin-left: auto;
 }
 
