@@ -7,36 +7,12 @@ type Props = {
   saveDisabled?: boolean;
   cancelOnClick?: MouseEventHandler;
   cancelDisabled?: boolean;
-  deleteOnClick?: MouseEventHandler;
-  deleteDisabled?: boolean;
-  deleteHide?: boolean;
-  md?: number;
 };
-const Toolbar = ({
-  saveOnClick,
-  saveDisabled,
-  cancelOnClick,
-  cancelDisabled,
-  deleteOnClick,
-  deleteDisabled,
-  deleteHide,
-  md
-}: Props) => {
+const Toolbar = ({ saveOnClick, saveDisabled, cancelOnClick, cancelDisabled }: Props) => {
   return (
-    <div className={'col-md-' + md} style={{ margin: 20 }}>
-      {!deleteHide && (
-        <button
-          key="btn-delete"
-          className="btn btn-outline-primary"
-          disabled={deleteDisabled}
-          onClick={deleteOnClick}
-          style={{ marginRight: 55 }}
-        >
-          {I18n.t('dataCatalog.words.delete')}
-        </button>
-      )}
-
-      <div style={{ float: 'right' }}>
+    <div className="row">
+      <div className="col-md-10" />
+      <div style={{ margin: 20, float: 'right' }}>
         <button
           key="btn-cancel"
           className="btn btn-link"

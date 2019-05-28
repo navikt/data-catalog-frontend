@@ -56,6 +56,8 @@ class PolicyViewComponent extends React.Component<Props> {
             fetchPolicyForInformationType(query, this.props.informationTypeId)
           }
           isEdit={this.props.isEdit}
+          disabledEdit={true}
+          onEditClick={(e: any) => e}
         >
           <Column
             width="50%"
