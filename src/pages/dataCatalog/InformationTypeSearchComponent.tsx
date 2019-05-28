@@ -54,6 +54,7 @@ export class InformationTypeSearchComponentInner extends React.Component<
           onChange={handleChange}
           onBlur={handleBlur}
           className="form-control"
+          placeholder={I18n.t('dataCatalog.words.search.searchFor')}
         />
       </div>
     );
@@ -84,6 +85,7 @@ export class InformationTypeSearchComponentInner extends React.Component<
               id="personalData"
               onChange={handleChange}
               onBlur={handleBlur}
+              placeholder={I18n.t('dataCatalog.words.search.searchFor')}
             >
               <option />
               <option value="yes">{I18n.t('dataCatalog.words.yes')}</option>

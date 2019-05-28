@@ -58,22 +58,23 @@ const TableComponent = ({
         <div className="Table-row header-row">
           {renderHeaders(children, previousQuery, onSortClick, !!collapseComponent)}
           {isEdit && (
-            <div className="Table-header" style={{ marginLeft: '2px', overflow: 'true' }}>
-              <button
-                key="btn-add"
-                className="btn btn-outline-primary"
-                disabled={false}
-                onClick={e => e}
-                title={
-                  1 === 1
-                    ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
-                    : I18n.t('dataCatalog.words.add')
-                }
-              >
-                {I18n.t('dataCatalog.words.add')}
-              </button>
-            </div>
+            <a
+              href="#"
+              className="Table-cell action-item mr-2"
+              data-toggle="tooltip"
+              style={{ marginRight: '200px' }}
+              key="btn-add"
+              onClick={e => e}
+              title={
+                1 === 1
+                  ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
+                  : I18n.t('dataCatalog.words.add')
+              }
+            >
+              <i className="fa fa-plus" />
+            </a>
           )}
+          {!!collapseComponent && <div className="Row-toggle-header" />}
         </div>
         <div className={tableBodyClassName}>
           {renderRows(
@@ -157,7 +158,6 @@ const renderHeaders = (
         );
       }
     })}
-    {isCollapsible && <div className="Row-toggle-header" />}
   </>
 );
 
@@ -210,6 +210,38 @@ const renderRows = (
                 />
               );
             })}
+
+            <a
+              href="#"
+              className="Table-cell action-item mr-2"
+              data-toggle="tooltip"
+              style={{ marginRight: '200px' }}
+              key="btn-edit"
+              onClick={e => e}
+              title={
+                1 !== 1
+                  ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
+                  : I18n.t('dataCatalog.words.edit')
+              }
+            >
+              <i className="fa fa-pencil" />
+            </a>
+            <a
+              href="#"
+              className="Table-cell action-item text-danger mr-2"
+              data-toggle="tooltip"
+              style={{ marginRight: '200px' }}
+              key="btn-delete"
+              onClick={e => e}
+              title={
+                1 !== 1
+                  ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
+                  : I18n.t('dataCatalog.words.delete')
+              }
+            >
+              <i className="fa fa-trash" />
+            </a>
+
             {isExpandable && (
               <div className="Table-cell Row-toggle">
                 <i className={d.isOpen ? 'fa fa-angle-up' : 'fa fa-angle-down'} />
