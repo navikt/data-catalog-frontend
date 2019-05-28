@@ -22,39 +22,18 @@ class InformationTypeViewComponent extends React.Component<Props> {
     return (
       <div
         style={{
-          borderColor: 'lightblue',
+          borderColor: 'blue',
           borderBlockWidth: '2px',
           borderStyle: 'solid'
         }}
       >
-        {!this.props.isEdit && (
-          <div className="row" style={{ margin: '20px 10px 10px 20px' }}>
-            <button
-              key="btn-edit"
-              className="btn btn-primary"
-              disabled={false}
-              onClick={() => this.props.toggleEditView(this.props.informationTypeId)}
-              title={
-                1 === 1
-                  ? I18n.t('dataCatalog.words.doNotHaveSufficientRole')
-                  : I18n.t('dataCatalog.words.edit')
-              }
-            >
-              {I18n.t('dataCatalog.words.edit')}
-            </button>
-          </div>
-        )}
-
         {this.createInformationTypeComponent(
           createInputField,
           createOptionField,
           createTextAreaField
         )}
 
-        <div
-          className="row"
-          style={{ margin: '20px 10px 10px 10px', backgroundColor: '#d4efdf' }}
-        >
+        <div className="row" style={{ margin: '20px 10px 10px 10px' }}>
           <div className="col-12">
             <h5>{I18n.t('dataCatalog.pages.mainPage.policies')}</h5>
           </div>

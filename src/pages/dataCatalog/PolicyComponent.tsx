@@ -7,7 +7,7 @@ export class PolicyComponent extends React.Component<Policy> {
     return (
       <div>
         <div
-          className="col-6"
+          className="col-md-6 col-sm-12"
           style={{ marginLeft: '6px', marginRight: '6px', marginTop: '12px' }}
         >
           {createOptionField(
@@ -16,14 +16,20 @@ export class PolicyComponent extends React.Component<Policy> {
             this.props.isEdit || false
           )}
         </div>
-        <div className="col-6" style={{ marginLeft: '6px', marginRight: '6px' }}>
+        <div
+          className="col-md-6 col-sm-12"
+          style={{ marginLeft: '6px', marginRight: '6px' }}
+        >
           {createInputField(
             'purposeDescription',
             this.props.purpose.description || '',
             false
           )}
         </div>
-        <div className="col-6" style={{ marginLeft: '6px', marginRight: '6px' }}>
+        <div
+          className="col-md-6 col-sm-12"
+          style={{ marginLeft: '6px', marginRight: '6px' }}
+        >
           {createInputField(
             'legalBasis',
             this.props.legalBasisDescription || '',

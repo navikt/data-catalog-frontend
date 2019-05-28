@@ -17,7 +17,7 @@ interface PropsFromState {
 interface PropsFromDispatch {
   fetchData: typeof fetchData;
   onToggleClick: typeof toggleExpandRow;
-  onToggleViewClick: typeof toggleEditView;
+  toggleEditView: typeof toggleEditView;
   isPending: boolean;
 }
 
@@ -49,6 +49,7 @@ class DataCatalog extends React.Component<Props> {
             }
             searchAction={(query: any) => fetchData(query)}
             isEdit={true}
+            onEditClick={this.props.toggleEditView}
           >
             <Column
               width="15%"
@@ -92,5 +93,5 @@ export default connect(
     data: state.dataCatalog.result,
     isPending: state.dataCatalog.pending
   }),
-  { fetchData, onToggleClick: toggleExpandRow }
+  { fetchData, onToggleClick: toggleExpandRow, toggleEditView }
 )(DataCatalog);

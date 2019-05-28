@@ -22,7 +22,7 @@ const SaveCancel = (props: SaveCancelProps) => (
       <button
         id={`Save_${props.id || 1}`}
         onClick={props.onClickSave}
-        className="btn btn-primary"
+        className="btn btn-outline-primary"
         type="button"
         disabled={props.saveDisabled}
       >
