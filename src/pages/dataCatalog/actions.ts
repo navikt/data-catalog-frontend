@@ -1,21 +1,23 @@
 import { action } from 'typesafe-actions';
 import { get } from 'lodash';
 import { ApiError } from './modelsApi';
-import { DataActionTypes } from './types';
+import { DataActionTypes, InformationType } from './types';
 
-export const fetchData = (query: any) =>
-  action(DataActionTypes.FETCH_DATA_REQUEST, {
+export const fetchInformationType = (query: any) =>
+  action(DataActionTypes.FETCH_INFORMATION_TYPE_REQUEST, {
     query: {
       ...query,
       sort: get(query, 'sort')
     }
   });
 
-export const fetchDataSuccess = (result: any, previousQuery: any) =>
-  action(DataActionTypes.FETCH_DATA_SUCCESS, { result, previousQuery });
+export const fetchInformationTypeSuccess = (result: any, previousQuery: any) =>
+  action(DataActionTypes.FETCH_INFORMATION_TYPE_SUCCESS, { result, previousQuery });
 
-export const fetchDataFailure = (error: ApiError) =>
-  action(DataActionTypes.FETCH_DATA_FAILURE, { error });
+export const fetchInformationTypeFailure = (error: ApiError) =>
+  action(DataActionTypes.FETCH_INFORMATION_TYPE_FAILURE, { error });
+
+
 
 export const toggleExpandRow = (informationTypeId: number) =>
   action(DataActionTypes.TOGGLE_ROW, { informationTypeId });
@@ -55,3 +57,18 @@ export const fetchPolicyForInformationTypeFailure = (
     error,
     informationTypeId
   });
+
+export const sendInformationType = (
+  informationType: InformationType,
+  redirectToOnSuccess: string
+) =>
+  action(DataActionTypes.SEND_INFORMATION_TYPE_REQUEST, {
+    informationType,
+    redirectToOnSuccess
+  });
+
+export const sendInformationTypeSuccess = (sentInformationType: InformationType) =>
+  action(DataActionTypes.SEND_INFORMATION_TYPE_SUCCESS, sentInformationType);
+
+export const sendInformationTypeFailur = (error: ApiError) =>
+  action(DataActionTypes.SEND_INFORMATION_TYPE_FAILURE, error);

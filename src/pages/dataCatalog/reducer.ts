@@ -22,12 +22,12 @@ export const initialState: DataState = {
 
 const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
   switch (action.type) {
-    case DataActionTypes.FETCH_DATA_REQUEST:
+    case DataActionTypes.FETCH_INFORMATION_TYPE_REQUEST:
       return {
         ...state,
         pending: true
       };
-    case DataActionTypes.FETCH_DATA_SUCCESS:
+    case DataActionTypes.FETCH_INFORMATION_TYPE_SUCCESS:
       return {
         ...state,
         result: action.payload.result,
@@ -35,7 +35,7 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         pending: false,
         previousQuery: action.payload.previousQuery
       };
-    case DataActionTypes.FETCH_DATA_FAILURE:
+    case DataActionTypes.FETCH_INFORMATION_TYPE_FAILURE:
       return {
         ...state,
         result: [],
@@ -161,6 +161,36 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
             }
             return e;
           })
+        }
+      };
+    case DataActionTypes.SEND_INFORMATION_TYPE_REQUEST:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content: [{ pending: true, error: undefined }].concat(
+            ...(state.result.content || [])
+          )
+        }
+      };
+    case DataActionTypes.SEND_INFORMATION_TYPE_SUCCESS:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content: [{ pending: false, ...action.payload }].concat(
+            ...(state.result.content || [])
+          )
+        }
+      };
+    case DataActionTypes.SEND_INFORMATION_TYPE_FAILURE:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content: [{ pending: false, error: action.payload }].concat(
+            ...(state.result.content || [])
+          )
         }
       };
     default:

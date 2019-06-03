@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { withFormik, InjectedFormikProps } from 'formik';
 import * as Yup from 'yup';
-import { fetchData } from './actions';
+import { fetchInformationType } from './actions';
 import { push } from 'connected-react-router';
 import { I18n } from 'react-i18nify';
 import { FocusEventHandler } from 'react';
@@ -14,7 +14,7 @@ interface PropsFromState {
 }
 
 interface PropsFromDispatch {
-  fetchData: typeof fetchData;
+  fetchData: typeof fetchInformationType;
   isPending: boolean;
   push?: typeof push;
 }
@@ -140,5 +140,5 @@ export default connect(
   (state: any) => ({
     isPending: state.dataCatalog.pending
   }),
-  { fetchData }
+  { fetchData: fetchInformationType }
 )(InformationTypeSearchComponent);

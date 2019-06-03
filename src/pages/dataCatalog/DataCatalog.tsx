@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { memo } from 'react';
 import { connect } from 'react-redux';
-import { fetchData, toggleEditView, toggleExpandRow } from './actions';
+import { fetchInformationType, toggleEditView, toggleExpandRow } from './actions';
 import { InformationTypeView, Result } from './types';
 import { I18n } from 'react-i18nify';
 import { Table, Column } from '../../components/table/Table';
@@ -15,7 +15,7 @@ interface PropsFromState {
 }
 
 interface PropsFromDispatch {
-  fetchData: typeof fetchData;
+  fetchData: typeof fetchInformationType;
   onToggleClick: typeof toggleExpandRow;
   toggleEditView: typeof toggleEditView;
   isPending: boolean;
@@ -47,7 +47,7 @@ class DataCatalog extends React.Component<Props> {
             previousQuerySelector={(state: any) =>
               get(state, ['dataCatalog', 'previousQuery'])
             }
-            searchAction={(query: any) => fetchData(query)}
+            searchAction={(query: any) => fetchInformationType(query)}
             isEdit={true}
             onEditClick={this.props.toggleEditView}
           >
@@ -93,5 +93,5 @@ export default connect(
     data: state.dataCatalog.result,
     isPending: state.dataCatalog.pending
   }),
-  { fetchData, onToggleClick: toggleExpandRow, toggleEditView }
+  { fetchData: fetchInformationType, onToggleClick: toggleExpandRow, toggleEditView }
 )(DataCatalog);

@@ -1,22 +1,26 @@
-import { all, call, put, takeEvery } from 'redux-saga/effects';
+import { all, call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 
-import { restGet } from '../../api';
+import { restGet, restPost } from '../../api';
 import { ApiPath } from './modelsApi';
 import {
-  fetchData,
-  fetchDataFailure,
-  fetchDataSuccess,
+  fetchInformationType,
+  fetchInformationTypeFailure,
+  fetchInformationTypeSuccess,
   fetchPolicyForInformationType,
   fetchPolicyForInformationTypeSuccess,
-  fetchPolicyForInformationTypeFailure
+  fetchPolicyForInformationTypeFailure,
+  sendInformationType,
+  sendInformationTypeSuccess,
+  sendInformationTypeFailur
 } from './actions';
 import { DataActionTypes } from './types';
 
-function* fetchDataSaga(action: ReturnType<typeof fetchData>) {
+function* fetchInformationTypeSaga(action: ReturnType<typeof fetchInformationType>) {
   try {
     const query = Object.freeze(action.payload.query);
 
-    const url = ApiPath.DataPath;
+    const url = ApiPath.InformationType;
     // 'http://localhost:8080/api/v1/*'
     // const res = yield call(restGet, 'http://localhost:8080' + url);
     //  const res = yield call(restGet, 'https://107.178.240.63' + url);
@@ -25,17 +29,19 @@ function* fetchDataSaga(action: ReturnType<typeof fetchData>) {
     const json = yield res.json();
 
     if (res.ok) {
-      yield put(fetchDataSuccess(json, query));
+      yield put(fetchInformationTypeSuccess(json, query));
     } else {
-      yield put(fetchDataFailure(json));
+      yield put(fetchInformationTypeFailure(json));
     }
   } catch (error) {
-    yield put(fetchDataFailure(error));
+    yield put(fetchInformationTypeFailure(error));
   }
 }
 
 export function* dataSaga() {
-  yield all([takeEvery(DataActionTypes.FETCH_DATA_REQUEST, fetchDataSaga)]);
+  yield all([
+    takeEvery(DataActionTypes.FETCH_INFORMATION_TYPE_REQUEST, fetchInformationTypeSaga)
+  ]);
 }
 
 function* fetchPolicyForInformationtypeSaga(
@@ -68,11 +74,36 @@ function* fetchPolicyForInformationtypeSaga(
   }
 }
 
-export function* policyForInformationtypeSaga() {
+export function* policyForInformationTypeSaga() {
   yield all([
     takeEvery(
       DataActionTypes.FETCH_POLICY_FOR_INFORMATION_TYPE_REQUEST,
       fetchPolicyForInformationtypeSaga
     )
+  ]);
+}
+
+function* sendInformationTypeSaga(action: ReturnType<typeof sendInformationType>) {
+  try {
+    const res = yield call(
+      restPost,
+      ApiPath.InformationType,
+      action.payload.informationType
+    );
+
+    if (res.ok) {
+      yield put(push(action.payload.redirectToOnSuccess));
+      yield put(sendInformationTypeSuccess(action.payload.informationType));
+    } else {
+      yield put(sendInformationTypeFailur(yield res.json()));
+    }
+  } catch (error) {
+    yield put(sendInformationTypeFailur(error));
+  }
+}
+
+export function* createInformationTypeSaga() {
+  yield all([
+    takeLatest(DataActionTypes.SEND_INFORMATION_TYPE_REQUEST, sendInformationTypeSaga)
   ]);
 }
