@@ -11,8 +11,20 @@ export const enum CodeListActionTypes {
 }
 
 export interface CodeListView {
-  codeListId: number;
-  listName: string;
+  listName?: string;
   code: string;
   description: string;
+}
+
+export interface CodeListResult {
+  producer: CodeListView[] | null;
+  category: CodeListView[] | null;
+  system: CodeListView[] | null;
+  purpose: CodeListView[] | null;
+}
+
+export interface CodeListState {
+  result: CodeListResult;
+  pending: boolean;
+  error?: string | null;
 }

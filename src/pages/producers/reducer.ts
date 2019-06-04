@@ -1,8 +1,8 @@
 import { Reducer } from 'redux';
 
-import { CodeListActions, CodeListActionTypes } from './types';
+import { CodeListActions, CodeListActionTypes, CodeListState } from './types';
 
-export const initialState: any = {
+export const initialState: CodeListState = {
   result: {
     producer: null,
     category: null,

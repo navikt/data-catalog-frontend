@@ -5,6 +5,7 @@ export const LanguageJson = {
         mainPage: {
           mainPage: 'Main page',
           name: 'Name',
+          code: 'Code',
           description: 'Description',
           category: 'Category',
           sensitivity: 'Sensitivity',
@@ -37,7 +38,10 @@ export const LanguageJson = {
           topics: 'Topics'
         },
         producers: {
-          producers: 'Producers'
+          producers: 'Producers',
+          categories: 'Categories',
+          systems: 'Systems',
+          purpose: 'Purpose'
         },
         consumers: {
           consumers: 'Consumers'
@@ -148,6 +152,7 @@ export const LanguageJson = {
         mainPage: {
           mainPage: 'Hovedside',
           name: 'Navn',
+          code: 'Kode',
           description: 'Beskrivelse',
           category: 'Kategori',
           sensitivity: 'Sensitivity',
@@ -180,7 +185,10 @@ export const LanguageJson = {
           topics: 'Distribusjonskanaler'
         },
         producers: {
-          producers: 'Produsenter'
+          producers: 'Produsenter',
+          categories: 'Kategorier',
+          systems: 'Systemer',
+          purpose: 'Formål'
         },
         consumers: {
           consumers: 'Konsumenter'
