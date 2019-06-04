@@ -70,7 +70,7 @@ export interface InformationType extends Auditable {
 
 export interface Purpose extends Auditable {
   purposeId: number;
-  purposeCode: string;
+  code: string;
   description: string;
 }
 

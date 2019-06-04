@@ -218,7 +218,7 @@
 
         "purpose": {
           "purposeId": 1111,
-          "purposeCode": "AAP",
+          "code": "AAP",
           "description": "Arbeidsavklaringspenger",
           "createdBy": "Datajeger",
           "createdDate": "'2019-01-01 08:45:00 GMT+1'",
@@ -251,7 +251,7 @@
 
         "purpose": {
           "purposeId": 1211,
-          "purposeCode": "AAR",
+          "code": "AAR",
           "description": "Aa-registeret",
           "createdBy": "Datajeger",
           "createdDate": "'2019-01-01 08:45:00 GMT+1'",
@@ -286,5 +286,226 @@
   },
   "producer": {
     "PRODUCER": "producer description"
+  },
+  "dfdf": {
+    "content": [
+      {
+        "policyId": 1,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "Ftrl. § 11-20",
+        "purpose": { "code": "AAP", "description": "Arbeidsavklaringspenger" }
+      },
+      {
+        "policyId": 2,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "Ftrl. § 3-2, 3-3, 19-8, 20-9.",
+        "purpose": { "code": "ALD", "description": "ALD" }
+      },
+      {
+        "policyId": 3,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "Ftrl. § 3-2, 3-3, 19-8, 20-9.",
+        "purpose": { "code": "KRG", "description": "KRG" }
+      },
+      {
+        "policyId": 4,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "Ftrl § 3-2 og § 3-3 ",
+        "purpose": { "code": "AFP", "description": "AFP" }
+      },
+      {
+        "policyId": 5,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "Barnetrygdloven § 9",
+        "purpose": { "code": "BAR", "description": "Barnetrygd" }
+      },
+      {
+        "policyId": 6,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "",
+        "purpose": { "code": "KON", "description": "Kontantstøtte" }
+      },
+      {
+        "policyId": 7,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "Forskotteringsloven § 5",
+        "purpose": { "code": "BID", "description": "1 - Bidrag" }
+      },
+      {
+        "policyId": 8,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "Ftrl. § 4-5",
+        "purpose": { "code": "DAG", "description": "Dagpenger" }
+      },
+      {
+        "policyId": 9,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "Ekteskapsloven §§ 79 til 84",
+        "purpose": { "code": "EKT", "description": "EKT" }
+      },
+      {
+        "policyId": 10,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "Ftrl. § 15-4",
+        "purpose": { "code": "ENF", "description": "Enslig forsørger" }
+      },
+      {
+        "policyId": 11,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "Barneloven § 4, 5 og 7",
+        "purpose": { "code": "FAR", "description": "Farskap" }
+      },
+      {
+        "policyId": 12,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "Ftrl. § 14-5",
+        "purpose": { "code": "FOR", "description": "Foreldre- og svangerskapspenger" }
+      },
+      {
+        "policyId": 13,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "Ftrl. § 17-5, 17-6  og 17-10",
+        "purpose": { "code": "GJP", "description": "GJP" }
+      },
+      {
+        "policyId": 14,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "",
+        "purpose": { "code": "GRA", "description": "Gravferdsstønad" }
+      },
+      {
+        "policyId": 15,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "Ftrl. § 21-3",
+        "purpose": { "code": "GRU", "description": "Grunn- og hjelpestønad" }
+      },
+      {
+        "policyId": 16,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "Ftrl. kap. 10 og §§ 21-3, 21-4",
+        "purpose": { "code": "HJE", "description": "Hjelpemidler" }
+      },
+      {
+        "policyId": 17,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "Ftrl, btrl, bidragsforskudd, EØS-forordning m.m.",
+        "purpose": { "code": "KTR", "description": "Kontroll" }
+      },
+      {
+        "policyId": 18,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "Folketrygdloven, trygdeavtaler, herunder EØS.",
+        "purpose": { "code": "MED", "description": "Medlemskap" }
+      },
+      {
+        "policyId": 19,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "Barneverntjenesteloven § 9-2",
+        "purpose": { "code": "OVR", "description": "4 - Øvrig" }
+      },
+      {
+        "policyId": 20,
+        "informationType": {
+          "informationTypeId": 1,
+          "name": "Sivilstand",
+          "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176"
+        },
+        "legalBasisDescription": "SU lov, § 5",
+        "purpose": { "code": "SUP", "description": "Supplerende stønad" }
+      }
+    ],
+    "pageable": {
+      "sort": { "sorted": false, "unsorted": true, "empty": true },
+      "offset": 0,
+      "pageSize": 20,
+      "pageNumber": 0,
+      "paged": true,
+      "unpaged": false
+    },
+    "totalPages": 2,
+    "totalElements": 24,
+    "last": false,
+    "size": 20,
+    "number": 0,
+    "sort": { "sorted": false, "unsorted": true, "empty": true },
+    "first": true,
+    "numberOfElements": 20,
+    "empty": false
   }
 }

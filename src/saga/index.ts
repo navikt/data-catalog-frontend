@@ -6,6 +6,7 @@ import {
   createInformationTypeSaga
 } from '../pages/dataCatalog/saga';
 import { getCodeListSaga } from '../pages/producers/saga';
+import { getPolicySaga } from '../pages/accessPolicies/saga';
 
 export function* rootSaga() {
   yield all([
@@ -13,6 +14,7 @@ export function* rootSaga() {
     call(getInformationTypeSaga),
     call(policyForInformationTypeSaga),
     call(createInformationTypeSaga),
-    call(getCodeListSaga)
+    call(getCodeListSaga),
+    call(getPolicySaga)
   ]);
 }
