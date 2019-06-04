@@ -96,17 +96,28 @@ export class InformationTypeSearchComponentInner extends React.Component<
 
         <div className="row">
           <div className="col-md-2 col-sm-6 col-6">
-            <button type="submit" className="btn btn-outline-primary">
-              {I18n.t('dataCatalog.words.search.search')}
+            <button
+              className="Table-cell action-item mr-2"
+              data-toggle="tooltip"
+              key="btn-search"
+              title={I18n.t('dataCatalog.words.search.search')}
+              type="submit"
+              role="button"
+              style={{ padding: 0, border: 'none', background: 'none' }}
+            >
+              <i className="fa fa-search" />
             </button>
           </div>
           <div className="col-md-2  col-sm-6 col-6">
             <button
-              type="button"
-              className="btn btn-outline-primary"
+              className="Table-cell action-item mr-2"
+              data-toggle="tooltip"
+              key="btn-search"
+              title={I18n.t('dataCatalog.words.search.reset')}
               onClick={handleReset}
+              style={{ padding: 0, border: 'none', background: 'none' }}
             >
-              {I18n.t('dataCatalog.words.search.reset')}
+              <i className="fa fa-bitbucket" />
             </button>
           </div>
         </div>

@@ -79,7 +79,7 @@ export const LanguageJson = {
         },
         search: {
           search: 'Search',
-          reset: 'Reset',
+          reset: 'Reset search',
           searchFor: 'Search for...',
           stats:
             'Showing %{from} - %{to} out of %{total} matches. Used %{timeUsed} ms searching.',
@@ -225,7 +225,7 @@ export const LanguageJson = {
         },
         search: {
           search: 'Søk',
-          reset: 'Nullstill',
+          reset: 'Nullstill søk',
           searchFor: 'Søk etter...',
           stats:
             'Viser %{from} - %{to} av %{total} treff. Brukte %{timeUsed} ms på søket.',
