@@ -272,10 +272,14 @@
     "totalElements": 2
   },
   "purpose": {
-    "PURPOSE": "purpose description"
+    "PURPOSE": "purpose description",
+    "PURPOSE_2": "purpose description 2",
+    "PURPOSE_3": "purpose description 3"
   },
   "category": {
-    "CATEGORY": "category description"
+    "CATEGORY": "category description",
+    "CATEGORY 2": "category description 2",
+    "CATEGORY 3": "category description 3"
   },
   "system": {
     "SYSTEM": "system description"

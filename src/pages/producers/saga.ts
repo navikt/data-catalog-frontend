@@ -5,6 +5,9 @@ import { ApiPath } from './modelsApi';
 import { fetchCodeList, fetchCodeListSuccess, fetchCodeListFailure } from './actions';
 import { CodeListActionTypes } from './types';
 
+const createObject = (obj: any) =>
+  Object.entries(obj).map(value => ({ code: value[0], description: value[1] }));
+
 function* fetchCodeListSaga(action: ReturnType<typeof fetchCodeList>) {
   try {
     const resProducer = yield call(restGet, ApiPath.CodeListProducerPath);
@@ -13,10 +16,10 @@ function* fetchCodeListSaga(action: ReturnType<typeof fetchCodeList>) {
     const resPurpose = yield call(restGet, ApiPath.CodeListPurposePath);
 
     const json = {
-      producer: yield resProducer.json(),
-      category: yield resCategory.json(),
-      system: yield resSystem.json(),
-      purpose: yield resPurpose.json()
+      producer: createObject(yield resProducer.json()),
+      category: createObject(yield resCategory.json()),
+      system: createObject(yield resSystem.json()),
+      purpose: createObject(yield resPurpose.json())
     };
 
     if (resProducer.ok && resCategory.ok && resSystem.ok && resPurpose.ok) {
