@@ -93,5 +93,9 @@ export default connect(
     data: state.dataCatalog.result,
     isPending: state.dataCatalog.pending
   }),
-  { fetchData: fetchInformationType, onToggleClick: toggleExpandRow, toggleEditView }
+  {
+    fetchData: fetchInformationType,
+    onToggleClick: toggleExpandRow,
+    toggleEditView
+  }
 )(DataCatalog);

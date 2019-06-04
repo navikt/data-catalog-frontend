@@ -4,6 +4,7 @@ import { History } from 'history';
 import { dataReducer } from '../pages/dataCatalog/reducer';
 import { DataState } from '../pages/dataCatalog/types';
 import configReducer from '../config/configReducer';
+import { codeListReducer } from '../pages/producers/reducer';
 
 export interface AppState {
   router: RouterState;
@@ -12,7 +13,8 @@ export interface AppState {
 
 const reducers = {
   config: configReducer,
-  dataCatalog: dataReducer
+  dataCatalog: dataReducer,
+  codeList: codeListReducer
 };
 
 export default (history: History) =>

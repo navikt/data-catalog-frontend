@@ -29,9 +29,9 @@ class InformationTypeViewComponent extends React.Component<Props> {
           <div className="col-12">
             <h5>{I18n.t('dataCatalog.pages.mainPage.policies')}</h5>
           </div>
-
           <div className="col-md-8 col-sm-12" />
         </div>
+
         <PolicyViewComponent
           policy={this.props.policy || PolicyResultDefaultValue}
           isEdit={this.props.isEdit}

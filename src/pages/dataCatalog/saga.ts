@@ -20,7 +20,7 @@ function* fetchInformationTypeSaga(action: ReturnType<typeof fetchInformationTyp
   try {
     const query = Object.freeze(action.payload.query);
 
-    const url = ApiPath.InformationType;
+    const url = ApiPath.InformationTypePath;
     // 'http://localhost:8080/api/v1/*'
     // const res = yield call(restGet, 'http://localhost:8080' + url);
     //  const res = yield call(restGet, 'https://107.178.240.63' + url);
@@ -38,7 +38,7 @@ function* fetchInformationTypeSaga(action: ReturnType<typeof fetchInformationTyp
   }
 }
 
-export function* dataSaga() {
+export function* getInformationTypeSaga() {
   yield all([
     takeEvery(DataActionTypes.FETCH_INFORMATION_TYPE_REQUEST, fetchInformationTypeSaga)
   ]);
@@ -87,10 +87,9 @@ function* sendInformationTypeSaga(action: ReturnType<typeof sendInformationType>
   try {
     const res = yield call(
       restPost,
-      ApiPath.InformationType,
+      ApiPath.InformationTypePath,
       action.payload.informationType
     );
-
     if (res.ok) {
       yield put(push(action.payload.redirectToOnSuccess));
       yield put(sendInformationTypeSuccess(action.payload.informationType));

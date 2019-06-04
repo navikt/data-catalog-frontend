@@ -270,5 +270,17 @@
     "currentPage": 0,
     "pageSize": 10,
     "totalElements": 2
+  },
+  "purpose": {
+    "PURPOSE": "purpose description"
+  },
+  "category": {
+    "CATEGORY": "category description"
+  },
+  "system": {
+    "SYSTEM": "system description"
+  },
+  "producer": {
+    "PRODUCER": "producer description"
   }
 }

@@ -10,8 +10,14 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import About from './about/AboutPage';
 
 import { I18n } from 'react-i18nify';
+import { connect } from 'react-redux';
+import { fetchCodeList } from './pages/producers/actions';
 
-class App extends React.Component {
+class App extends React.Component<{ fetchCodeList: typeof fetchCodeList }> {
+  public componentDidMount() {
+    this.props.fetchCodeList();
+  }
+
   public render() {
     const makeNavigationItem = (text: string, pathRef: string, className: string) => {
       return (
@@ -80,4 +86,9 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default connect(
+  null,
+  {
+    fetchCodeList
+  }
+)(App);

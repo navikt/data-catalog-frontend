@@ -1,5 +1,5 @@
 export enum ApiPath {
-  InformationType = '/backend/informationtype',
+  InformationTypePath = '/backend/informationtype',
   PolicyForInformationTypePath = '/policy/policy'
 }
 
