@@ -15,7 +15,7 @@ interface PropsFromState {
 }
 
 interface PropsFromDispatch {
-  fetchData: typeof fetchInformationType;
+  fetchInformationType: typeof fetchInformationType;
   onToggleClick: typeof toggleExpandRow;
   toggleEditView: typeof toggleEditView;
   isPending: boolean;
@@ -25,7 +25,7 @@ type Props = PropsFromState & PropsFromDispatch;
 
 class DataCatalog extends React.Component<Props> {
   public componentDidMount() {
-    this.props.fetchData({});
+    this.props.fetchInformationType({});
   }
 
   public render() {
@@ -94,7 +94,7 @@ export default connect(
     isPending: state.dataCatalog.pending
   }),
   {
-    fetchData: fetchInformationType,
+    fetchInformationType: fetchInformationType,
     onToggleClick: toggleExpandRow,
     toggleEditView
   }
