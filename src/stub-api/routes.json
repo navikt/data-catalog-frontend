@@ -4,5 +4,9 @@
   "/backend/informationtype": "/informationtype",
   "/backend/informationtype?*": "/informationtype",
   "/policy/policy": "/policy",
-  "/policy/policy?*": "/policy"
+  "/policy/policy?*": "/policy",
+  "/backend/codelist/purpose": "/purpose",
+  "/backend/codelist/category": "/category",
+  "/backend/codelist/system": "/system",
+  "/backend/codelist/producer": "/producer"
 }

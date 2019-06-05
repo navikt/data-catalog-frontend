@@ -17,8 +17,6 @@ export const fetchInformationTypeSuccess = (result: any, previousQuery: any) =>
 export const fetchInformationTypeFailure = (error: ApiError) =>
   action(DataActionTypes.FETCH_INFORMATION_TYPE_FAILURE, { error });
 
-
-
 export const toggleExpandRow = (informationTypeId: number) =>
   action(DataActionTypes.TOGGLE_ROW, { informationTypeId });
 

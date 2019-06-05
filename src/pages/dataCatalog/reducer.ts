@@ -178,9 +178,9 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         ...state,
         result: {
           ...state.result,
-          content: [{ pending: false, ...action.payload }].concat(
-            ...(state.result.content || [])
-          )
+          content: {
+            ...state.result.content[0].push({ pending: false, ...action.payload })
+          }
         }
       };
     case DataActionTypes.SEND_INFORMATION_TYPE_FAILURE:
@@ -188,9 +188,9 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         ...state,
         result: {
           ...state.result,
-          content: [{ pending: false, error: action.payload }].concat(
-            ...(state.result.content || [])
-          )
+          content: {
+            ...state.result.content[0].push({ pending: false, error: action.payload })
+          }
         }
       };
     default:

@@ -1,16 +1,20 @@
 import { all, call } from 'redux-saga/effects';
 import { configSaga } from '../config/configSaga';
 import {
-  dataSaga,
+  getInformationTypeSaga,
   policyForInformationTypeSaga,
   createInformationTypeSaga
 } from '../pages/dataCatalog/saga';
+import { getCodeListSaga } from '../pages/producers/saga';
+import { getPolicySaga } from '../pages/accessPolicies/saga';
 
 export function* rootSaga() {
   yield all([
     call(configSaga),
-    call(dataSaga),
+    call(getInformationTypeSaga),
     call(policyForInformationTypeSaga),
-    call(createInformationTypeSaga)
+    call(createInformationTypeSaga),
+    call(getCodeListSaga),
+    call(getPolicySaga)
   ]);
 }

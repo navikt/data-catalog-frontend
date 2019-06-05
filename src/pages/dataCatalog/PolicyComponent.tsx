@@ -12,7 +12,7 @@ export class PolicyComponent extends React.Component<Policy> {
         >
           {createOptionField(
             'purposeCode',
-            this.props.purpose.purposeCode || '',
+            this.props.purpose.code || '',
             this.props.isEdit || false
           )}
         </div>

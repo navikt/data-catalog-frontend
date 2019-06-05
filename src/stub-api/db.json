@@ -218,7 +218,7 @@
 
         "purpose": {
           "purposeId": 1111,
-          "purposeCode": "AAP",
+          "code": "AAP",
           "description": "Arbeidsavklaringspenger",
           "createdBy": "Datajeger",
           "createdDate": "'2019-01-01 08:45:00 GMT+1'",
@@ -251,7 +251,7 @@
 
         "purpose": {
           "purposeId": 1211,
-          "purposeCode": "AAR",
+          "code": "AAR",
           "description": "Aa-registeret",
           "createdBy": "Datajeger",
           "createdDate": "'2019-01-01 08:45:00 GMT+1'",
@@ -270,5 +270,21 @@
     "currentPage": 0,
     "pageSize": 10,
     "totalElements": 2
+  },
+  "purpose": {
+    "PURPOSE": "purpose description",
+    "PURPOSE_2": "purpose description 2",
+    "PURPOSE_3": "purpose description 3"
+  },
+  "category": {
+    "CATEGORY": "category description",
+    "CATEGORY 2": "category description 2",
+    "CATEGORY 3": "category description 3"
+  },
+  "system": {
+    "SYSTEM": "system description"
+  },
+  "producer": {
+    "PRODUCER": "producer description"
   }
 }

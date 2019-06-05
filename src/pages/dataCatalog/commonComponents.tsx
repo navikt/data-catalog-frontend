@@ -1,7 +1,11 @@
 import { I18n } from 'react-i18nify';
 import * as React from 'react';
 
-export const createOptionField = (text: string, value: string, isEdit: boolean) => (
+export const createOptionField = (
+  text: string,
+  value: string,
+  isEdit: boolean = false
+) => (
   <div className="row" style={{ marginBottom: '10px' }}>
     <div className={isEdit ? 'col-md-4 col-sm-12' : 'col-md-4 col-5'}>
       {I18n.t('dataCatalog.pages.mainPage.' + text)}
@@ -17,7 +21,11 @@ export const createOptionField = (text: string, value: string, isEdit: boolean) 
     </div>
   </div>
 );
-export const createInputField = (text: string, value: string, isEdit: boolean) => (
+export const createInputField = (
+  text: string,
+  value: string,
+  isEdit: boolean = false
+) => (
   <div className="row" style={{ marginBottom: '10px' }}>
     <div className={isEdit ? 'col-md-4 col-sm-12' : 'col-md-4 col-5'}>
       {I18n.t('dataCatalog.pages.mainPage.' + text)}
@@ -31,7 +39,11 @@ export const createInputField = (text: string, value: string, isEdit: boolean) =
     </div>
   </div>
 );
-export const createTextAreaField = (text: string, value: string, isEdit: boolean) => (
+export const createTextAreaField = (
+  text: string,
+  value: string,
+  isEdit: boolean = false
+) => (
   <div className="row" style={{ marginBottom: '10px' }}>
     <div className="col-md-3">
       {I18n.t('dataCatalog.pages.mainPage.' + text + (isEdit ? '' : ' : '))}
