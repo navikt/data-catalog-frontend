@@ -12,6 +12,7 @@ export class InformationTypeComponent extends React.Component<InformationType> {
     return (
       <div className="row" style={{ margin: '20px 10px 10px 10px' }}>
         <div className="col-md-6">
+
           {createInputField('name', this.props.name, this.props.isEdit)}
           {createOptionField(
             'system',
