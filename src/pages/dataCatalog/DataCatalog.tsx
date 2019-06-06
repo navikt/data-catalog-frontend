@@ -50,6 +50,7 @@ class DataCatalog extends React.Component<Props> {
             searchAction={(query: any) => fetchInformationType(query)}
             isEdit={true}
             onEditClick={this.props.toggleEditView}
+            onAddClick={this.props.onToggleClick}
           >
             <Column
               width="15%"

@@ -29,6 +29,7 @@ interface TableComponentProps {
   isEdit?: boolean;
   onEditClick: Function;
   disabledEdit?: boolean;
+  onAddClick: Function;
 }
 
 const TableComponent = ({
@@ -50,7 +51,8 @@ const TableComponent = ({
   disabledPaginator,
   isEdit,
   onEditClick,
-  disabledEdit
+  disabledEdit,
+  onAddClick
 }: TableComponentProps) => {
   const tableBodyClassName = 'Table-body' + (isLoading ? ' is-loading' : '');
 
@@ -68,7 +70,8 @@ const TableComponent = ({
               style={{ marginRight: '100px' }}
               key="btn-add"
               onClick={e => {
-                alert(I18n.t('dataCatalog.words.doNotHaveSufficientRole'));
+                onAddClick;
+                //alert(I18n.t('dataCatalog.words.doNotHaveSufficientRole'));
                 return e.stopPropagation();
               }}
               title={

@@ -50,7 +50,7 @@ class PolicyViewComponent extends React.Component<Props> {
           pageSize={get(this.props, ['policy', 'result', 'pageSize'])}
           totalElements={get(this.props, ['policy', 'result', 'totalElements'])}
           previousQuerySelector={(state: any) =>
-            get(state, ['dataCatalog', 'previousQuery'])
+            get(this.props, ['policy', 'previousQuery'])
           }
           searchAction={(query: any) =>
             fetchPolicyForInformationType(query, this.props.informationTypeId)
@@ -58,6 +58,7 @@ class PolicyViewComponent extends React.Component<Props> {
           isEdit={this.props.isEdit}
           disabledEdit={true}
           onEditClick={(e: any) => e}
+          onAddClick={this.props.onToggleClick}
         >
           <Column
             width="50%"
