@@ -1,5 +1,4 @@
 import { all, call, put, takeEvery, takeLatest } from 'redux-saga/effects';
-import { push } from 'connected-react-router';
 
 import { restGet, restPost, restPut } from '../../api';
 import { ApiPath } from './modelsApi';
@@ -93,7 +92,6 @@ function* saveInformationTypeSaga(action: ReturnType<typeof saveInformationType>
       action.payload.informationType
     );
     if (res.ok) {
-      yield put(push(action.payload.redirectToOnSuccess));
       yield put(saveInformationTypeSuccess(action.payload.informationType));
     } else {
       yield put(saveInformationTypeFailure(yield res.json()));
