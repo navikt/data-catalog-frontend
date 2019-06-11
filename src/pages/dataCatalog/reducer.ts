@@ -42,6 +42,27 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         error: action.payload.error,
         pending: false
       };
+    case DataActionTypes.ADD_INFORMATION_TYPE:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content: [
+            {
+              informationTypeId: -1,
+              name: null,
+              description: null,
+              category: null,
+              producer: null,
+              system: null,
+              personalData: null,
+              isOpen: true,
+              isEdit: true,
+              isAdd: true
+            }
+          ].concat(state.result.content)
+        }
+      };
     case DataActionTypes.TOGGLE_ROW:
       return {
         ...state,

@@ -20,6 +20,8 @@ export const fetchInformationTypeFailure = (error: ApiError) =>
 export const toggleExpandRow = (informationTypeId: number) =>
   action(DataActionTypes.TOGGLE_ROW, { informationTypeId });
 
+export const addBlankInformationType = () => action(DataActionTypes.ADD_INFORMATION_TYPE);
+
 export const toggleExpandRowPolicy = (informationTypeId: number, policyId: number) =>
   action(DataActionTypes.TOGGLE_ROW_POLICY, { informationTypeId, policyId });
 

@@ -24,7 +24,9 @@ type Props = PropsFromState & PropsFromDispatch;
 
 class PolicyViewComponent extends React.Component<Props> {
   public componentDidMount() {
-    this.props.fetchPolicyForInformationType({}, this.props.informationTypeId);
+    this.props.informationTypeId &&
+      this.props.informationTypeId > 0 &&
+      this.props.fetchPolicyForInformationType({}, this.props.informationTypeId);
   }
 
   public render() {

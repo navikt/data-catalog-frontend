@@ -70,9 +70,8 @@ const TableComponent = ({
               style={{ marginRight: '100px' }}
               key="btn-add"
               onClick={e => {
-                onAddClick;
                 //alert(I18n.t('dataCatalog.words.doNotHaveSufficientRole'));
-                return e.stopPropagation();
+                return onAddClick();
               }}
               title={
                 1 !== 1
