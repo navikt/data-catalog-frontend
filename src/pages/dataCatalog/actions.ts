@@ -24,9 +24,7 @@ export const toggleExpandRow = (informationTypeId: number) =>
 export const addBlankInformationType = () => action(DataActionTypes.ADD_INFORMATION_TYPE);
 
 // add or edit information type
-export const saveInformationType = (
-  informationType: InformationType
-) =>
+export const saveInformationType = (informationType: InformationType) =>
   action(DataActionTypes.SAVE_INFORMATION_TYPE_REQUEST, {
     informationType
   });

@@ -1,9 +1,21 @@
 import * as React from 'react';
 import { Policy } from './types';
 import { createInputField, createOptionField } from './commonComponents';
+import { withFormik, InjectedFormikProps } from 'formik';
+import * as Yup from 'yup';
 
-export class PolicyComponent extends React.Component<Policy> {
+class PolicyComponentInner extends React.Component<InjectedFormikProps<Policy, Policy>> {
   public render() {
+    const {
+      values,
+      // errors,
+      // touched,
+      //handleSubmit,
+      handleChange,
+      handleBlur
+      //setFieldValue,
+      //handleReset
+    } = this.props;
     return (
       <div>
         <div
@@ -12,7 +24,7 @@ export class PolicyComponent extends React.Component<Policy> {
         >
           {createOptionField(
             'purposeCode',
-            this.props.purpose.code || '',
+            values.purpose.code || '',
             this.props.isEdit || false
           )}
         </div>
@@ -22,7 +34,9 @@ export class PolicyComponent extends React.Component<Policy> {
         >
           {createInputField(
             'purposeDescription',
-            this.props.purpose.description || '',
+            values.purpose.description || '',
+            handleChange,
+            handleBlur,
             false
           )}
         </div>
@@ -32,7 +46,9 @@ export class PolicyComponent extends React.Component<Policy> {
         >
           {createInputField(
             'legalBasis',
-            this.props.legalBasisDescription || '',
+            values.legalBasisDescription || '',
+            handleChange,
+            handleBlur,
             this.props.isEdit || false
           )}
         </div>
@@ -40,3 +56,27 @@ export class PolicyComponent extends React.Component<Policy> {
     );
   }
 }
+
+const PolicyComponent = withFormik<Policy, Policy>({
+  mapPropsToValues: (props: Policy) => ({
+    purpose: {
+      code: (props.purpose && props.purpose.code) || '',
+      description: (props.purpose && props.purpose.description) || ''
+    },
+    legalBasisDescription: props.legalBasisDescription,
+    policyId: props.policyId
+  }),
+  handleSubmit: (values, { props }) => {
+    null;
+  },
+  validationSchema: Yup.object({
+    name: Yup.string().test({
+      name: 'legalBasisDescription',
+      exclusive: true,
+      message: 'Must be less than 500 characters',
+      test: value => value == null || value.length <= 500
+    })
+  })
+})(PolicyComponentInner);
+
+export default PolicyComponent;

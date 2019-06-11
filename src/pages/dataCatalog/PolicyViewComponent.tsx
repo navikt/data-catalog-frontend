@@ -6,7 +6,7 @@ import { fetchPolicyForInformationType, toggleExpandRowPolicy } from './actions'
 import { memo } from 'react';
 import { connect } from 'react-redux';
 import { get } from 'lodash';
-import { PolicyComponent } from './PolicyComponent';
+import PolicyComponent from './PolicyComponent';
 
 interface PropsFromState {
   pathName?: string;

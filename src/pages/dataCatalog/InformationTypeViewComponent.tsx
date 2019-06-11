@@ -5,7 +5,7 @@ import Toolbar from '../../components/toolbar/Toolbar';
 import PolicyViewComponent from './PolicyViewComponent';
 import { toggleEditView, saveInformationType } from './actions';
 import { connect } from 'react-redux';
-import { InformationTypeComponent } from './InformationTypeComponent';
+import InformationTypeComponent from './InformationTypeComponent';
 
 interface PropsFromDispatch {
   toggleEditView: typeof toggleEditView;
@@ -42,15 +42,14 @@ class InformationTypeViewComponent extends React.Component<Props> {
         {this.props.isEdit && (
           <Toolbar
             cancelOnClick={() => this.props.toggleEditView(this.props.informationTypeId)}
-            saveOnClick={(e) =>
-            {  e.preventDefault();
-                return this.props.saveInformationType({
+            saveOnClick={e => {
+              e.preventDefault();
+              return this.props.saveInformationType({
                 informationTypeId: this.props.informationTypeId,
                 name: this.props.name,
                 description: this.props.description
-            })}
-
-            }
+              });
+            }}
           />
         )}
       </div>

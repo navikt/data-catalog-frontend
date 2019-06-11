@@ -21,8 +21,7 @@ export const enum DataActionTypes {
   FETCH_POLICY_FOR_INFORMATION_TYPE_REQUEST = '@data/FETCH_POLICY_FOR_INFORMATION_TYPE_REQUEST',
   FETCH_POLICY_FOR_INFORMATION_TYPE_SUCCESS = '@data/FETCH_POLICY_FOR_INFORMATION_TYPE_SUCCESS',
   FETCH_POLICY_FOR_INFORMATION_TYPE_FAILURE = '@data/FETCH_POLICY_FOR_INFORMATION_TYPE_FAILURE',
-  ADD_POLICY = '@data//ADD_POLICY',
-
+  ADD_POLICY = '@data//ADD_POLICY'
 }
 
 export type DataState =
@@ -50,8 +49,6 @@ export interface Auditable {
 }
 
 export interface CodeList extends Auditable {
-  codeListId: number;
-  listName: string;
   code: string;
   description: string;
 }
@@ -71,12 +68,6 @@ export interface InformationType extends Auditable {
   elasticsearchStatus?: string;
 }
 
-export interface Purpose extends Auditable {
-  purposeId: number;
-  code: string;
-  description: string;
-}
-
 export interface LegalBasis extends Auditable {
   legalBasisid: number;
   description: string;
@@ -84,7 +75,7 @@ export interface LegalBasis extends Auditable {
 
 export interface Policy extends Auditable {
   policyId: number;
-  purpose: Purpose;
+  purpose: CodeList;
   legalBasisDescription?: string;
   legalBasis?: LegalBasis;
   isOpen?: boolean;

@@ -1,5 +1,7 @@
 import { I18n } from 'react-i18nify';
 import * as React from 'react';
+import { ChangeEventHandler } from 'react';
+import { FocusEventHandler } from 'react';
 
 export const createOptionField = (
   text: string,
@@ -24,6 +26,8 @@ export const createOptionField = (
 export const createInputField = (
   text: string,
   value: string,
+  handleChange: ChangeEventHandler,
+  handleBlur: FocusEventHandler,
   isEdit: boolean = false
 ) => (
   <div className="row" style={{ marginBottom: '10px' }}>
@@ -32,7 +36,14 @@ export const createInputField = (
     </div>
     <div className={isEdit ? 'col-md-6 col-sm-12' : 'col-md-6 col-6'}>
       {isEdit ? (
-        <input type="text" className="form-control" id={text} value={value} />
+        <input
+          type="text"
+          className="form-control"
+          id={text}
+          value={value}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
       ) : (
         ': ' + value
       )}

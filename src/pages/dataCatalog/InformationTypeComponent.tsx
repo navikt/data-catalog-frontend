@@ -6,31 +6,51 @@ import {
   createTextAreaField
 } from './commonComponents';
 import { I18n } from 'react-i18nify';
+import { InjectedFormikProps, withFormik } from 'formik';
+import * as Yup from 'yup';
 
-export class InformationTypeComponent extends React.Component<InformationType> {
+class InformationTypeComponentInner extends React.Component<
+  InjectedFormikProps<InformationType, InformationType>
+> {
   public render() {
+    const {
+      values,
+      // errors,
+      // touched,
+      //handleSubmit,
+      handleChange,
+      handleBlur
+      //setFieldValue,
+      //handleReset
+    } = this.props;
     return (
       <div className="row" style={{ margin: '20px 10px 10px 10px' }}>
         <div className="col-md-6">
-          {createInputField('name', this.props.name, this.props.isEdit)}
+          {createInputField(
+            'name',
+            values.name,
+            handleChange,
+            handleBlur,
+            this.props.isEdit
+          )}
           {createOptionField(
             'system',
-            this.props.system ? this.props.system.code : '',
+            values.system ? values.system.code : '',
             this.props.isEdit
           )}
           {createOptionField(
             'producer',
-            this.props.producer ? this.props.producer.code : '',
+            values.producer ? values.producer.code : '',
             this.props.isEdit
           )}
           {createOptionField(
             'category',
-            this.props.category ? this.props.category.code : '',
+            values.category ? values.category.code : '',
             this.props.isEdit
           )}
           {createOptionField(
             'personalData',
-            this.props.personalData
+            values.personalData
               ? I18n.t('dataCatalog.words.yes')
               : I18n.t('dataCatalog.words.no'),
             this.props.isEdit
@@ -43,9 +63,42 @@ export class InformationTypeComponent extends React.Component<InformationType> {
               {I18n.t('dataCatalog.pages.mainPage.businessGlossary')}
             </div>
           </div>
-          {createTextAreaField('description', this.props.description, this.props.isEdit)}
+          {createTextAreaField('description', values.description, this.props.isEdit)}
         </div>
       </div>
     );
   }
 }
+
+const InformationTypeComponent = withFormik<InformationType, InformationType>({
+  mapPropsToValues: (props: InformationType) => ({
+    system: {
+      code: (props.system && props.system.code) || '',
+      description: (props.system && props.system.description) || ''
+    },
+    producer: {
+      code: (props.producer && props.producer.code) || '',
+      description: (props.producer && props.producer.description) || ''
+    },
+    category: {
+      code: (props.category && props.category.code) || '',
+      description: (props.category && props.category.description) || ''
+    },
+    name: props.name,
+    description: props.description,
+    informationTypeId: props.informationTypeId
+  }),
+  handleSubmit: (values, { props }) => {
+    null;
+  },
+  validationSchema: Yup.object({
+    name: Yup.string().test({
+      name: 'legalBasisDescription',
+      exclusive: true,
+      message: 'Must be less than 500 characters',
+      test: value => value == null || value.length <= 500
+    })
+  })
+})(InformationTypeComponentInner);
+
+export default InformationTypeComponent;

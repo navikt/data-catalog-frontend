@@ -1,7 +1,7 @@
 import { ActionType } from 'typesafe-actions';
 
 import * as policyActions from './actions';
-import { InformationType, LegalBasis, Purpose } from '../dataCatalog/types';
+import { CodeList, InformationType, LegalBasis } from '../dataCatalog/types';
 
 export type PolicyActions = ActionType<typeof policyActions>;
 
@@ -14,7 +14,7 @@ export const enum PolicyActionTypes {
 export interface Policy {
   policyId?: number;
   informationType?: InformationType;
-  purpose?: Purpose;
+  purpose?: CodeList;
   legalBasisDescription?: string;
   legalBasis?: LegalBasis;
 }
