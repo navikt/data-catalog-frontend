@@ -48,7 +48,7 @@ class InformationTypeViewComponent extends React.Component<Props> {
                 informationTypeId: this.props.informationTypeId,
                 name: this.props.name,
                 description: this.props.description
-            }, "Saved")}
+            })}
 
             }
           />

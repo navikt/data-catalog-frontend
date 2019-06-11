@@ -25,12 +25,10 @@ export const addBlankInformationType = () => action(DataActionTypes.ADD_INFORMAT
 
 // add or edit information type
 export const saveInformationType = (
-  informationType: InformationType,
-  redirectToOnSuccess: string
+  informationType: InformationType
 ) =>
   action(DataActionTypes.SAVE_INFORMATION_TYPE_REQUEST, {
-    informationType,
-    redirectToOnSuccess
+    informationType
   });
 export const saveInformationTypeSuccess = (result: InformationType) =>
   action(DataActionTypes.SAVE_INFORMATION_TYPE_SUCCESS, { result });
