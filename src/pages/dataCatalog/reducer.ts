@@ -63,6 +63,39 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
           ].concat(state.result.content)
         }
       };
+    case DataActionTypes.SAVE_INFORMATION_TYPE_REQUEST:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content: [
+            { ...state.result.content[0], pending: true },
+            ...state.result.content.slice(1)
+          ]
+        }
+      };
+    case DataActionTypes.SAVE_INFORMATION_TYPE_SUCCESS:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content: [
+            { ...action.payload.result, error: undefined, pending: false },
+            ...state.result.content.slice(1)
+          ]
+        }
+      };
+    case DataActionTypes.SAVE_INFORMATION_TYPE_FAILURE:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content: [
+            { ...state.result.content[0], error: action.payload.error, pending: false },
+            ...state.result.content.slice(1)
+          ]
+        }
+      };
     case DataActionTypes.TOGGLE_ROW:
       return {
         ...state,
@@ -182,36 +215,6 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
             }
             return e;
           })
-        }
-      };
-    case DataActionTypes.SEND_INFORMATION_TYPE_REQUEST:
-      return {
-        ...state,
-        result: {
-          ...state.result,
-          content: [{ pending: true, error: undefined }].concat(
-            ...(state.result.content || [])
-          )
-        }
-      };
-    case DataActionTypes.SEND_INFORMATION_TYPE_SUCCESS:
-      return {
-        ...state,
-        result: {
-          ...state.result,
-          content: {
-            ...state.result.content[0].push({ pending: false, ...action.payload })
-          }
-        }
-      };
-    case DataActionTypes.SEND_INFORMATION_TYPE_FAILURE:
-      return {
-        ...state,
-        result: {
-          ...state.result,
-          content: {
-            ...state.result.content[0].push({ pending: false, error: action.payload })
-          }
         }
       };
     default:

@@ -20,7 +20,23 @@ export const fetchInformationTypeFailure = (error: ApiError) =>
 export const toggleExpandRow = (informationTypeId: number) =>
   action(DataActionTypes.TOGGLE_ROW, { informationTypeId });
 
+// add blank row for information type
 export const addBlankInformationType = () => action(DataActionTypes.ADD_INFORMATION_TYPE);
+
+// add or edit information type
+export const saveInformationType = (
+  informationType: InformationType,
+  redirectToOnSuccess: string
+) =>
+  action(DataActionTypes.SAVE_INFORMATION_TYPE_REQUEST, {
+    informationType,
+    redirectToOnSuccess
+  });
+export const saveInformationTypeSuccess = (result: InformationType) =>
+  action(DataActionTypes.SAVE_INFORMATION_TYPE_SUCCESS, { result });
+
+export const saveInformationTypeFailure = (error: ApiError) =>
+  action(DataActionTypes.SAVE_INFORMATION_TYPE_FAILURE, { error });
 
 export const toggleExpandRowPolicy = (informationTypeId: number, policyId: number) =>
   action(DataActionTypes.TOGGLE_ROW_POLICY, { informationTypeId, policyId });
@@ -57,18 +73,3 @@ export const fetchPolicyForInformationTypeFailure = (
     error,
     informationTypeId
   });
-
-export const sendInformationType = (
-  informationType: InformationType,
-  redirectToOnSuccess: string
-) =>
-  action(DataActionTypes.SEND_INFORMATION_TYPE_REQUEST, {
-    informationType,
-    redirectToOnSuccess
-  });
-
-export const sendInformationTypeSuccess = (sentInformationType: InformationType) =>
-  action(DataActionTypes.SEND_INFORMATION_TYPE_SUCCESS, sentInformationType);
-
-export const sendInformationTypeFailur = (error: ApiError) =>
-  action(DataActionTypes.SEND_INFORMATION_TYPE_FAILURE, error);

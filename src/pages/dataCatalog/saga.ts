@@ -1,7 +1,7 @@
 import { all, call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 
-import { restGet, restPost } from '../../api';
+import { restGet, restPost, restPut } from '../../api';
 import { ApiPath } from './modelsApi';
 import {
   fetchInformationType,
@@ -10,9 +10,9 @@ import {
   fetchPolicyForInformationType,
   fetchPolicyForInformationTypeSuccess,
   fetchPolicyForInformationTypeFailure,
-  sendInformationType,
-  sendInformationTypeSuccess,
-  sendInformationTypeFailur
+  saveInformationType,
+  saveInformationTypeSuccess,
+  saveInformationTypeFailure
 } from './actions';
 import { DataActionTypes } from './types';
 
@@ -83,26 +83,28 @@ export function* policyForInformationTypeSaga() {
   ]);
 }
 
-function* sendInformationTypeSaga(action: ReturnType<typeof sendInformationType>) {
+function* saveInformationTypeSaga(action: ReturnType<typeof saveInformationType>) {
   try {
     const res = yield call(
-      restPost,
+      action.payload.informationType && action.payload.informationType.informationTypeId
+        ? restPut
+        : restPost,
       ApiPath.InformationTypePath,
       action.payload.informationType
     );
     if (res.ok) {
       yield put(push(action.payload.redirectToOnSuccess));
-      yield put(sendInformationTypeSuccess(action.payload.informationType));
+      yield put(saveInformationTypeSuccess(action.payload.informationType));
     } else {
-      yield put(sendInformationTypeFailur(yield res.json()));
+      yield put(saveInformationTypeFailure(yield res.json()));
     }
   } catch (error) {
-    yield put(sendInformationTypeFailur(error));
+    yield put(saveInformationTypeFailure(error));
   }
 }
 
 export function* createInformationTypeSaga() {
   yield all([
-    takeLatest(DataActionTypes.SEND_INFORMATION_TYPE_REQUEST, sendInformationTypeSaga)
+    takeLatest(DataActionTypes.SAVE_INFORMATION_TYPE_REQUEST, saveInformationTypeSaga)
   ]);
 }
