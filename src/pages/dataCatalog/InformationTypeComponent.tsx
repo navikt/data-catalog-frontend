@@ -8,9 +8,13 @@ import {
 import { I18n } from 'react-i18nify';
 import { InjectedFormikProps, withFormik } from 'formik';
 import * as Yup from 'yup';
+import { CodeListResult } from '../producers/types';
 
 class InformationTypeComponentInner extends React.Component<
-  InjectedFormikProps<InformationType, InformationType>
+  InjectedFormikProps<
+    InformationType & { codeListResult: CodeListResult },
+    InformationType
+  >
 > {
   public render() {
     const {
@@ -24,7 +28,7 @@ class InformationTypeComponentInner extends React.Component<
       //handleReset
     } = this.props;
     return (
-      <div className="row" style={{ margin: '20px 10px 10px 10px' }}>
+      <div key={this.props.name} className="row" style={{ margin: '20px 10px 10px 10px' }}>
         <div className="col-md-6">
           {createInputField(
             'name',
@@ -36,16 +40,19 @@ class InformationTypeComponentInner extends React.Component<
           {createOptionField(
             'system',
             values.system ? values.system.code : '',
+            this.props.codeListResult.system || [],
             this.props.isEdit
           )}
           {createOptionField(
             'producer',
             values.producer ? values.producer.code : '',
+            this.props.codeListResult.producer || [],
             this.props.isEdit
           )}
           {createOptionField(
             'category',
             values.category ? values.category.code : '',
+            this.props.codeListResult.category || [],
             this.props.isEdit
           )}
           {createOptionField(
@@ -53,6 +60,10 @@ class InformationTypeComponentInner extends React.Component<
             values.personalData
               ? I18n.t('dataCatalog.words.yes')
               : I18n.t('dataCatalog.words.no'),
+            [
+              { code: I18n.t('dataCatalog.words.yes'), description: 'yes' },
+              { code: I18n.t('dataCatalog.words.no'), description: 'no' }
+            ],
             this.props.isEdit
           )}
         </div>
@@ -70,7 +81,10 @@ class InformationTypeComponentInner extends React.Component<
   }
 }
 
-const InformationTypeComponent = withFormik<InformationType, InformationType>({
+const InformationTypeComponent = withFormik<
+  InformationType & { codeListResult: CodeListResult },
+  InformationType
+>({
   mapPropsToValues: (props: InformationType) => ({
     system: {
       code: (props.system && props.system.code) || '',

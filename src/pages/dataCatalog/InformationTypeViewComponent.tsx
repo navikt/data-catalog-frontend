@@ -6,13 +6,18 @@ import PolicyViewComponent from './PolicyViewComponent';
 import { toggleEditView, saveInformationType } from './actions';
 import { connect } from 'react-redux';
 import InformationTypeComponent from './InformationTypeComponent';
+import { CodeListResult } from '../producers/types';
 
 interface PropsFromDispatch {
   toggleEditView: typeof toggleEditView;
   saveInformationType: typeof saveInformationType;
 }
 
-type Props = InformationTypeView & PropsFromDispatch;
+interface PropsFromState {
+  codeListResult: CodeListResult;
+}
+
+type Props = InformationTypeView & PropsFromDispatch & PropsFromState;
 
 class InformationTypeViewComponent extends React.Component<Props> {
   public render() {
@@ -24,7 +29,10 @@ class InformationTypeViewComponent extends React.Component<Props> {
           borderStyle: 'solid'
         }}
       >
-        <InformationTypeComponent {...this.props} />
+        <InformationTypeComponent
+          {...this.props}
+          codeListResult={this.props.codeListResult}
+        />
 
         <div className="row" style={{ margin: '20px 10px 10px 10px' }}>
           <div className="col-12">
@@ -37,6 +45,7 @@ class InformationTypeViewComponent extends React.Component<Props> {
           policy={this.props.policy || PolicyResultDefaultValue}
           isEdit={this.props.isEdit}
           informationTypeId={this.props.informationTypeId}
+          codeListResult={this.props.codeListResult}
         />
 
         {this.props.isEdit && (
@@ -58,6 +67,8 @@ class InformationTypeViewComponent extends React.Component<Props> {
 }
 
 export default connect(
-  null,
+  (state: any) => ({
+    codeListResult: state.codeList.result
+  }),
   { toggleEditView: toggleEditView, saveInformationType }
 )(InformationTypeViewComponent);

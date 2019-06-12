@@ -7,12 +7,14 @@ import { memo } from 'react';
 import { connect } from 'react-redux';
 import { get } from 'lodash';
 import PolicyComponent from './PolicyComponent';
+import { CodeListResult } from '../producers/types';
 
-interface PropsFromState {
+interface PropsFromComponent {
   pathName?: string;
   policy: PolicyResult;
   isEdit?: boolean;
   informationTypeId: number;
+  codeListResult: CodeListResult;
 }
 
 interface PropsFromDispatch {
@@ -20,7 +22,7 @@ interface PropsFromDispatch {
   onToggleClick: typeof toggleExpandRowPolicy;
 }
 
-type Props = PropsFromState & PropsFromDispatch;
+type Props = PropsFromComponent & PropsFromDispatch;
 
 class PolicyViewComponent extends React.Component<Props> {
   public componentDidMount() {
@@ -30,10 +32,14 @@ class PolicyViewComponent extends React.Component<Props> {
   }
 
   public render() {
-    const addIsEdit = (content: Policy[], isEdit: boolean) =>
+    const addIsEdit = (
+      content: Policy[],
+      isEdit: boolean,
+      codeListResult: CodeListResult
+    ) =>
       content && content.length >= 0
         ? content.map((c: Policy) => {
-            return { ...c, isEdit };
+            return { ...c, isEdit, codeListResult };
           })
         : [];
     return (
@@ -41,7 +47,8 @@ class PolicyViewComponent extends React.Component<Props> {
         <Table
           data={addIsEdit(
             get(this.props, ['policy', 'result', 'content']) || [],
-            this.props.isEdit || false
+            this.props.isEdit || false,
+            this.props.codeListResult
           )}
           idKey="policyId"
           parentId={this.props.informationTypeId}
@@ -81,7 +88,9 @@ class PolicyViewComponent extends React.Component<Props> {
   }
 }
 
-const CollapseComponent = memo((props: Policy) => <PolicyComponent {...props} />);
+const CollapseComponent = memo((props: Policy & { codeListResult: CodeListResult }) => (
+  <PolicyComponent {...props} codeListResult={props.codeListResult} />
+));
 
 export default connect(
   null,

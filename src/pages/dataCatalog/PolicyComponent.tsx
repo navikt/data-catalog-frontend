@@ -1,10 +1,13 @@
 import * as React from 'react';
-import { Policy } from './types';
+import { Policy} from './types';
 import { createInputField, createOptionField } from './commonComponents';
 import { withFormik, InjectedFormikProps } from 'formik';
 import * as Yup from 'yup';
+import { CodeListResult } from '../producers/types';
 
-class PolicyComponentInner extends React.Component<InjectedFormikProps<Policy, Policy>> {
+class PolicyComponentInner extends React.Component<
+  InjectedFormikProps<Policy & { codeListResult: CodeListResult }, Policy>
+> {
   public render() {
     const {
       values,
@@ -22,9 +25,11 @@ class PolicyComponentInner extends React.Component<InjectedFormikProps<Policy, P
           className="col-md-6 col-sm-12"
           style={{ marginLeft: '6px', marginRight: '6px', marginTop: '12px' }}
         >
+
           {createOptionField(
             'purposeCode',
             values.purpose.code || '',
+            (this.props.codeListResult && this.props.codeListResult.purpose) || [],
             this.props.isEdit || false
           )}
         </div>
@@ -34,7 +39,7 @@ class PolicyComponentInner extends React.Component<InjectedFormikProps<Policy, P
         >
           {createInputField(
             'purposeDescription',
-            values.purpose.description || '',
+                   values.purpose.description || '',
             handleChange,
             handleBlur,
             false
@@ -57,7 +62,7 @@ class PolicyComponentInner extends React.Component<InjectedFormikProps<Policy, P
   }
 }
 
-const PolicyComponent = withFormik<Policy, Policy>({
+const PolicyComponent = withFormik<Policy & { codeListResult: CodeListResult }, Policy>({
   mapPropsToValues: (props: Policy) => ({
     purpose: {
       code: (props.purpose && props.purpose.code) || '',
