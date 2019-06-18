@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Policy} from './types';
+import { Policy } from './types';
 import { createInputField, createOptionField } from './commonComponents';
 import { withFormik, InjectedFormikProps } from 'formik';
 import * as Yup from 'yup';
@@ -22,31 +22,19 @@ class PolicyComponentInner extends React.Component<
     return (
       <div>
         <div
-          className="col-md-6 col-sm-12"
+          className="col-md-12 col-sm-12"
           style={{ marginLeft: '6px', marginRight: '6px', marginTop: '12px' }}
         >
-
           {createOptionField(
-            'purposeCode',
+            'purposeDescription',
             values.purpose.code || '',
+            values.purpose.description || '',
             (this.props.codeListResult && this.props.codeListResult.purpose) || [],
             this.props.isEdit || false
           )}
         </div>
         <div
-          className="col-md-6 col-sm-12"
-          style={{ marginLeft: '6px', marginRight: '6px' }}
-        >
-          {createInputField(
-            'purposeDescription',
-                   values.purpose.description || '',
-            handleChange,
-            handleBlur,
-            false
-          )}
-        </div>
-        <div
-          className="col-md-6 col-sm-12"
+          className="col-md-12 col-sm-12"
           style={{ marginLeft: '6px', marginRight: '6px' }}
         >
           {createInputField(

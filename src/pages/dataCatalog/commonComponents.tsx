@@ -4,9 +4,16 @@ import { ChangeEventHandler } from 'react';
 import { FocusEventHandler } from 'react';
 import { CodeList } from './types';
 
+function getLabel(description: string, code: string) {
+  return description === code
+    ? ': ' + description
+    : ': ' + description + '(' + code + ')';
+}
+
 export const createOptionField = (
   text: string,
-  value: string,
+  code: string,
+  description: string,
   data: CodeList[],
   isEdit: boolean = false
 ) => (
@@ -14,16 +21,17 @@ export const createOptionField = (
     <div className={isEdit ? 'col-md-4 col-sm-12' : 'col-md-4 col-5'}>
       {I18n.t('dataCatalog.pages.mainPage.' + text)}
     </div>
+
     <div className={isEdit ? 'col-md-6 col-sm-12' : 'col-md-6 col-6'}>
       {isEdit ? (
-        <select className="form-control" id={text}>
-          <option>{value}</option>
+        <select className="custom-select" id={text}>
+          <option value={code}>{description}</option>
           {data &&
             data.length >= 1 &&
-            data.map((d: CodeList) => <option>{d.code}</option>)}
+            data.map((d: CodeList) => <option value={d.code}>{d.description}</option>)}
         </select>
       ) : (
-        ': ' + value
+        getLabel(description, code)
       )}
     </div>
   </div>
@@ -61,16 +69,16 @@ export const createTextAreaField = (
   isEdit: boolean = false
 ) => (
   <div key={text} className="row" style={{ marginBottom: '10px' }}>
-    <div className="col-md-3">
-      {I18n.t('dataCatalog.pages.mainPage.' + text + (isEdit ? '' : ' : '))}
+    <div className={isEdit ? 'col-md-4 col-sm-12' : 'col-md-4 col-5'}>
+      {I18n.t('dataCatalog.pages.mainPage.' + text)}
     </div>
-    <div className="col-md-9">
+    <div className={isEdit ? 'col-md-6 col-sm-12' : 'col-md-6 col-6'}>
       {isEdit ? (
         <textarea className="form-control" id={text} rows={5}>
           {value}
         </textarea>
       ) : (
-        value
+        (isEdit ? '' : ' : ') + value
       )}
     </div>
   </div>

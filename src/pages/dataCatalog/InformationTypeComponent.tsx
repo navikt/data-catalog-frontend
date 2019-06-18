@@ -28,53 +28,69 @@ class InformationTypeComponentInner extends React.Component<
       //handleReset
     } = this.props;
     return (
-      <div key={this.props.name} className="row" style={{ margin: '20px 10px 10px 10px' }}>
-        <div className="col-md-6">
-          {createInputField(
-            'name',
-            values.name,
-            handleChange,
-            handleBlur,
-            this.props.isEdit
-          )}
-          {createOptionField(
-            'system',
-            values.system ? values.system.code : '',
-            this.props.codeListResult.system || [],
-            this.props.isEdit
-          )}
-          {createOptionField(
-            'producer',
-            values.producer ? values.producer.code : '',
-            this.props.codeListResult.producer || [],
-            this.props.isEdit
-          )}
-          {createOptionField(
-            'category',
-            values.category ? values.category.code : '',
-            this.props.codeListResult.category || [],
-            this.props.isEdit
-          )}
-          {createOptionField(
-            'personalData',
-            values.personalData
-              ? I18n.t('dataCatalog.words.yes')
-              : I18n.t('dataCatalog.words.no'),
-            [
-              { code: I18n.t('dataCatalog.words.yes'), description: 'yes' },
-              { code: I18n.t('dataCatalog.words.no'), description: 'no' }
-            ],
-            this.props.isEdit
-          )}
-        </div>
-
-        <div className="col-md-6" style={{ backgroundColor: '#fef9e7' }}>
-          <div className="row">
-            <div className="col-md-4" style={{ fontSize: '20px', marginBottom: '10px' }}>
-              {I18n.t('dataCatalog.pages.mainPage.businessGlossary')}
-            </div>
+      <div
+        className="container"
+        key={this.props.name}
+        style={{ margin: '20px 10px 10px 10px' }}
+      >
+        <div className="row">
+          <div className="col-md-12">
+            {createInputField(
+              'name',
+              values.name,
+              handleChange,
+              handleBlur,
+              this.props.isEdit
+            )}
+            {createOptionField(
+              'system',
+              values.system ? values.system.code : '',
+              values.system ? values.system.description : '',
+              this.props.codeListResult.system || [],
+              this.props.isEdit
+            )}
+            {createOptionField(
+              'producer',
+              values.producer ? values.producer.code : '',
+              values.producer ? values.producer.description : '',
+              this.props.codeListResult.producer || [],
+              this.props.isEdit
+            )}
+            {createOptionField(
+              'category',
+              values.category ? values.category.code : '',
+              values.category ? values.category.description : '',
+              this.props.codeListResult.category || [],
+              this.props.isEdit
+            )}
+            {createOptionField(
+              'personalData',
+              values.personalData
+                ? I18n.t('dataCatalog.words.yes')
+                : I18n.t('dataCatalog.words.no'),
+              values.personalData
+                ? I18n.t('dataCatalog.words.yes')
+                : I18n.t('dataCatalog.words.no'),
+              [
+                { code: I18n.t('dataCatalog.words.yes'), description: 'yes' },
+                { code: I18n.t('dataCatalog.words.no'), description: 'no' }
+              ],
+              this.props.isEdit
+            )}
           </div>
-          {createTextAreaField('description', values.description, this.props.isEdit)}
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <div className="row">
+              <div
+                className="col-md-4"
+                style={{ fontSize: '20px', marginBottom: '10px' }}
+              >
+                {I18n.t('dataCatalog.pages.mainPage.businessGlossary')}
+              </div>
+            </div>
+            {createTextAreaField('description', values.description, this.props.isEdit)}
+          </div>
         </div>
       </div>
     );
