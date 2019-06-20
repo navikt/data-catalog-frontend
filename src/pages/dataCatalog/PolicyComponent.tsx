@@ -30,6 +30,8 @@ class PolicyComponentInner extends React.Component<
             values.purpose.code || '',
             values.purpose.description || '',
             (this.props.codeListResult && this.props.codeListResult.purpose) || [],
+            handleChange,
+            handleBlur,
             this.props.isEdit || false
           )}
         </div>

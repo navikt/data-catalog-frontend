@@ -68,10 +68,9 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         ...state,
         result: {
           ...state.result,
-          content: [
-            { ...state.result.content[0], pending: true },
-            ...state.result.content.slice(1)
-          ]
+          content: [{ ...state.result.content[0], pending: true }].concat(
+            state.result.content.slice(1)
+          )
         }
       };
     case DataActionTypes.SAVE_INFORMATION_TYPE_SUCCESS:
@@ -80,9 +79,8 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         result: {
           ...state.result,
           content: [
-            { ...action.payload.result, error: undefined, pending: false },
-            ...state.result.content.slice(1)
-          ]
+            { ...action.payload.result, error: undefined, pending: false }
+          ].concat(state.result.content.slice(1))
         }
       };
     case DataActionTypes.SAVE_INFORMATION_TYPE_FAILURE:
@@ -91,9 +89,8 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         result: {
           ...state.result,
           content: [
-            { ...state.result.content[0], error: action.payload.error, pending: false },
-            ...state.result.content.slice(1)
-          ]
+            { ...state.result.content[0], error: action.payload.error, pending: false }
+          ].concat(state.result.content.slice(1))
         }
       };
     case DataActionTypes.TOGGLE_ROW:

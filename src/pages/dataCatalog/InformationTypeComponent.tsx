@@ -9,10 +9,15 @@ import { I18n } from 'react-i18nify';
 import { InjectedFormikProps, withFormik } from 'formik';
 import * as Yup from 'yup';
 import { CodeListResult } from '../producers/types';
+import Toolbar from '../../components/toolbar/Toolbar';
 
 class InformationTypeComponentInner extends React.Component<
   InjectedFormikProps<
-    InformationType & { codeListResult: CodeListResult },
+    InformationType & {
+      codeListResult: CodeListResult;
+      toggleEditView: Function;
+      saveInformationType: Function;
+    },
     InformationType
   >
 > {
@@ -30,10 +35,11 @@ class InformationTypeComponentInner extends React.Component<
     return (
       <div
         className="container"
-        key={this.props.name}
+        id={this.props.name}
+        key={this.props.informationTypeId}
         style={{ margin: '20px 10px 10px 10px' }}
       >
-        <div className="row">
+        <div key={'part one'} className="row">
           <div className="col-md-12">
             {createInputField(
               'name',
@@ -47,6 +53,8 @@ class InformationTypeComponentInner extends React.Component<
               values.system ? values.system.code : '',
               values.system ? values.system.description : '',
               this.props.codeListResult.system || [],
+              handleChange,
+              handleBlur,
               this.props.isEdit
             )}
             {createOptionField(
@@ -54,6 +62,8 @@ class InformationTypeComponentInner extends React.Component<
               values.producer ? values.producer.code : '',
               values.producer ? values.producer.description : '',
               this.props.codeListResult.producer || [],
+              handleChange,
+              handleBlur,
               this.props.isEdit
             )}
             {createOptionField(
@@ -61,6 +71,8 @@ class InformationTypeComponentInner extends React.Component<
               values.category ? values.category.code : '',
               values.category ? values.category.description : '',
               this.props.codeListResult.category || [],
+              handleChange,
+              handleBlur,
               this.props.isEdit
             )}
             {createOptionField(
@@ -72,14 +84,22 @@ class InformationTypeComponentInner extends React.Component<
                 ? I18n.t('dataCatalog.words.yes')
                 : I18n.t('dataCatalog.words.no'),
               [
-                { code: I18n.t('dataCatalog.words.yes'), description: 'yes' },
-                { code: I18n.t('dataCatalog.words.no'), description: 'no' }
+                {
+                  code: I18n.t('dataCatalog.words.yes'),
+                  description: I18n.t('dataCatalog.words.yes')
+                },
+                {
+                  code: I18n.t('dataCatalog.words.no'),
+                  description: I18n.t('dataCatalog.words.no')
+                }
               ],
+              handleChange,
+              handleBlur,
               this.props.isEdit
             )}
           </div>
         </div>
-        <div className="row">
+        <div key={'part two'} className="row">
           <div className="col-md-12">
             <div className="row">
               <div
@@ -89,16 +109,39 @@ class InformationTypeComponentInner extends React.Component<
                 {I18n.t('dataCatalog.pages.mainPage.businessGlossary')}
               </div>
             </div>
-            {createTextAreaField('description', values.description, this.props.isEdit)}
+            {createTextAreaField(
+              'description',
+              values.description,
+              handleChange,
+              handleBlur,
+              this.props.isEdit
+            )}
           </div>
         </div>
+        {this.props.isEdit && (
+          <Toolbar
+            cancelOnClick={() => this.props.toggleEditView(this.props.informationTypeId)}
+            saveOnClick={e => {
+              e.preventDefault();
+              return this.props.saveInformationType({
+                informationTypeId: values.informationTypeId,
+                name: values.name,
+                description: values.description,
+                system: values.system,
+                producer: values.producer,
+                category: values.category,
+                personalData: values.personalData
+              });
+            }}
+          />
+        )}
       </div>
     );
   }
 }
 
 const InformationTypeComponent = withFormik<
-  InformationType & { codeListResult: CodeListResult },
+  InformationType & { codeListResult: CodeListResult; saveInformationType: Function },
   InformationType
 >({
   mapPropsToValues: (props: InformationType) => ({
@@ -114,12 +157,20 @@ const InformationTypeComponent = withFormik<
       code: (props.category && props.category.code) || '',
       description: (props.category && props.category.description) || ''
     },
-    name: props.name,
-    description: props.description,
+    name: props.name || '',
+    description: props.description || '',
     informationTypeId: props.informationTypeId
   }),
   handleSubmit: (values, { props }) => {
-    null;
+    props.saveInformationType({
+      informationTypeId: values.informationTypeId,
+      name: values.name,
+      description: values.description,
+      system: values.system,
+      producer: values.producer,
+      category: values.category,
+      personalData: values.personalData
+    });
   },
   validationSchema: Yup.object({
     name: Yup.string().test({

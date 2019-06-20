@@ -85,7 +85,9 @@ export function* policyForInformationTypeSaga() {
 function* saveInformationTypeSaga(action: ReturnType<typeof saveInformationType>) {
   try {
     const res = yield call(
-      action.payload.informationType && action.payload.informationType.informationTypeId
+      action.payload.informationType &&
+        action.payload.informationType.informationTypeId &&
+        action.payload.informationType.informationTypeId >= 0
         ? restPut
         : restPost,
       ApiPath.InformationTypePath,
