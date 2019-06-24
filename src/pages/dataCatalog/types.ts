@@ -57,7 +57,7 @@ export interface InformationType extends Auditable {
   informationTypeId: number;
   name: string;
   description: string;
-  personalData?: boolean;
+  personalData?: boolean | string;
   isOpen?: boolean;
   isEdit?: boolean;
   category?: CodeList;

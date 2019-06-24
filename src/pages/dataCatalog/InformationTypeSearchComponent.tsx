@@ -132,7 +132,8 @@ const InformationTypeSearchComponent = withFormik<FormProps, FormValues>({
     name: '',
     description: '',
     producer: undefined,
-    system: undefined
+    system: undefined,
+    personalData: undefined
   }),
   handleSubmit: (values, { props }) => {
     props.fetchData(values);

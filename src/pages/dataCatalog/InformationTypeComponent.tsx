@@ -3,6 +3,7 @@ import { InformationType } from './types';
 import {
   createInputField,
   createOptionField,
+  createOptionFieldBoolean,
   createTextAreaField
 } from './commonComponents';
 import { I18n } from 'react-i18nify';
@@ -10,6 +11,7 @@ import { InjectedFormikProps, withFormik } from 'formik';
 import * as Yup from 'yup';
 import { CodeListResult } from '../producers/types';
 import Toolbar from '../../components/toolbar/Toolbar';
+import { get } from 'lodash';
 
 class InformationTypeComponentInner extends React.Component<
   InjectedFormikProps<
@@ -75,27 +77,12 @@ class InformationTypeComponentInner extends React.Component<
               handleBlur,
               this.props.isEdit
             )}
-            {createOptionField(
+            {createOptionFieldBoolean(
               'personalData',
-              values.personalData
-                ? I18n.t('dataCatalog.words.yes')
-                : I18n.t('dataCatalog.words.no'),
-              values.personalData
-                ? I18n.t('dataCatalog.words.yes')
-                : I18n.t('dataCatalog.words.no'),
-              [
-                {
-                  code: I18n.t('dataCatalog.words.yes'),
-                  description: I18n.t('dataCatalog.words.yes')
-                },
-                {
-                  code: I18n.t('dataCatalog.words.no'),
-                  description: I18n.t('dataCatalog.words.no')
-                }
-              ],
               handleChange,
               handleBlur,
-              this.props.isEdit
+              this.props.isEdit,
+              values.personalData
             )}
           </div>
         </div>
@@ -127,10 +114,59 @@ class InformationTypeComponentInner extends React.Component<
                 informationTypeId: values.informationTypeId,
                 name: values.name,
                 description: values.description,
-                system: values.system,
-                producer: values.producer,
-                category: values.category,
+                system: {
+                  code: values.system && values.system.code,
+                  description:
+                    this.props.codeListResult.system &&
+                    values.system &&
+                    values.system.code
+                      ? get(
+                          this.props.codeListResult.system.find(
+                            p =>
+                              p.code.toUpperCase() ===
+                              (values.system && values.system.code.toUpperCase())
+                          ),
+                          'description'
+                        )
+                      : values.system && values.system.description
+                },
+                producer: {
+                  code: values.producer && values.producer.code,
+                  description:
+                    this.props.codeListResult.producer &&
+                    values.producer &&
+                    values.producer.code
+                      ? get(
+                          this.props.codeListResult.producer.find(
+                            p =>
+                              p.code.toUpperCase() ===
+                              (values.producer && values.producer.code.toUpperCase())
+                          ),
+                          'description'
+                        )
+                      : values.producer && values.producer.description
+                },
+                category: {
+                  code: values.category && values.category.code,
+                  description:
+                    this.props.codeListResult.category &&
+                    values.category &&
+                    values.category.code
+                      ? get(
+                          this.props.codeListResult.category.find(
+                            p =>
+                              p.code.toUpperCase() ===
+                              (values.category && values.category.code.toUpperCase())
+                          ),
+                          'description'
+                        )
+                      : values.category && values.category.description
+                },
                 personalData: values.personalData
+                  ? values.personalData === 'true'
+                    ? true
+                    : false
+                  : null
               });
             }}
           />
@@ -159,6 +195,7 @@ const InformationTypeComponent = withFormik<
     },
     name: props.name || '',
     description: props.description || '',
+    personalData: props.personalData || false,
     informationTypeId: props.informationTypeId
   }),
   handleSubmit: (values, { props }) => {
@@ -167,7 +204,13 @@ const InformationTypeComponent = withFormik<
       name: values.name,
       description: values.description,
       system: values.system,
-      producer: values.producer,
+      producer: {
+        code: values.producer && values.producer.code,
+        description:
+          props.codeListResult.producer && values.producer && values.producer.code
+            ? props.codeListResult.producer[values.producer.code]
+            : ''
+      },
       category: values.category,
       personalData: values.personalData
     });

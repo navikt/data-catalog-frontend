@@ -10,6 +10,45 @@ function getLabel(description: string, code: string) {
     : ': ' + description + '(' + code + ')';
 }
 
+export const createOptionFieldBoolean = (
+  text: string,
+  handleChange: ChangeEventHandler,
+  handleBlur: FocusEventHandler,
+  isEdit: boolean = false,
+  code?: boolean | string
+) => (
+  <div key={text} className="row" style={{ marginBottom: '10px' }}>
+    <div className={isEdit ? 'col-md-4 col-sm-12' : 'col-md-4 col-5'}>
+      {I18n.t('dataCatalog.pages.mainPage.' + text)}
+    </div>
+
+    <div className={isEdit ? 'col-md-6 col-sm-12' : 'col-md-6 col-6'}>
+      {isEdit ? (
+        <select
+          className="custom-select"
+          id={text}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        >
+          <option value={code ? 'true' : 'false'}>
+            {code ? I18n.t('dataCatalog.words.yes') : I18n.t('dataCatalog.words.no')}
+          </option>
+          <option key={1} value="true">
+            {I18n.t('dataCatalog.words.yes')}
+          </option>
+          <option key={0} value="false">
+            {I18n.t('dataCatalog.words.no')}
+          </option>
+        </select>
+      ) : code ? (
+        I18n.t('dataCatalog.words.yes')
+      ) : (
+        I18n.t('dataCatalog.words.no')
+      )}
+    </div>
+  </div>
+);
+
 export const createOptionField = (
   text: string,
   code: string,
@@ -28,7 +67,7 @@ export const createOptionField = (
       {isEdit ? (
         <select
           className="custom-select"
-          id={text}
+          id={text + '.code'}
           onChange={handleChange}
           onBlur={handleBlur}
         >
