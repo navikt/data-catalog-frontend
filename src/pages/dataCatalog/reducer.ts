@@ -214,6 +214,39 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
           })
         }
       };
+    case DataActionTypes.ADD_POLICY:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content: state.result.content.map((e: InformationTypeView) => {
+            if (e.informationTypeId === action.payload.informationTypeId) {
+              return {
+                ...e,
+                policy: {
+                  ...e.policy,
+                  result: {
+                    ...(e.policy && e.policy.result),
+                    content:
+                      e.policy &&
+                      [
+                        {
+                          policyId: -1
+                          /*purpose: { code: '', description: '' },
+                          legalBasisDescription: null,
+                          isOpen: true,
+                          isEdit: true,
+                          isAdd: true*/
+                        }
+                      ].concat(e.policy.result.content)
+                  }
+                }
+              };
+            }
+            return e;
+          })
+        }
+      };
     default:
       return state;
   }

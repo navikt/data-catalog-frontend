@@ -16,12 +16,15 @@ export const enum DataActionTypes {
   SAVE_INFORMATION_TYPE_FAILURE = '@data/SAVE_INFORMATION_TYPE_FAILURE',
 
   TOGGLE_ROW_POLICY = '@data//TOGGLE_ROW_POLICY',
+  ADD_POLICY = '@data//ADD_POLICY',
+  SAVE_POLICY_REQUEST = '@data/SAVE_POLICY_REQUEST',
+  SAVE_POLICY_SUCCESS = '@data/SAVE_POLICY_SUCCESS',
+  SAVE_POLICY_FAILURE = '@data/SAVE_POLICY_FAILURE',
   TOGGLE_EDIT_VIEW = '@data//TOGGLE_EDIT_VIEW',
 
   FETCH_POLICY_FOR_INFORMATION_TYPE_REQUEST = '@data/FETCH_POLICY_FOR_INFORMATION_TYPE_REQUEST',
   FETCH_POLICY_FOR_INFORMATION_TYPE_SUCCESS = '@data/FETCH_POLICY_FOR_INFORMATION_TYPE_SUCCESS',
-  FETCH_POLICY_FOR_INFORMATION_TYPE_FAILURE = '@data/FETCH_POLICY_FOR_INFORMATION_TYPE_FAILURE',
-  ADD_POLICY = '@data//ADD_POLICY'
+  FETCH_POLICY_FOR_INFORMATION_TYPE_FAILURE = '@data/FETCH_POLICY_FOR_INFORMATION_TYPE_FAILURE'
 }
 
 export type DataState =
@@ -75,11 +78,11 @@ export interface LegalBasis extends Auditable {
 
 export interface Policy extends Auditable {
   policyId: number;
-  purpose: CodeList;
+  purpose?: CodeList;
   legalBasisDescription?: string;
-  legalBasis?: LegalBasis;
   isOpen?: boolean;
   isEdit?: boolean;
+  isAdd?: boolean;
 }
 
 export interface InformationTypeView extends InformationType {

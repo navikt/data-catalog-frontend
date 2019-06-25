@@ -1,7 +1,7 @@
 import { action } from 'typesafe-actions';
 import { get } from 'lodash';
 import { ApiError } from './modelsApi';
-import { DataActionTypes, InformationType } from './types';
+import { DataActionTypes, InformationType, Policy } from './types';
 
 export const fetchInformationType = (query: any) =>
   action(DataActionTypes.FETCH_INFORMATION_TYPE_REQUEST, {
@@ -69,3 +69,18 @@ export const fetchPolicyForInformationTypeFailure = (
     error,
     informationTypeId
   });
+
+// add blank row for Policy
+export const addBlankPolicy = (informationTypeId: number) =>
+  action(DataActionTypes.ADD_POLICY, { informationTypeId });
+
+// add or edit information type
+export const savePolicy = (policy: Policy) =>
+  action(DataActionTypes.SAVE_POLICY_REQUEST, {
+    policy
+  });
+export const savePolicySuccess = (result: Policy) =>
+  action(DataActionTypes.SAVE_POLICY_SUCCESS, { result });
+
+export const savePolicyFailure = (error: ApiError) =>
+  action(DataActionTypes.SAVE_POLICY_FAILURE, { error });

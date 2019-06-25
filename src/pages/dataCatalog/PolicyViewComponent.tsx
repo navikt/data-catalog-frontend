@@ -5,7 +5,8 @@ import { Column, Table } from '../../components/table/Table';
 import {
   fetchPolicyForInformationType,
   toggleExpandRowPolicy,
-  toggleEditView
+  toggleEditView,
+  addBlankPolicy
 } from './actions';
 import { memo } from 'react';
 import { connect } from 'react-redux';
@@ -25,6 +26,7 @@ interface PropsFromDispatch {
   fetchPolicyForInformationType: typeof fetchPolicyForInformationType;
   onToggleClick: typeof toggleExpandRowPolicy;
   toggleEditView: typeof toggleEditView;
+  addBlankPolicy: typeof addBlankPolicy;
 }
 
 type Props = PropsFromComponent & PropsFromDispatch;
@@ -76,7 +78,7 @@ class PolicyViewComponent extends React.Component<Props> {
           isEdit={this.props.isEdit}
           disabledEdit={true}
           onEditClick={(e: any) => e}
-          onAddClick={this.props.onToggleClick}
+          onAddClick={this.props.addBlankPolicy}
         >
           <Column
             width="50%"
@@ -119,6 +121,7 @@ export default connect(
   {
     fetchPolicyForInformationType,
     onToggleClick: toggleExpandRowPolicy,
-    toggleEditView: toggleEditView
+    toggleEditView: toggleEditView,
+    addBlankPolicy: addBlankPolicy
   }
 )(PolicyViewComponent);

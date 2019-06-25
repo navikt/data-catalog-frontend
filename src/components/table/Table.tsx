@@ -71,7 +71,7 @@ const TableComponent = ({
               key="btn-add"
               onClick={e => {
                 //alert(I18n.t('dataCatalog.words.doNotHaveSufficientRole'));
-                return onAddClick();
+                return parentId ? onAddClick(parentId) : onAddClick();
               }}
               title={
                 1 !== 1
