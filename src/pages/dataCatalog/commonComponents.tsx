@@ -41,9 +41,9 @@ export const createOptionFieldBoolean = (
           </option>
         </select>
       ) : code ? (
-          ': ' + I18n.t('dataCatalog.words.yes')
+        ': ' + I18n.t('dataCatalog.words.yes')
       ) : (
-          ': ' + I18n.t('dataCatalog.words.no')
+        ': ' + I18n.t('dataCatalog.words.no')
       )}
     </div>
   </div>

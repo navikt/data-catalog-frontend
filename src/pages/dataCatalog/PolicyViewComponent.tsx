@@ -2,7 +2,11 @@ import * as React from 'react';
 import { Policy, PolicyResult } from './types';
 import { I18n } from 'react-i18nify';
 import { Column, Table } from '../../components/table/Table';
-import { fetchPolicyForInformationType, toggleExpandRowPolicy } from './actions';
+import {
+  fetchPolicyForInformationType,
+  toggleExpandRowPolicy,
+  toggleEditView
+} from './actions';
 import { memo } from 'react';
 import { connect } from 'react-redux';
 import { get } from 'lodash';
@@ -20,6 +24,7 @@ interface PropsFromComponent {
 interface PropsFromDispatch {
   fetchPolicyForInformationType: typeof fetchPolicyForInformationType;
   onToggleClick: typeof toggleExpandRowPolicy;
+  toggleEditView: typeof toggleEditView;
 }
 
 type Props = PropsFromComponent & PropsFromDispatch;
@@ -35,11 +40,13 @@ class PolicyViewComponent extends React.Component<Props> {
     const addIsEdit = (
       content: Policy[],
       isEdit: boolean,
-      codeListResult: CodeListResult
+      codeListResult: CodeListResult,
+      informationTypeId: number,
+      toggleEditView: Function
     ) =>
       content && content.length >= 0
         ? content.map((c: Policy) => {
-            return { ...c, isEdit, codeListResult };
+            return { ...c, isEdit, codeListResult, informationTypeId, toggleEditView };
           })
         : [];
     return (
@@ -48,7 +55,9 @@ class PolicyViewComponent extends React.Component<Props> {
           data={addIsEdit(
             get(this.props, ['policy', 'result', 'content']) || [],
             this.props.isEdit || false,
-            this.props.codeListResult
+            this.props.codeListResult,
+            this.props.informationTypeId,
+            this.props.toggleEditView
           )}
           idKey="policyId"
           parentId={this.props.informationTypeId}
@@ -88,11 +97,28 @@ class PolicyViewComponent extends React.Component<Props> {
   }
 }
 
-const CollapseComponent = memo((props: Policy & { codeListResult: CodeListResult }) => (
-  <PolicyComponent {...props} codeListResult={props.codeListResult} />
-));
+const CollapseComponent = memo(
+  (
+    props: Policy & {
+      codeListResult: CodeListResult;
+      informationTypeId: number;
+      toggleEditView: Function;
+    }
+  ) => (
+    <PolicyComponent
+      {...props}
+      codeListResult={props.codeListResult}
+      informationTypeId={props.informationTypeId}
+      toggleEditView={props.toggleEditView}
+    />
+  )
+);
 
 export default connect(
   null,
-  { fetchPolicyForInformationType, onToggleClick: toggleExpandRowPolicy }
+  {
+    fetchPolicyForInformationType,
+    onToggleClick: toggleExpandRowPolicy,
+    toggleEditView: toggleEditView
+  }
 )(PolicyViewComponent);

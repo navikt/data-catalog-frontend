@@ -4,9 +4,17 @@ import { createInputField, createOptionField } from './commonComponents';
 import { withFormik, InjectedFormikProps } from 'formik';
 import * as Yup from 'yup';
 import { CodeListResult } from '../producers/types';
+import Toolbar from '../../components/toolbar/Toolbar';
 
 class PolicyComponentInner extends React.Component<
-  InjectedFormikProps<Policy & { codeListResult: CodeListResult }, Policy>
+  InjectedFormikProps<
+    Policy & {
+      codeListResult: CodeListResult;
+      informationTypeId: number;
+      toggleEditView: Function;
+    },
+    Policy
+  >
 > {
   public render() {
     const {
@@ -47,12 +55,27 @@ class PolicyComponentInner extends React.Component<
             this.props.isEdit || false
           )}
         </div>
+        {this.props.isEdit && (
+          <Toolbar
+            cancelOnClick={() => this.props.toggleEditView(this.props.informationTypeId)}
+            saveOnClick={e => {
+              return e.preventDefault();
+            }}
+          />
+        )}
       </div>
     );
   }
 }
 
-const PolicyComponent = withFormik<Policy & { codeListResult: CodeListResult }, Policy>({
+const PolicyComponent = withFormik<
+  Policy & {
+    codeListResult: CodeListResult;
+    informationTypeId: number;
+    toggleEditView: Function;
+  },
+  Policy
+>({
   mapPropsToValues: (props: Policy) => ({
     purpose: {
       code: (props.purpose && props.purpose.code) || '',

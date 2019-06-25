@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { InformationTypeView, PolicyResultDefaultValue } from './types';
 import { I18n } from 'react-i18nify';
-import Toolbar from '../../components/toolbar/Toolbar';
 import PolicyViewComponent from './PolicyViewComponent';
 import { toggleEditView, saveInformationType } from './actions';
 import { connect } from 'react-redux';
@@ -47,20 +46,6 @@ class InformationTypeViewComponent extends React.Component<Props> {
           informationTypeId={this.props.informationTypeId}
           codeListResult={this.props.codeListResult}
         />
-
-        {this.props.isEdit && (
-          <Toolbar
-            cancelOnClick={() => this.props.toggleEditView(this.props.informationTypeId)}
-            saveOnClick={e => {
-              e.preventDefault();
-              return this.props.saveInformationType({
-                informationTypeId: this.props.informationTypeId,
-                name: this.props.name,
-                description: this.props.description
-              });
-            }}
-          />
-        )}
       </div>
     );
   }
