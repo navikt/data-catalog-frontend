@@ -41,6 +41,9 @@ jobs:
           - node-v1-{{ .Branch }}-
           - node-v1-
     - run:
+        name: Node install
+        command: npm install
+    - run:
         name: Build application
         command: npm run build
     - save_cache:
