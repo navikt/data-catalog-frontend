@@ -82,8 +82,8 @@ class PolicyViewComponent extends React.Component<Props> {
         >
           <Column
             width="50%"
-            header={I18n.t('dataCatalog.pages.mainPage.purposeDescription')}
-            path="purpose.description"
+            header={I18n.t('dataCatalog.pages.mainPage.purposeCode')}
+            path="purpose.code"
             sortable
           />
           <Column
