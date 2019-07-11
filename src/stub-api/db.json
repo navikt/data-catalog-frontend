@@ -43,7 +43,6 @@
           "lastModifiedDate": ""
         },
         "personalData": true,
-
         "elasticsearchId": "",
         "elasticsearchStatus": "",
         "createdBy": "Datajeger",
@@ -53,7 +52,6 @@
         "policy": [
           {
             "policyId": 1,
-
             "purpose": {
               "purposeId": 1111,
               "purposeCode": "AAP",
@@ -63,7 +61,6 @@
               "lastModifiedBy": "",
               "lastModifiedDate": ""
             },
-
             "legalBasisDescription": "???",
             "legalBasis": {
               "legalBasisid": 1,
@@ -80,7 +77,6 @@
           },
           {
             "policyId": 2345,
-
             "purpose": {
               "purposeId": 1211,
               "purposeCode": "AAR",
@@ -90,7 +86,6 @@
               "lastModifiedBy": "",
               "lastModifiedDate": ""
             },
-
             "legalBasisDescription": "???",
             "legalBasis": {
               "legalBasisid": 2,
@@ -162,60 +157,61 @@
     "totalElements": 8
   },
   "informationType": {
-    "content": [
+    "informationTypeId": 2,
+    "name": "Sivilstand",
+    "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176",
+    "system": {
+      "code": "INST",
+      "description": "Institusjonsopphold"
+    },
+    "producer": [
       {
-        "createdBy": "Rituvesh",
-        "createdDate": 1558421034760,
-        "lastModifiedBy": null,
-        "lastModifiedDate": null,
-        "informationTypeId": 2,
-        "name": "Sivilstand",
-        "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176",
-        "category": { "code": "REISEVEI", "description": "Opplysninger om reisevei" },
-        "producer": [{ "code": "PRODUCER", "description": "producer description" },{ "code": "PRODUCER 2", "description": "producer description 2" }],
-        "system": { "code": "INST", "description": "Institusjonsopphold" },
-        "personalData": true,
-        "isOpen": true,
-        "isEdit": true
+        "code": "PRODUCER",
+        "description": "producer description"
       },
       {
-        "createdBy": "Rituvesh",
-        "createdDate": 1558421304143,
-        "lastModifiedBy": null,
-        "lastModifiedDate": null,
-        "informationTypeId": 3,
-        "name": "Arbeidsforhold",
-        "description": "Avtaleforhold hvor den ene part, arbeidstakeren, forplikter seg til å utføre arbeid mot lønn eller annen godtgjørelse for den annen part, arbeidsgiveren, i henhold til dennes ledelse. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-390",
-        "category": { "code": "REISEVEI", "description": "Opplysninger om reisevei" },
-        "producer": [{ "code": "PRODUCER", "description": "producer description" },{ "code": "PRODUCER 2", "description": "producer description 2" }],
-        "system": { "code": "INST", "description": "Institusjonsopphold" },
-        "personalData": true,
-        "isOpen": true
+        "code": "PRODUCER 2",
+        "description": "producer description 2"
       }
     ],
-    "currentPage": 0,
-    "pageSize": 3,
-    "totalElements": 8
+    "category": {
+      "code": "REISEVEI",
+      "description": "Opplysninger om reisevei"
+    },
+    "personalData": false
   },
   "policy": {
     "content": [
       {
         "policyId": 1,
-
         "informationType": {
           "informationTypeId": 2,
           "name": "Sivilstand",
           "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176",
-          "category": { "code": "code for 7", "description": "description for 7" },
-          "producer": [{ "code": "PRODUCER", "description": "producer description" },{ "code": "PRODUCER 2", "description": "producer description 2" }],
-          "system": { "code": "code for 28", "description": "description for 28" },
+          "category": {
+            "code": "code for 7",
+            "description": "description for 7"
+          },
+          "producer": [
+            {
+              "code": "PRODUCER",
+              "description": "producer description"
+            },
+            {
+              "code": "PRODUCER 2",
+              "description": "producer description 2"
+            }
+          ],
+          "system": {
+            "code": "code for 28",
+            "description": "description for 28"
+          },
           "personalData": true,
           "createdBy": "Ketill Fenne",
           "createdDate": 1558421034760,
           "lastModifiedBy": null,
           "lastModifiedDate": null
         },
-
         "purpose": {
           "purposeId": 1111,
           "code": "AAP",
@@ -225,7 +221,6 @@
           "lastModifiedBy": "",
           "lastModifiedDate": ""
         },
-
         "legalBasisDescription": "§ FTL 14",
         "createdBy": "Datajeger",
         "createdDate": "'2019-01-01 08:45:00 GMT+1'",
@@ -234,21 +229,34 @@
       },
       {
         "policyId": 2345,
-
         "informationType": {
           "informationTypeId": 2,
           "name": "Sivilstand",
           "description": "En overordnet kategori som beskriver en persons forhold til en annen person. Ref. til Begrepskatalog: https://jira.adeo.no/browse/BEGREP-176",
-          "category": { "code": "code for 7", "description": "description for 7" },
-          "producer": [{ "code": "PRODUCER", "description": "producer description" },{ "code": "PRODUCER 2", "description": "producer description 2" }],
-          "system": { "code": "code for 28", "description": "description for 28" },
+          "category": {
+            "code": "code for 7",
+            "description": "description for 7"
+          },
+          "producer": [
+            {
+              "code": "PRODUCER",
+              "description": "producer description"
+            },
+            {
+              "code": "PRODUCER 2",
+              "description": "producer description 2"
+            }
+          ],
+          "system": {
+            "code": "code for 28",
+            "description": "description for 28"
+          },
           "personalData": true,
           "createdBy": "Ketill Fenne",
           "createdDate": 1558421034760,
           "lastModifiedBy": null,
           "lastModifiedDate": null
         },
-
         "purpose": {
           "purposeId": 1211,
           "code": "AAR",
@@ -258,7 +266,6 @@
           "lastModifiedBy": "",
           "lastModifiedDate": ""
         },
-
         "legalBasisDescription": "§ FTL 17a, § FTL 17b, § FTL 14",
         "createdBy": "Datajeger",
         "createdDate": "'2019-01-01 08:45:00 GMT+1'",

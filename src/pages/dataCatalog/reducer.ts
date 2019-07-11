@@ -231,7 +231,7 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
                       e.policy &&
                       [
                         {
-                          policyId: -1,
+                          policyId: -1
                           /*purpose: { code: '', description: '' },
                           legalBasisDescription: null
                           isOpen: true,

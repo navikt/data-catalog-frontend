@@ -64,7 +64,7 @@ export interface InformationType extends Auditable {
   isOpen?: boolean;
   isEdit?: boolean;
   category?: CodeList;
-  producer?: CodeList;
+  producer?: CodeList[];
   system?: CodeList;
 
   elasticsearchId?: number;

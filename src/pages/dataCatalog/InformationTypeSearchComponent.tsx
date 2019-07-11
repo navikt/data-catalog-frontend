@@ -65,8 +65,8 @@ export class InformationTypeSearchComponentInner extends React.Component<
           {createField('name', values.name, handleChange, handleBlur, 3)}
           {createField('description', values.description, handleChange, handleBlur, 3)}
           {createField(
-            'producer',
-            values.producer && values.producer.code,
+            'category',
+            values.category && values.category.code,
             handleChange,
             handleBlur,
             2

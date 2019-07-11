@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { InformationType } from './types';
+import { CodeList, InformationType } from './types';
 import {
   createInputField,
   createOptionField,
@@ -59,15 +59,20 @@ class InformationTypeComponentInner extends React.Component<
               handleBlur,
               this.props.isEdit
             )}
-            {createOptionField(
-              'producer',
-              values.producer ? values.producer.code : '',
-              values.producer ? values.producer.description : '',
-              this.props.codeListResult.producer || [],
-              handleChange,
-              handleBlur,
-              this.props.isEdit
-            )}
+            {values.producer &&
+              values.producer.length > 0 &&
+              values.producer.map((p: CodeList, index: number) =>
+                createOptionField(
+                  'producer',
+                  p.code,
+                  p.description,
+                  this.props.codeListResult.producer || [],
+                  handleChange,
+                  handleBlur,
+                  this.props.isEdit,
+                  index
+                )
+              )}
             {createOptionField(
               'category',
               values.category ? values.category.code : '',
@@ -130,7 +135,8 @@ class InformationTypeComponentInner extends React.Component<
                         )
                       : values.system && values.system.description
                 },
-                producer: {
+                producer:
+                  values.producer /*{
                   code: values.producer && values.producer.code,
                   description:
                     this.props.codeListResult.producer &&
@@ -145,7 +151,7 @@ class InformationTypeComponentInner extends React.Component<
                           'description'
                         )
                       : values.producer && values.producer.description
-                },
+                },*/,
                 category: {
                   code: values.category && values.category.code,
                   description:
@@ -185,10 +191,7 @@ const InformationTypeComponent = withFormik<
       code: (props.system && props.system.code) || '',
       description: (props.system && props.system.description) || ''
     },
-    producer: {
-      code: (props.producer && props.producer.code) || '',
-      description: (props.producer && props.producer.description) || ''
-    },
+    producer: props.producer,
     category: {
       code: (props.category && props.category.code) || '',
       description: (props.category && props.category.description) || ''
@@ -204,13 +207,7 @@ const InformationTypeComponent = withFormik<
       name: values.name,
       description: values.description,
       system: values.system,
-      producer: {
-        code: values.producer && values.producer.code,
-        description:
-          props.codeListResult.producer && values.producer && values.producer.code
-            ? props.codeListResult.producer[values.producer.code]
-            : ''
-      },
+      producer: values.producer,
       category: values.category,
       personalData: values.personalData
     });

@@ -56,11 +56,12 @@ export const createOptionField = (
   data: CodeList[],
   handleChange: ChangeEventHandler,
   handleBlur: FocusEventHandler,
-  isEdit: boolean = false
+  isEdit: boolean = false,
+  index: number = 0
 ) => (
   <div key={text} className="row" style={{ marginBottom: '10px' }}>
     <div className={isEdit ? 'col-md-4 col-sm-12' : 'col-md-4 col-5'}>
-      {I18n.t('dataCatalog.pages.mainPage.' + text)}
+      {index < 1 ? I18n.t('dataCatalog.pages.mainPage.' + text) : ''}
     </div>
 
     <div className={isEdit ? 'col-md-6 col-sm-12' : 'col-md-6 col-6'}>
