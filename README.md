@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/navikt/data-catalog-frontend.svg?style=svg)](https://circleci.com/gh/navikt/data-catalog-frontend)
+
 # Data Catalog Frontend
 This is frontend open source project repository for the Data Catalog project. You can find the running application at [DataCatalog application link](https://35.201.118.102/)
 
