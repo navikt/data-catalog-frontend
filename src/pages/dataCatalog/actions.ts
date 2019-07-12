@@ -1,7 +1,7 @@
 import { action } from 'typesafe-actions';
 import { get } from 'lodash';
 import { ApiError } from './modelsApi';
-import { DataActionTypes, InformationType } from './types';
+import { DataActionTypes, InformationType, Policy } from './types';
 
 export const fetchInformationType = (query: any) =>
   action(DataActionTypes.FETCH_INFORMATION_TYPE_REQUEST, {
@@ -19,6 +19,20 @@ export const fetchInformationTypeFailure = (error: ApiError) =>
 
 export const toggleExpandRow = (informationTypeId: number) =>
   action(DataActionTypes.TOGGLE_ROW, { informationTypeId });
+
+// add blank row for information type
+export const addBlankInformationType = () => action(DataActionTypes.ADD_INFORMATION_TYPE);
+
+// add or edit information type
+export const saveInformationType = (informationType: InformationType) =>
+  action(DataActionTypes.SAVE_INFORMATION_TYPE_REQUEST, {
+    informationType
+  });
+export const saveInformationTypeSuccess = (result: InformationType) =>
+  action(DataActionTypes.SAVE_INFORMATION_TYPE_SUCCESS, { result });
+
+export const saveInformationTypeFailure = (error: ApiError) =>
+  action(DataActionTypes.SAVE_INFORMATION_TYPE_FAILURE, { error });
 
 export const toggleExpandRowPolicy = (informationTypeId: number, policyId: number) =>
   action(DataActionTypes.TOGGLE_ROW_POLICY, { informationTypeId, policyId });
@@ -56,17 +70,17 @@ export const fetchPolicyForInformationTypeFailure = (
     informationTypeId
   });
 
-export const sendInformationType = (
-  informationType: InformationType,
-  redirectToOnSuccess: string
-) =>
-  action(DataActionTypes.SEND_INFORMATION_TYPE_REQUEST, {
-    informationType,
-    redirectToOnSuccess
+// add blank row for Policy
+export const addBlankPolicy = (informationTypeId: number) =>
+  action(DataActionTypes.ADD_POLICY, { informationTypeId });
+
+// add or edit information type
+export const savePolicy = (policy: Policy) =>
+  action(DataActionTypes.SAVE_POLICY_REQUEST, {
+    policy
   });
+export const savePolicySuccess = (result: Policy) =>
+  action(DataActionTypes.SAVE_POLICY_SUCCESS, { result });
 
-export const sendInformationTypeSuccess = (sentInformationType: InformationType) =>
-  action(DataActionTypes.SEND_INFORMATION_TYPE_SUCCESS, sentInformationType);
-
-export const sendInformationTypeFailur = (error: ApiError) =>
-  action(DataActionTypes.SEND_INFORMATION_TYPE_FAILURE, error);
+export const savePolicyFailure = (error: ApiError) =>
+  action(DataActionTypes.SAVE_POLICY_FAILURE, { error });

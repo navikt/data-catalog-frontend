@@ -1,22 +1,88 @@
 import { I18n } from 'react-i18nify';
 import * as React from 'react';
+import { ChangeEventHandler } from 'react';
+import { FocusEventHandler } from 'react';
+import { CodeList } from './types';
 
-export const createOptionField = (
+function getLabel(description: string, code: string) {
+  return description === code
+    ? ': ' + description
+    : ': ' + description + '(' + code + ')';
+}
+
+export const createOptionFieldBoolean = (
   text: string,
-  value: string,
-  isEdit: boolean = false
+  handleChange: ChangeEventHandler,
+  handleBlur: FocusEventHandler,
+  isEdit: boolean = false,
+  code?: boolean | string
 ) => (
-  <div className="row" style={{ marginBottom: '10px' }}>
+  <div key={text} className="row" style={{ marginBottom: '10px' }}>
     <div className={isEdit ? 'col-md-4 col-sm-12' : 'col-md-4 col-5'}>
       {I18n.t('dataCatalog.pages.mainPage.' + text)}
     </div>
+
     <div className={isEdit ? 'col-md-6 col-sm-12' : 'col-md-6 col-6'}>
       {isEdit ? (
-        <select className="form-control" id={text}>
-          <option>{value}</option>
+        <select
+          className="custom-select"
+          id={text}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        >
+          <option value={code ? 'true' : 'false'}>
+            {code ? I18n.t('dataCatalog.words.yes') : I18n.t('dataCatalog.words.no')}
+          </option>
+          <option key={1} value="true">
+            {I18n.t('dataCatalog.words.yes')}
+          </option>
+          <option key={0} value="false">
+            {I18n.t('dataCatalog.words.no')}
+          </option>
+        </select>
+      ) : code ? (
+        ': ' + I18n.t('dataCatalog.words.yes')
+      ) : (
+        ': ' + I18n.t('dataCatalog.words.no')
+      )}
+    </div>
+  </div>
+);
+
+export const createOptionField = (
+  text: string,
+  code: string,
+  description: string,
+  data: CodeList[],
+  handleChange: ChangeEventHandler,
+  handleBlur: FocusEventHandler,
+  isEdit: boolean = false,
+  index: number = 0
+) => (
+  <div key={text} className="row" style={{ marginBottom: '10px' }}>
+    <div className={isEdit ? 'col-md-4 col-sm-12' : 'col-md-4 col-5'}>
+      {index < 1 ? I18n.t('dataCatalog.pages.mainPage.' + text) : ''}
+    </div>
+
+    <div className={isEdit ? 'col-md-6 col-sm-12' : 'col-md-6 col-6'}>
+      {isEdit ? (
+        <select
+          className="custom-select"
+          id={text + '.code'}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        >
+          <option value={code}>{description}</option>
+          {data &&
+            data.length >= 1 &&
+            data.map((d: CodeList) => (
+              <option key={d.code} value={d.code}>
+                {d.description}
+              </option>
+            ))}
         </select>
       ) : (
-        ': ' + value
+        getLabel(description, code)
       )}
     </div>
   </div>
@@ -24,15 +90,31 @@ export const createOptionField = (
 export const createInputField = (
   text: string,
   value: string,
+  handleChange: ChangeEventHandler,
+  handleBlur: FocusEventHandler,
   isEdit: boolean = false
 ) => (
-  <div className="row" style={{ marginBottom: '10px' }}>
-    <div className={isEdit ? 'col-md-4 col-sm-12' : 'col-md-4 col-5'}>
+  <div key={text} className="row" style={{ marginBottom: '10px' }}>
+    <div
+      key={text + 'label'}
+      className={isEdit ? 'col-md-4 col-sm-12' : 'col-md-4 col-5'}
+    >
       {I18n.t('dataCatalog.pages.mainPage.' + text)}
     </div>
-    <div className={isEdit ? 'col-md-6 col-sm-12' : 'col-md-6 col-6'}>
+    <div
+      key={text + 'value'}
+      className={isEdit ? 'col-md-6 col-sm-12' : 'col-md-6 col-6'}
+    >
       {isEdit ? (
-        <input type="text" className="form-control" id={text} value={value} />
+        <input
+          type="text"
+          className="form-control"
+          key={text}
+          id={text}
+          value={value}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
       ) : (
         ': ' + value
       )}
@@ -42,19 +124,27 @@ export const createInputField = (
 export const createTextAreaField = (
   text: string,
   value: string,
+  handleChange: ChangeEventHandler,
+  handleBlur: FocusEventHandler,
   isEdit: boolean = false
 ) => (
-  <div className="row" style={{ marginBottom: '10px' }}>
-    <div className="col-md-3">
-      {I18n.t('dataCatalog.pages.mainPage.' + text + (isEdit ? '' : ' : '))}
+  <div key={text} className="row" style={{ marginBottom: '10px' }}>
+    <div className={isEdit ? 'col-md-4 col-sm-12' : 'col-md-4 col-5'}>
+      {I18n.t('dataCatalog.pages.mainPage.' + text)}
     </div>
-    <div className="col-md-9">
+    <div className={isEdit ? 'col-md-6 col-sm-12' : 'col-md-6 col-6'}>
       {isEdit ? (
-        <textarea className="form-control" id={text} rows={5}>
-          {value}
-        </textarea>
+        <textarea
+          id={text}
+          key={text}
+          className="form-control"
+          rows={5}
+          value={value}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
       ) : (
-        value
+        (isEdit ? '' : ' : ') + value
       )}
     </div>
   </div>

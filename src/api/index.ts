@@ -65,3 +65,16 @@ export const restPost = (url: string, data: any, headers = {}) => {
     body: JSON.stringify(data)
   });
 };
+
+export const restPut = (url: string, data: any, headers = {}) => {
+  return fetch(url, {
+    method: 'PUT',
+    credentials: 'same-origin',
+    headers: {
+      ...commonHeaders,
+      [TOKEN]: getCookie('TOKEN'),
+      ...headers
+    },
+    body: JSON.stringify(data)
+  });
+};

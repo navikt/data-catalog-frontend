@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { memo } from 'react';
 import { connect } from 'react-redux';
-import { fetchInformationType, toggleEditView, toggleExpandRow } from './actions';
+import {
+  fetchInformationType,
+  toggleEditView,
+  toggleExpandRow,
+  addBlankInformationType
+} from './actions';
 import { InformationTypeView, Result } from './types';
 import { I18n } from 'react-i18nify';
 import { Table, Column } from '../../components/table/Table';
@@ -15,9 +20,10 @@ interface PropsFromState {
 }
 
 interface PropsFromDispatch {
-  fetchData: typeof fetchInformationType;
+  fetchInformationType: typeof fetchInformationType;
   onToggleClick: typeof toggleExpandRow;
   toggleEditView: typeof toggleEditView;
+  addBlankInformationType: typeof addBlankInformationType;
   isPending: boolean;
 }
 
@@ -25,7 +31,7 @@ type Props = PropsFromState & PropsFromDispatch;
 
 class DataCatalog extends React.Component<Props> {
   public componentDidMount() {
-    this.props.fetchData({});
+    this.props.fetchInformationType({});
   }
 
   public render() {
@@ -50,6 +56,7 @@ class DataCatalog extends React.Component<Props> {
             searchAction={(query: any) => fetchInformationType(query)}
             isEdit={true}
             onEditClick={this.props.toggleEditView}
+            onAddClick={this.props.addBlankInformationType}
           >
             <Column
               width="15%"
@@ -94,8 +101,9 @@ export default connect(
     isPending: state.dataCatalog.pending
   }),
   {
-    fetchData: fetchInformationType,
+    fetchInformationType: fetchInformationType,
     onToggleClick: toggleExpandRow,
-    toggleEditView
+    toggleEditView,
+    addBlankInformationType
   }
 )(DataCatalog);

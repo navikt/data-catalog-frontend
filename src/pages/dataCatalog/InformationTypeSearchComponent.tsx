@@ -65,8 +65,8 @@ export class InformationTypeSearchComponentInner extends React.Component<
           {createField('name', values.name, handleChange, handleBlur, 3)}
           {createField('description', values.description, handleChange, handleBlur, 3)}
           {createField(
-            'producer',
-            values.producer && values.producer.code,
+            'category',
+            values.category && values.category.code,
             handleChange,
             handleBlur,
             2
@@ -132,7 +132,8 @@ const InformationTypeSearchComponent = withFormik<FormProps, FormValues>({
     name: '',
     description: '',
     producer: undefined,
-    system: undefined
+    system: undefined,
+    personalData: undefined
   }),
   handleSubmit: (values, { props }) => {
     props.fetchData(values);

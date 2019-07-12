@@ -11,7 +11,6 @@ export const enum CodeListActionTypes {
 }
 
 export interface CodeListView {
-  listName?: string;
   code: string;
   description: string;
 }
