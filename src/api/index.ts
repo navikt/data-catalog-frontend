@@ -4,7 +4,7 @@ import * as qs from 'qs';
 import { filterEmpty, getCookie } from '../utils';
 import { TOKEN } from './headers';
 import { RestService } from './restServiceNames';
-import { getToken } from '../adal/adalConfig';
+import { getToken } from '../adal/adal';
 
 export * from './restServiceNames';
 

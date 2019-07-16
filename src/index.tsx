@@ -14,7 +14,7 @@ import { LanguageJson } from './language';
 import { I18n } from 'react-i18nify';
 import { loadLanguage } from './utils/language';
 import { runWithAdal } from 'react-adal';
-import { authContext } from './adal/adalConfig';
+import { authContext } from './adal/adal';
 
 const history = createBrowserHistory();
 const store = configStore(history);

@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as $ from 'jquery';
 import { I18n } from 'react-i18nify';
 import { connect } from 'react-redux';
-import { logout, userInfo } from '../../adal/adalConfig';
+import { logout, userInfo } from '../../adal/adal';
 
 interface Props {
   leftMenu?: object;
