@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CodeList, InformationType } from './types';
+import { InformationType } from './types';
 import {
   createInputField,
   createOptionField,
@@ -52,8 +52,7 @@ class InformationTypeComponentInner extends React.Component<
             )}
             {createOptionField(
               'system',
-              values.system ? values.system.code : '',
-              values.system ? values.system.description : '',
+              values.system && [values.system],
               this.props.codeListResult.system || [],
               handleChange,
               handleBlur,
@@ -61,22 +60,19 @@ class InformationTypeComponentInner extends React.Component<
             )}
             {values.producer &&
               values.producer.length > 0 &&
-              values.producer.map((p: CodeList, index: number) =>
-                createOptionField(
-                  'producer',
-                  p.code,
-                  p.description,
-                  this.props.codeListResult.producer || [],
-                  handleChange,
-                  handleBlur,
-                  this.props.isEdit,
-                  index
-                )
+              createOptionField(
+                'producer',
+                values.producer,
+                this.props.codeListResult.producer || [],
+                handleChange,
+                handleBlur,
+                this.props.isEdit,
+                1,
+                true
               )}
             {createOptionField(
               'category',
-              values.category ? values.category.code : '',
-              values.category ? values.category.description : '',
+              values.category && [values.category],
               this.props.codeListResult.category || [],
               handleChange,
               handleBlur,

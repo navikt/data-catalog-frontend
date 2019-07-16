@@ -35,8 +35,7 @@ class PolicyComponentInner extends React.Component<
         >
           {createOptionField(
             'purposeDescription',
-            values.purpose ? values.purpose.code : '',
-            values.purpose ? values.purpose.description : '',
+            values.purpose && [values.purpose],
             (this.props.codeListResult && this.props.codeListResult.purpose) || [],
             handleChange,
             handleBlur,
