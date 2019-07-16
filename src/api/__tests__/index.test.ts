@@ -27,7 +27,8 @@ describe('restGet', () => {
     const expectedHeaders = {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      headerTest: 'headerTestValue'
+      headerTest: 'headerTestValue',
+      Authorization: 'Bearer null'
     };
 
     expect(options.headers).toEqual(expectedHeaders);

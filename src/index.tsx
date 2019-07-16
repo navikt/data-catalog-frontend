@@ -13,6 +13,8 @@ import configStore from './configStore';
 import { LanguageJson } from './language';
 import { I18n } from 'react-i18nify';
 import { loadLanguage } from './utils/language';
+import { runWithAdal } from 'react-adal';
+import { authContext } from './adal/adalConfig';
 
 const history = createBrowserHistory();
 const store = configStore(history);
@@ -34,6 +36,12 @@ const render = (Component: React.ComponentType) => {
   );
 };
 
-render(App);
+runWithAdal(
+  authContext,
+  () => {
+    render(App);
+  },
+  false
+);
 
 // registerServiceWorker();

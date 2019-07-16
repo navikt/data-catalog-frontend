@@ -4,12 +4,14 @@ import * as qs from 'qs';
 import { filterEmpty, getCookie } from '../utils';
 import { TOKEN } from './headers';
 import { RestService } from './restServiceNames';
+import { getToken } from '../adal/adalConfig';
 
 export * from './restServiceNames';
 
 const commonHeaders = Object.freeze({
   Accept: 'application/json',
-  'Content-Type': 'application/json'
+  'Content-Type': 'application/json',
+  Authorization: 'Bearer ' + getToken
 });
 
 export const restExternalGet = (
