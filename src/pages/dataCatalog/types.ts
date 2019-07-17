@@ -78,6 +78,10 @@ export interface LegalBasis extends Auditable {
 
 export interface Policy extends Auditable {
   policyId: number;
+  informationType: {
+    informationTypeId: number;
+    name: string;
+  };
   purpose?: CodeList;
   legalBasisDescription?: string;
   isOpen?: boolean;

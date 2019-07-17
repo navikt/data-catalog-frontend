@@ -93,13 +93,23 @@ function* saveInformationTypeSaga(action: ReturnType<typeof saveInformationType>
       ApiPath.InformationTypePath,
       action.payload.informationType
     );
+    const json = yield res.json();
     if (res.ok) {
-      yield put(saveInformationTypeSuccess(action.payload.informationType));
+      yield put(
+        saveInformationTypeSuccess(json, action.payload.informationType.informationTypeId)
+      );
     } else {
-      yield put(saveInformationTypeFailure(yield res.json()));
+      yield put(
+        saveInformationTypeFailure(
+          yield res.json(),
+          action.payload.informationType.informationTypeId
+        )
+      );
     }
   } catch (error) {
-    yield put(saveInformationTypeFailure(error));
+    yield put(
+      saveInformationTypeFailure(error, action.payload.informationType.informationTypeId)
+    );
   }
 }
 

@@ -68,9 +68,17 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         ...state,
         result: {
           ...state.result,
-          content: [{ ...state.result.content[0], pending: true }].concat(
-            state.result.content.slice(1)
-          )
+          content:
+            action.payload.informationType.informationTypeId === -1
+              ? [{ ...state.result.content[0], pending: true }].concat(
+                  state.result.content.slice(1)
+                )
+              : state.result.content &&
+                state.result.content.map((c: InformationTypeView) =>
+                  c.informationTypeId === action.payload.informationType.informationTypeId
+                    ? { ...c, pending: true }
+                    : c
+                )
         }
       };
     case DataActionTypes.SAVE_INFORMATION_TYPE_SUCCESS:
@@ -78,9 +86,29 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         ...state,
         result: {
           ...state.result,
-          content: [
-            { ...action.payload.result, error: undefined, pending: false }
-          ].concat(state.result.content.slice(1))
+          content:
+            action.payload.informationTypeId === -1
+              ? [
+                  {
+                    ...action.payload.result,
+                    policy: state.result.content[0].policy,
+                    isOpen: state.result.content[0].isOpen,
+                    error: undefined,
+                    pending: false
+                  }
+                ].concat(state.result.content.slice(1))
+              : state.result.content &&
+                state.result.content.map((c: InformationTypeView) =>
+                  c.informationTypeId === action.payload.result.informationTypeId
+                    ? {
+                        ...action.payload.result,
+                        policy: c.policy,
+                        isOpen: c.isOpen,
+                        error: undefined,
+                        pending: false
+                      }
+                    : c
+                )
         }
       };
     case DataActionTypes.SAVE_INFORMATION_TYPE_FAILURE:
@@ -88,9 +116,26 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         ...state,
         result: {
           ...state.result,
-          content: [
-            { ...state.result.content[0], error: action.payload.error, pending: false }
-          ].concat(state.result.content.slice(1))
+          content:
+            action.payload.informationTypeId === -1
+              ? [
+                  {
+                    ...state.result.content[0],
+                    error: action.payload.error,
+                    pending: false
+                  }
+                ].concat(state.result.content.slice(1))
+              : state.result.content &&
+                state.result.content.map((c: InformationTypeView) =>
+                  c.informationTypeId === action.payload.informationTypeId
+                    ? {
+                        ...c,
+                        isOpen: c.isOpen,
+                        error: action.payload.error,
+                        pending: false
+                      }
+                    : c
+                )
         }
       };
     case DataActionTypes.TOGGLE_ROW:
@@ -227,24 +272,57 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
                   ...e.policy,
                   result: {
                     ...(e.policy && e.policy.result),
-                    content:
-                      e.policy &&
-                      [
-                        {
-                          policyId: -1
-                          /*purpose: { code: '', description: '' },
-                          legalBasisDescription: null
-                          isOpen: true,
-                          isEdit: true,
-                          isAdd: true,*/
-                        }
-                      ].concat(e.policy.result.content)
+                    content: e.policy && [
+                      {
+                        policyId: -1,
+                        informationType: {
+                          informationTypeId: e.informationTypeId,
+                          name: e.name
+                        },
+                        purpose: { code: '', description: '' },
+                        legalBasisDescription: null,
+                        isOpen: true,
+                        isEdit: true,
+                        isAdd: true
+                      },
+                      ...e.policy.result.content
+                    ]
                   }
                 }
               };
             }
             return e;
           })
+        }
+      };
+    case DataActionTypes.SAVE_POLICY_REQUEST:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content: [{ ...state.result.content[0], pending: true }].concat(
+            state.result.content.slice(1)
+          )
+        }
+      };
+    case DataActionTypes.SAVE_POLICY_SUCCESS:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content: [
+            { ...action.payload.result, error: undefined, pending: false }
+          ].concat(state.result.content.slice(1))
+        }
+      };
+    case DataActionTypes.SAVE_POLICY_FAILURE:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content: [
+            { ...state.result.content[0], error: action.payload.error, pending: false }
+          ].concat(state.result.content.slice(1))
         }
       };
     default:

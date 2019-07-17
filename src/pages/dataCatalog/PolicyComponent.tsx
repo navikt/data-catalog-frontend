@@ -33,9 +33,9 @@ class PolicyComponentInner extends React.Component<
           className="col-md-12 col-sm-12"
           style={{ marginLeft: '6px', marginRight: '6px', marginTop: '12px' }}
         >
-            {JSON.stringify(values)}
+          {JSON.stringify(values)}
 
-                {createOptionField(
+          {createOptionField(
             'purpose',
             values.purpose && [values.purpose],
             (this.props.codeListResult && this.props.codeListResult.purpose) || [],
@@ -81,6 +81,7 @@ const PolicyComponent = withFormik<
   Policy
 >({
   mapPropsToValues: (props: Policy) => ({
+    informationType: props.informationType,
     purpose: {
       code: (props.purpose && props.purpose.code) || '',
       description: (props.purpose && props.purpose.description) || ''

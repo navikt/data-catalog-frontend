@@ -28,11 +28,13 @@ export const saveInformationType = (informationType: InformationType) =>
   action(DataActionTypes.SAVE_INFORMATION_TYPE_REQUEST, {
     informationType
   });
-export const saveInformationTypeSuccess = (result: InformationType) =>
-  action(DataActionTypes.SAVE_INFORMATION_TYPE_SUCCESS, { result });
+export const saveInformationTypeSuccess = (
+  result: InformationType,
+  informationTypeId: number
+) => action(DataActionTypes.SAVE_INFORMATION_TYPE_SUCCESS, { result, informationTypeId });
 
-export const saveInformationTypeFailure = (error: ApiError) =>
-  action(DataActionTypes.SAVE_INFORMATION_TYPE_FAILURE, { error });
+export const saveInformationTypeFailure = (error: ApiError, informationTypeId: number) =>
+  action(DataActionTypes.SAVE_INFORMATION_TYPE_FAILURE, { error, informationTypeId });
 
 export const toggleExpandRowPolicy = (informationTypeId: number, policyId: number) =>
   action(DataActionTypes.TOGGLE_ROW_POLICY, { informationTypeId, policyId });
