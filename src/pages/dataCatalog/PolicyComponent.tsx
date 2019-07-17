@@ -23,8 +23,8 @@ class PolicyComponentInner extends React.Component<
       // touched,
       //handleSubmit,
       handleChange,
-      handleBlur
-      //setFieldValue,
+      handleBlur,
+      setFieldValue
       //handleReset
     } = this.props;
     return (
@@ -34,12 +34,15 @@ class PolicyComponentInner extends React.Component<
           style={{ marginLeft: '6px', marginRight: '6px', marginTop: '12px' }}
         >
           {createOptionField(
-            'purposeDescription',
+            'purpose',
             values.purpose && [values.purpose],
             (this.props.codeListResult && this.props.codeListResult.purpose) || [],
             handleChange,
             handleBlur,
-            this.props.isEdit || false
+            this.props.isEdit || false,
+            0,
+            false,
+            setFieldValue
           )}
         </div>
         <div

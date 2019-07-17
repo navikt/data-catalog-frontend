@@ -30,8 +30,8 @@ class InformationTypeComponentInner extends React.Component<
       // touched,
       //handleSubmit,
       handleChange,
-      handleBlur
-      //setFieldValue,
+      handleBlur,
+      setFieldValue
       //handleReset
     } = this.props;
     return (
@@ -56,27 +56,32 @@ class InformationTypeComponentInner extends React.Component<
               this.props.codeListResult.system || [],
               handleChange,
               handleBlur,
-              this.props.isEdit
+              this.props.isEdit,
+              0,
+              false,
+              setFieldValue
             )}
-            {values.producer &&
-              values.producer.length > 0 &&
-              createOptionField(
-                'producer',
-                values.producer,
-                this.props.codeListResult.producer || [],
-                handleChange,
-                handleBlur,
-                this.props.isEdit,
-                1,
-                true
-              )}
+            {createOptionField(
+              'producer',
+              values.producer,
+              this.props.codeListResult.producer || [],
+              handleChange,
+              handleBlur,
+              this.props.isEdit,
+              1,
+              true,
+              setFieldValue
+            )}
             {createOptionField(
               'category',
               values.category && [values.category],
               this.props.codeListResult.category || [],
               handleChange,
               handleBlur,
-              this.props.isEdit
+              this.props.isEdit,
+              0,
+              false,
+              setFieldValue
             )}
             {createOptionFieldBoolean(
               'personalData',

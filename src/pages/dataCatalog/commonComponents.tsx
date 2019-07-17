@@ -58,49 +58,46 @@ export const createOptionField = (
   handleBlur: FocusEventHandler,
   isEdit: boolean = false,
   index: number = 0,
-  isMulti: boolean = false
+  isMulti: boolean = false,
+  setFieldValue?: any
 ) => (
   <div key={text} className="row" style={{ marginBottom: '10px' }}>
     <div className={isEdit ? 'col-md-4 col-sm-12' : 'col-md-4 col-5'}>
-      {index < 1 ? I18n.t('dataCatalog.pages.mainPage.' + text) : ''}
+      {I18n.t('dataCatalog.pages.mainPage.' + text)}
     </div>
 
     <div className={isEdit ? 'col-md-6 col-sm-12' : 'col-md-6 col-6'}>
       {isEdit ? (
-        /* <select
-          className="custom-select"
-          id={text + '.code'}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        >
-          <option value={code}>{description}</option>
-          {data &&
-            data.length >= 1 &&
-            data.map((d: CodeList) => (
-              <option key={d.code} value={d.code}>
-                {d.description}
-              </option>
-            ))}
-        </select>*/
-
         <Select
           id={text + '.code'}
-          onChange={() => handleChange}
+          onChange={(option: any) =>
+            setFieldValue &&
+            setFieldValue(
+              text,
+              option
+                ? isMulti
+                  ? option.length > 0
+                    ? option.map((o: any) => ({ code: o.value, description: o.label }))
+                    : []
+                  : { code: option.value, description: option.label }
+                : []
+            )
+          }
           onBlur={handleBlur}
           options={data.map((d: CodeList) => ({ value: d.code, label: d.description }))}
           isMulti={isMulti}
           className="basic-multi-select"
           classNamePrefix="select"
+          value={
+            value && value.map((d: CodeList) => ({ value: d.code, label: d.description }))
+          }
           defaultValue={
             value && value.map((d: CodeList) => ({ value: d.code, label: d.description }))
           }
           isClearable
         />
       ) : (
-        getLabel(
-          value && value[0] ? value[0].description : '',
-          value && value[0] ? value[0].code : ''
-        )
+        value && value.map((v: CodeList) => <div>{getLabel(v.description, v.code)} </div>)
       )}
     </div>
   </div>
