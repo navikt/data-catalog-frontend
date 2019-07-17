@@ -33,7 +33,9 @@ class PolicyComponentInner extends React.Component<
           className="col-md-12 col-sm-12"
           style={{ marginLeft: '6px', marginRight: '6px', marginTop: '12px' }}
         >
-          {createOptionField(
+            {JSON.stringify(values)}
+
+                {createOptionField(
             'purpose',
             values.purpose && [values.purpose],
             (this.props.codeListResult && this.props.codeListResult.purpose) || [],
@@ -50,7 +52,7 @@ class PolicyComponentInner extends React.Component<
           style={{ marginLeft: '6px', marginRight: '6px' }}
         >
           {createInputField(
-            'legalBasis',
+            'legalBasisDescription',
             values.legalBasisDescription || '',
             handleChange,
             handleBlur,
