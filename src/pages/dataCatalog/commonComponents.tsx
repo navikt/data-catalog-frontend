@@ -69,6 +69,7 @@ export const createOptionField = (
     <div className={isEdit ? 'col-md-6 col-sm-12' : 'col-md-6 col-6'}>
       {isEdit ? (
         <Select
+            getOptionLabel ={(option: any)=>option.value + ': '+ option.label }
           id={text + '.code'}
           onChange={(option: any) =>
             setFieldValue &&
