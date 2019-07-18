@@ -6,49 +6,8 @@ import { CodeList } from './types';
 import Select from 'react-select';
 
 function getLabel(description: string, code: string) {
-  return description === code
-    ? ': ' + description
-    : ': ' + code ;
+  return description === code ? ': ' + description : ': ' + code;
 }
-
-export const createOptionFieldBoolean = (
-  text: string,
-  handleChange: ChangeEventHandler,
-  handleBlur: FocusEventHandler,
-  isEdit: boolean = false,
-  code?: boolean | string
-) => (
-  <div key={text} className="row" style={{ marginBottom: '10px' }}>
-    <div className={isEdit ? 'col-md-4 col-sm-12' : 'col-md-4 col-5'}>
-      {I18n.t('dataCatalog.pages.mainPage.' + text)}
-    </div>
-
-    <div className={isEdit ? 'col-md-6 col-sm-12' : 'col-md-6 col-6'}>
-      {isEdit ? (
-        <select
-          className="custom-select"
-          id={text}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        >
-          <option value={code ? 'true' : 'false'}>
-            {code ? I18n.t('dataCatalog.words.yes') : I18n.t('dataCatalog.words.no')}
-          </option>
-          <option key={1} value="true">
-            {I18n.t('dataCatalog.words.yes')}
-          </option>
-          <option key={0} value="false">
-            {I18n.t('dataCatalog.words.no')}
-          </option>
-        </select>
-      ) : code ? (
-        ': ' + I18n.t('dataCatalog.words.yes')
-      ) : (
-        ': ' + I18n.t('dataCatalog.words.no')
-      )}
-    </div>
-  </div>
-);
 
 export const createOptionField = (
   text: string,
@@ -69,7 +28,9 @@ export const createOptionField = (
     <div className={isEdit ? 'col-md-6 col-sm-12' : 'col-md-6 col-6'}>
       {isEdit ? (
         <Select
-            getOptionLabel ={(option: any)=> option && option.value &&  option.label ? (option.value) : '' }
+          getOptionLabel={(option: any) =>
+            option && option.value && option.label ? option.value : ''
+          }
           id={text + '.code'}
           onChange={(option: any) =>
             setFieldValue &&
@@ -80,7 +41,13 @@ export const createOptionField = (
                   ? option.length > 0
                     ? option.map((o: any) => ({ code: o.value, description: o.label }))
                     : []
+                  : text === 'personalData'
+                  ? option.value === 'Ja' || option.value === 'Yes'
+                    ? true
+                    : false
                   : { code: option.value, description: option.label }
+                : text === 'personalData'
+                ? null
                 : []
             )
           }
@@ -98,7 +65,10 @@ export const createOptionField = (
           isClearable
         />
       ) : (
-        value && value.map((v: CodeList) => <div title={v.description}>{getLabel(v.description, v.code)} </div>)
+        value &&
+        value.map((v: CodeList) => (
+          <div title={v.description}>{getLabel(v.description, v.code)} </div>
+        ))
       )}
     </div>
   </div>

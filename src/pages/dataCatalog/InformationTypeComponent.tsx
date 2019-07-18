@@ -3,7 +3,6 @@ import { InformationType } from './types';
 import {
   createInputField,
   createOptionField,
-  createOptionFieldBoolean,
   createTextAreaField
 } from './commonComponents';
 import { I18n } from 'react-i18nify';
@@ -83,12 +82,37 @@ class InformationTypeComponentInner extends React.Component<
               false,
               setFieldValue
             )}
-            {createOptionFieldBoolean(
+            {/*{JSON.stringify(values.personalData)}*/}
+            {createOptionField(
               'personalData',
+              values.personalData === null
+                ? undefined
+                : [
+                    {
+                      code: values.personalData
+                        ? I18n.t('dataCatalog.words.yes')
+                        : I18n.t('dataCatalog.words.no'),
+                      description: values.personalData
+                        ? I18n.t('dataCatalog.words.yes')
+                        : I18n.t('dataCatalog.words.no')
+                    }
+                  ],
+              [
+                {
+                  code: I18n.t('dataCatalog.words.yes'),
+                  description: I18n.t('dataCatalog.words.yes')
+                },
+                {
+                  code: I18n.t('dataCatalog.words.no'),
+                  description: I18n.t('dataCatalog.words.no')
+                }
+              ],
               handleChange,
               handleBlur,
               this.props.isEdit,
-              values.personalData
+              0,
+              false,
+              setFieldValue
             )}
           </div>
         </div>
@@ -136,23 +160,7 @@ class InformationTypeComponentInner extends React.Component<
                         )
                       : values.system && values.system.description
                 },
-                producer:
-                  values.producer /*{
-                  code: values.producer && values.producer.code,
-                  description:
-                    this.props.codeListResult.producer &&
-                    values.producer &&
-                    values.producer.code
-                      ? get(
-                          this.props.codeListResult.producer.find(
-                            p =>
-                              p.code.toUpperCase() ===
-                              (values.producer && values.producer.code.toUpperCase())
-                          ),
-                          'description'
-                        )
-                      : values.producer && values.producer.description
-                },*/,
+                producer: values.producer,
                 category: {
                   code: values.category && values.category.code,
                   description:
@@ -169,11 +177,12 @@ class InformationTypeComponentInner extends React.Component<
                         )
                       : values.category && values.category.description
                 },
-                personalData: values.personalData
-                  ? values.personalData === 'true'
-                    ? true
-                    : false
-                  : null
+                personalData:
+                  values.personalData !== null
+                    ? values.personalData
+                      ? true
+                      : false
+                    : null
               });
             }}
           />
