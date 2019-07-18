@@ -112,7 +112,8 @@ class InformationTypeComponentInner extends React.Component<
               this.props.isEdit,
               0,
               false,
-              setFieldValue
+              setFieldValue,
+              false
             )}
           </div>
         </div>
@@ -178,11 +179,7 @@ class InformationTypeComponentInner extends React.Component<
                       : values.category && values.category.description
                 },
                 personalData:
-                  values.personalData !== null
-                    ? values.personalData
-                      ? true
-                      : false
-                    : null
+                  values.personalData && values.personalData === true ? true : false
               });
             }}
           />

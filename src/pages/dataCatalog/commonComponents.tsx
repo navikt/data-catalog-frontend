@@ -18,7 +18,8 @@ export const createOptionField = (
   isEdit: boolean = false,
   index: number = 0,
   isMulti: boolean = false,
-  setFieldValue?: any
+  setFieldValue?: any,
+  isClearable: boolean = true
 ) => (
   <div key={text} className="row" style={{ marginBottom: '10px' }}>
     <div className={isEdit ? 'col-md-4 col-sm-12' : 'col-md-4 col-5'}>
@@ -47,7 +48,7 @@ export const createOptionField = (
                     : false
                   : { code: option.value, description: option.label }
                 : text === 'personalData'
-                ? null
+                ? false
                 : []
             )
           }
@@ -62,7 +63,7 @@ export const createOptionField = (
           defaultValue={
             value && value.map((d: CodeList) => ({ value: d.code, label: d.description }))
           }
-          isClearable
+          isClearable={isClearable}
         />
       ) : (
         value &&
