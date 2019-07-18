@@ -130,7 +130,6 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
                   c.informationTypeId === action.payload.informationTypeId
                     ? {
                         ...c,
-                        isOpen: c.isOpen,
                         error: action.payload.error,
                         pending: false
                       }
@@ -264,35 +263,37 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         ...state,
         result: {
           ...state.result,
-          content: state.result.content.map((e: InformationTypeView) => {
-            if (e.informationTypeId === action.payload.informationTypeId) {
-              return {
-                ...e,
-                policy: {
-                  ...e.policy,
-                  result: {
-                    ...(e.policy && e.policy.result),
-                    content: e.policy && [
-                      {
-                        policyId: -1,
-                        informationType: {
-                          informationTypeId: e.informationTypeId,
-                          name: e.name
+          content:
+            state.result.content &&
+            state.result.content.map((e: InformationTypeView) => {
+              if (e.informationTypeId === action.payload.informationTypeId) {
+                return {
+                  ...e,
+                  policy: {
+                    ...e.policy,
+                    result: {
+                      ...(e.policy && e.policy.result),
+                      content: e.policy && [
+                        {
+                          policyId: -1,
+                          informationType: {
+                            informationTypeId: e.informationTypeId,
+                            name: e.name
+                          },
+                          purpose: { code: '', description: '' },
+                          legalBasisDescription: null,
+                          isOpen: true,
+                          isEdit: true,
+                          isAdd: true
                         },
-                        purpose: { code: '', description: '' },
-                        legalBasisDescription: null,
-                        isOpen: true,
-                        isEdit: true,
-                        isAdd: true
-                      },
-                      ...e.policy.result.content
-                    ]
+                        ...e.policy.result.content
+                      ]
+                    }
                   }
-                }
-              };
-            }
-            return e;
-          })
+                };
+              }
+              return e;
+            })
         }
       };
     case DataActionTypes.SAVE_POLICY_REQUEST:
@@ -300,9 +301,31 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         ...state,
         result: {
           ...state.result,
-          content: [{ ...state.result.content[0], pending: true }].concat(
-            state.result.content.slice(1)
-          )
+          content:
+            state.result.content &&
+            state.result.content.map((e: InformationTypeView) => {
+              if (e.informationTypeId === action.payload.informationTypeId) {
+                return {
+                  ...e,
+                  policy: {
+                    ...e.policy,
+                    result: {
+                      ...(e.policy && e.policy.result),
+                      content:
+                        e.policy &&
+                        e.policy.result &&
+                        e.policy.result.content &&
+                        e.policy.result.content.map((c: Policy) =>
+                          c.policyId === action.payload.policyId
+                            ? { ...c, pending: true }
+                            : c
+                        )
+                    }
+                  }
+                };
+              }
+              return e;
+            })
         }
       };
     case DataActionTypes.SAVE_POLICY_SUCCESS:
@@ -310,9 +333,36 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         ...state,
         result: {
           ...state.result,
-          content: [
-            { ...action.payload.result, error: undefined, pending: false }
-          ].concat(state.result.content.slice(1))
+          content:
+            state.result.content &&
+            state.result.content.map((e: InformationTypeView) => {
+              if (e.informationTypeId === action.payload.informationTypeId) {
+                return {
+                  ...e,
+                  policy: {
+                    ...e.policy,
+                    result: {
+                      ...(e.policy && e.policy.result),
+                      content:
+                        e.policy &&
+                        e.policy.result &&
+                        e.policy.result.content &&
+                        e.policy.result.content.map((c: Policy) =>
+                          c.policyId === action.payload.policyId
+                            ? {
+                                ...action.payload.result,
+                                isOpen: c.isOpen,
+                                error: undefined,
+                                pending: false
+                              }
+                            : c
+                        )
+                    }
+                  }
+                };
+              }
+              return e;
+            })
         }
       };
     case DataActionTypes.SAVE_POLICY_FAILURE:
@@ -320,11 +370,34 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         ...state,
         result: {
           ...state.result,
-          content: [
-            { ...state.result.content[0], error: action.payload.error, pending: false }
-          ].concat(state.result.content.slice(1))
+          content:
+            state.result.content &&
+            state.result.content.map((e: InformationTypeView) => {
+              if (e.informationTypeId === action.payload.informationTypeId) {
+                return {
+                  ...e,
+                  policy: {
+                    ...e.policy,
+                    result: {
+                      ...(e.policy && e.policy.result),
+                      content:
+                        e.policy &&
+                        e.policy.result &&
+                        e.policy.result.content &&
+                        e.policy.result.content.map((c: Policy) =>
+                          c.policyId === action.payload.policyId
+                            ? { ...c, error: action.payload.error, pending: false }
+                            : c
+                        )
+                    }
+                  }
+                };
+              }
+              return e;
+            })
         }
       };
+
     default:
       return state;
   }

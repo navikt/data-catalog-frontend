@@ -77,12 +77,20 @@ export const addBlankPolicy = (informationTypeId: number) =>
   action(DataActionTypes.ADD_POLICY, { informationTypeId });
 
 // add or edit information type
-export const savePolicy = (policy: Policy) =>
+export const savePolicy = (policy: Policy, informationTypeId: number, policyId: number) =>
   action(DataActionTypes.SAVE_POLICY_REQUEST, {
-    policy
+    policy,
+    informationTypeId,
+    policyId
   });
-export const savePolicySuccess = (result: Policy) =>
-  action(DataActionTypes.SAVE_POLICY_SUCCESS, { result });
+export const savePolicySuccess = (
+  result: Policy,
+  informationTypeId: number,
+  policyId: number
+) => action(DataActionTypes.SAVE_POLICY_SUCCESS, { result, informationTypeId, policyId });
 
-export const savePolicyFailure = (error: ApiError) =>
-  action(DataActionTypes.SAVE_POLICY_FAILURE, { error });
+export const savePolicyFailure = (
+  error: ApiError,
+  informationTypeId: number,
+  policyId: number
+) => action(DataActionTypes.SAVE_POLICY_FAILURE, { error, informationTypeId, policyId });

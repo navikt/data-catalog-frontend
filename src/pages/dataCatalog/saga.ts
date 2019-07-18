@@ -11,7 +11,10 @@ import {
   fetchPolicyForInformationTypeFailure,
   saveInformationType,
   saveInformationTypeSuccess,
-  saveInformationTypeFailure
+  saveInformationTypeFailure,
+  savePolicy,
+  savePolicySuccess,
+  savePolicyFailure
 } from './actions';
 import { DataActionTypes } from './types';
 
@@ -117,4 +120,40 @@ export function* createInformationTypeSaga() {
   yield all([
     takeLatest(DataActionTypes.SAVE_INFORMATION_TYPE_REQUEST, saveInformationTypeSaga)
   ]);
+}
+
+function* savePolicySaga(action: ReturnType<typeof savePolicy>) {
+  try {
+    const res = yield call(
+      action.payload.policy &&
+        action.payload.policy.policyId &&
+        action.payload.policy.policyId >= 0
+        ? restPut
+        : restPost,
+      ApiPath.PolicyForInformationTypePath,
+      action.payload.policy
+    );
+    const json = yield res.json();
+    if (res.ok) {
+      yield put(
+        savePolicySuccess(json, action.payload.informationTypeId, action.payload.policyId)
+      );
+    } else {
+      yield put(
+        savePolicyFailure(
+          yield res.json(),
+          action.payload.informationTypeId,
+          action.payload.policyId
+        )
+      );
+    }
+  } catch (error) {
+    yield put(
+      savePolicyFailure(error, action.payload.informationTypeId, action.payload.policyId)
+    );
+  }
+}
+
+export function* createPolicySaga() {
+  yield all([takeLatest(DataActionTypes.SAVE_POLICY_REQUEST, savePolicySaga)]);
 }
