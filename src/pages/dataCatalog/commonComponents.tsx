@@ -8,7 +8,7 @@ import Select from 'react-select';
 function getLabel(description: string, code: string) {
   return description === code
     ? ': ' + description
-    : ': ' + description + '(' + code + ')';
+    : ': ' + code ;
 }
 
 export const createOptionFieldBoolean = (
@@ -69,7 +69,7 @@ export const createOptionField = (
     <div className={isEdit ? 'col-md-6 col-sm-12' : 'col-md-6 col-6'}>
       {isEdit ? (
         <Select
-            getOptionLabel ={(option: any)=>option.value + ': '+ option.label }
+            getOptionLabel ={(option: any)=> option && option.value &&  option.label ? (option.value) : '' }
           id={text + '.code'}
           onChange={(option: any) =>
             setFieldValue &&
@@ -98,7 +98,7 @@ export const createOptionField = (
           isClearable
         />
       ) : (
-        value && value.map((v: CodeList) => <div>{getLabel(v.description, v.code)} </div>)
+        value && value.map((v: CodeList) => <div title={v.description}>{getLabel(v.description, v.code)} </div>)
       )}
     </div>
   </div>
