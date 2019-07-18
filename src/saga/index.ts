@@ -3,7 +3,8 @@ import { configSaga } from '../config/configSaga';
 import {
   getInformationTypeSaga,
   policyForInformationTypeSaga,
-  createInformationTypeSaga, createPolicySaga
+  createInformationTypeSaga,
+  createPolicySaga
 } from '../pages/dataCatalog/saga';
 import { getCodeListSaga } from '../pages/producers/saga';
 import { getPolicySaga } from '../pages/accessPolicies/saga';

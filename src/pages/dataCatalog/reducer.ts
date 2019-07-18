@@ -352,6 +352,7 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
                             ? {
                                 ...action.payload.result,
                                 isOpen: c.isOpen,
+                                isEdit: false,
                                 error: undefined,
                                 pending: false
                               }

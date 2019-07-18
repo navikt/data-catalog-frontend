@@ -6,7 +6,8 @@ import {
   fetchPolicyForInformationType,
   toggleExpandRowPolicy,
   toggleEditView,
-  addBlankPolicy
+  addBlankPolicy,
+  savePolicy
 } from './actions';
 import { memo } from 'react';
 import { connect } from 'react-redux';
@@ -27,6 +28,7 @@ interface PropsFromDispatch {
   onToggleClick: typeof toggleExpandRowPolicy;
   toggleEditView: typeof toggleEditView;
   addBlankPolicy: typeof addBlankPolicy;
+  savePolicy: typeof savePolicy;
 }
 
 type Props = PropsFromComponent & PropsFromDispatch;
@@ -39,27 +41,36 @@ class PolicyViewComponent extends React.Component<Props> {
   }
 
   public render() {
-    const addIsEdit = (
+    const addExtraProps = (
       content: Policy[],
       isEdit: boolean,
       codeListResult: CodeListResult,
       informationTypeId: number,
-      toggleEditView: Function
+      toggleEditView: Function,
+      savePolicy: Function
     ) =>
       content && content.length >= 0
         ? content.map((c: Policy) => {
-            return { ...c, isEdit, codeListResult, informationTypeId, toggleEditView };
+            return {
+              ...c,
+              isEdit,
+              codeListResult,
+              informationTypeId,
+              toggleEditView,
+              savePolicy
+            };
           })
         : [];
     return (
       <div className="row" style={{ marginLeft: '6px', marginRight: '6px' }}>
         <Table
-          data={addIsEdit(
+          data={addExtraProps(
             get(this.props, ['policy', 'result', 'content']) || [],
             this.props.isEdit || false,
             this.props.codeListResult,
             this.props.informationTypeId,
-            this.props.toggleEditView
+            this.props.toggleEditView,
+            this.props.savePolicy
           )}
           idKey="policyId"
           parentId={this.props.informationTypeId}
@@ -105,6 +116,7 @@ const CollapseComponent = memo(
       codeListResult: CodeListResult;
       informationTypeId: number;
       toggleEditView: Function;
+      savePolicy: Function;
     }
   ) => (
     <PolicyComponent
@@ -112,6 +124,7 @@ const CollapseComponent = memo(
       codeListResult={props.codeListResult}
       informationTypeId={props.informationTypeId}
       toggleEditView={props.toggleEditView}
+      savePolicy={props.savePolicy}
     />
   )
 );
@@ -122,6 +135,7 @@ export default connect(
     fetchPolicyForInformationType,
     onToggleClick: toggleExpandRowPolicy,
     toggleEditView: toggleEditView,
-    addBlankPolicy: addBlankPolicy
+    addBlankPolicy: addBlankPolicy,
+    savePolicy: savePolicy
   }
 )(PolicyViewComponent);

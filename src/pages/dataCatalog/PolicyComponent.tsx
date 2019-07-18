@@ -12,6 +12,7 @@ class PolicyComponentInner extends React.Component<
       codeListResult: CodeListResult;
       informationTypeId: number;
       toggleEditView: Function;
+      savePolicy: Function;
     },
     Policy
   >
@@ -28,12 +29,12 @@ class PolicyComponentInner extends React.Component<
       //handleReset
     } = this.props;
     return (
-      <div>
+      <div key={this.props.policyId}>
         <div
           className="col-md-12 col-sm-12"
           style={{ marginLeft: '6px', marginRight: '6px', marginTop: '12px' }}
         >
-          {JSON.stringify(values)}
+          {/*{JSON.stringify(values)}*/}
 
           {createOptionField(
             'purpose',
@@ -63,7 +64,17 @@ class PolicyComponentInner extends React.Component<
           <Toolbar
             cancelOnClick={() => this.props.toggleEditView(this.props.informationTypeId)}
             saveOnClick={e => {
-              return e.preventDefault();
+              e.preventDefault();
+              return this.props.savePolicy(
+                {
+                  policyId: this.props.policyId,
+                  informationType: this.props.informationType,
+                  purpose: values.purpose,
+                  legalBasisDescription: values.legalBasisDescription
+                },
+                this.props.informationTypeId,
+                this.props.policyId
+              );
             }}
           />
         )}
@@ -77,6 +88,7 @@ const PolicyComponent = withFormik<
     codeListResult: CodeListResult;
     informationTypeId: number;
     toggleEditView: Function;
+    savePolicy: Function;
   },
   Policy
 >({
