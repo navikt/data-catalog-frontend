@@ -62,7 +62,15 @@ class PolicyComponentInner extends React.Component<
         </div>
         {this.props.isEdit && (
           <Toolbar
-            cancelOnClick={() => this.props.toggleEditView(this.props.informationTypeId)}
+            cancelOnClick={e => {
+              e.preventDefault();
+              this.props.toggleEditView(
+                this.props.informationTypeId,
+                this.props.policyId
+              );
+              values.purpose = this.props.purpose;
+              return (values.legalBasisDescription = this.props.legalBasisDescription);
+            }}
             saveOnClick={e => {
               e.preventDefault();
               return this.props.savePolicy(

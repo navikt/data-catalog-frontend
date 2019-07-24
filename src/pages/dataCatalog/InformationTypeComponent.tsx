@@ -82,7 +82,8 @@ class InformationTypeComponentInner extends React.Component<
               false,
               setFieldValue
             )}
-            {/*{JSON.stringify(values.personalData)}*/}
+            {/*{JSON.stringify(values.description)}
+            {JSON.stringify(this.props.description)}*/}
             {createOptionField(
               'personalData',
               values.personalData === null
@@ -138,7 +139,16 @@ class InformationTypeComponentInner extends React.Component<
         </div>
         {this.props.isEdit && (
           <Toolbar
-            cancelOnClick={() => this.props.toggleEditView(this.props.informationTypeId)}
+            cancelOnClick={e => {
+              e.preventDefault();
+              this.props.toggleEditView(this.props.informationTypeId);
+              values.system = this.props.system;
+              values.producer = this.props.producer;
+              values.category = this.props.category;
+              values.name = this.props.name;
+              values.description = this.props.description;
+              return (values.personalData = this.props.personalData);
+            }}
             saveOnClick={e => {
               e.preventDefault();
               return this.props.saveInformationType({

@@ -39,8 +39,8 @@ export const saveInformationTypeFailure = (error: ApiError, informationTypeId: n
 export const toggleExpandRowPolicy = (informationTypeId: number, policyId: number) =>
   action(DataActionTypes.TOGGLE_ROW_POLICY, { informationTypeId, policyId });
 
-export const toggleEditView = (informationTypeId: number) =>
-  action(DataActionTypes.TOGGLE_EDIT_VIEW, { informationTypeId });
+export const toggleEditView = (informationTypeId: number, policyId: number = -2) =>
+  action(DataActionTypes.TOGGLE_EDIT_VIEW, { informationTypeId, policyId });
 
 export const fetchPolicyForInformationType = (query: any, informationTypeId: number) =>
   action(DataActionTypes.FETCH_POLICY_FOR_INFORMATION_TYPE_REQUEST, {

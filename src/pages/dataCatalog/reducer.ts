@@ -195,15 +195,42 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         ...state,
         result: {
           ...state.result,
-          content: state.result.content.map((e: InformationTypeView) => {
-            if (e.informationTypeId === action.payload.informationTypeId) {
-              return {
-                ...e,
-                isEdit: !e.isEdit
-              };
-            }
-            return e;
-          })
+          content:
+            action.payload.informationTypeId === -1
+              ? state.result.content.filter(
+                  (e: InformationTypeView) => e.informationTypeId !== -1
+                )
+              : state.result.content.map((e: InformationTypeView) => {
+                  if (e.informationTypeId === action.payload.informationTypeId) {
+                    return {
+                      ...e,
+                      isEdit: !e.isEdit,
+                      policy: {
+                        ...e.policy,
+                        result: {
+                          ...(e.policy && e.policy.result),
+                          content:
+                            e.policy &&
+                            e.policy.result &&
+                            e.policy.result.content &&
+                            (action.payload.policyId === -1
+                              ? e.policy.result.content.filter(
+                                  c => c.policyId !== action.payload.policyId
+                                )
+                              : e.policy.result.content.map((c: Policy) =>
+                                  c.policyId === action.payload.policyId
+                                    ? {
+                                        ...c,
+                                        isEdit: !e.isEdit
+                                      }
+                                    : c
+                                ))
+                        }
+                      }
+                    };
+                  }
+                  return e;
+                })
         }
       };
     case DataActionTypes.FETCH_POLICY_FOR_INFORMATION_TYPE_REQUEST:
