@@ -7,7 +7,8 @@ import {
   toggleExpandRowPolicy,
   toggleEditView,
   addBlankPolicy,
-  savePolicy
+  savePolicy,
+  deletePolicy
 } from './actions';
 import { memo } from 'react';
 import { connect } from 'react-redux';
@@ -29,6 +30,7 @@ interface PropsFromDispatch {
   toggleEditView: typeof toggleEditView;
   addBlankPolicy: typeof addBlankPolicy;
   savePolicy: typeof savePolicy;
+  deletePolicy: typeof deletePolicy;
 }
 
 type Props = PropsFromComponent & PropsFromDispatch;
@@ -90,6 +92,7 @@ class PolicyViewComponent extends React.Component<Props> {
           disabledEdit={true}
           onEditClick={(e: any) => e}
           onAddClick={this.props.addBlankPolicy}
+          onDeleteClick={this.props.deletePolicy}
         >
           <Column
             width="50%"
@@ -136,6 +139,7 @@ export default connect(
     onToggleClick: toggleExpandRowPolicy,
     toggleEditView: toggleEditView,
     addBlankPolicy: addBlankPolicy,
-    savePolicy: savePolicy
+    savePolicy: savePolicy,
+    deletePolicy
   }
 )(PolicyViewComponent);

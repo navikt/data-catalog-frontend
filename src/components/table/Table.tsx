@@ -30,6 +30,7 @@ interface TableComponentProps {
   onEditClick: Function;
   disabledEdit?: boolean;
   onAddClick: Function;
+  onDeleteClick: Function;
 }
 
 const TableComponent = ({
@@ -52,7 +53,8 @@ const TableComponent = ({
   isEdit,
   onEditClick,
   disabledEdit,
-  onAddClick
+  onAddClick,
+  onDeleteClick
 }: TableComponentProps) => {
   const tableBodyClassName = 'Table-body' + (isLoading ? ' is-loading' : '');
 
@@ -94,6 +96,7 @@ const TableComponent = ({
             children,
             isLoading,
             onEditClick,
+            onDeleteClick,
             parentId,
             disabledEdit
           )}
@@ -180,6 +183,7 @@ const renderRows = (
   columns: any,
   isLoading: boolean,
   onEditClick: Function,
+  onDeleteClick: Function,
   parentId?: number,
   disabledEdit?: boolean
 ) => {
@@ -261,7 +265,9 @@ const renderRows = (
                     data-toggle="tooltip"
                     key="btn-delete"
                     onClick={e => {
-                      alert(I18n.t('dataCatalog.words.doNotHaveSufficientRole'));
+                      parentId
+                        ? onDeleteClick(parentId, d[idKey])
+                        : onDeleteClick(d[idKey]);
                       return e.stopPropagation();
                     }}
                     title={
