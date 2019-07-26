@@ -471,6 +471,100 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
         }
       };
 
+    case DataActionTypes.DELETE_POLICY_REQUEST:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content:
+              state.result.content &&
+              state.result.content.map((e: InformationTypeView) => {
+                if (e.informationTypeId === action.payload.informationTypeId) {
+                  return {
+                    ...e,
+                    policy: {
+                      ...e.policy,
+                      result: {
+                        ...(e.policy && e.policy.result),
+                        content:
+                            e.policy &&
+                            e.policy.result &&
+                            e.policy.result.content &&
+                            e.policy.result.content.map((c: Policy) =>
+                                c.policyId === action.payload.policyId
+                                    ? { ...c, pending: true }
+                                    : c
+                            )
+                      }
+                    }
+                  };
+                }
+                return e;
+              })
+        }
+      };
+    case DataActionTypes.DELETE_POLICY_SUCCESS:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content:
+              state.result.content &&
+              state.result.content.map((e: InformationTypeView) => {
+                if (e.informationTypeId === action.payload.informationTypeId) {
+                  return {
+                    ...e,
+                    policy: {
+                      ...e.policy,
+                      result: {
+                        ...(e.policy && e.policy.result),
+                        content:
+                            e.policy &&
+                            e.policy.result &&
+                            e.policy.result.content &&
+                            e.policy.result.content.filter((c: Policy) =>
+                                c.policyId !== action.payload.policyId
+                            )
+                      }
+                    }
+                  };
+                }
+                return e;
+              })
+        }
+      };
+    case DataActionTypes.DELETE_POLICY_FAILURE:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content:
+              state.result.content &&
+              state.result.content.map((e: InformationTypeView) => {
+                if (e.informationTypeId === action.payload.informationTypeId) {
+                  return {
+                    ...e,
+                    policy: {
+                      ...e.policy,
+                      result: {
+                        ...(e.policy && e.policy.result),
+                        content:
+                            e.policy &&
+                            e.policy.result &&
+                            e.policy.result.content &&
+                            e.policy.result.content.map((c: Policy) =>
+                                c.policyId === action.payload.policyId
+                                    ? { ...c, error: action.payload.error, pending: false }
+                                    : c
+                            )
+                      }
+                    }
+                  };
+                }
+                return e;
+              })
+        }
+      };
     default:
       return state;
   }

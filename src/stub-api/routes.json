@@ -8,6 +8,8 @@
 
   "/policy/policy": "/policy",
   "/policy/policy?*": "/policy",
+  "/policy/policy/:policyId": "/policyPutPostDelete/:policyId",
+
   "/backend/codelist/purpose": "/purpose",
   "/backend/codelist/category": "/category",
   "/backend/codelist/system": "/system",
