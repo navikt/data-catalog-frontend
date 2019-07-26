@@ -160,7 +160,7 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
             state.result.content &&
             state.result.content.filter(
               (c: InformationTypeView) =>
-                c.informationTypeId !== action.payload.result.informationTypeId
+                c.informationTypeId !== action.payload.informationTypeId
             )
         }
       };
