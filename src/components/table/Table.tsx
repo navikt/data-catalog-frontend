@@ -258,7 +258,7 @@ const renderRows = (
                     <i className="fa fa-pencil" />
                   </a>
                 )}
-                {d.isEdit && d.isOpen && (
+                {d.isEdit && d.isOpen && d[idKey] !== -1 && (
                   <a
                     href="#"
                     className="Table-cell action-item mr-2"

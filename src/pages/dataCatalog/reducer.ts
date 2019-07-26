@@ -137,6 +137,51 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
                 )
         }
       };
+    case DataActionTypes.DELETE_INFORMATION_TYPE_REQUEST:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content:
+            state.result.content &&
+            state.result.content.map((c: InformationTypeView) =>
+              c.informationTypeId === action.payload.informationTypeId
+                ? { ...c, pending: true }
+                : c
+            )
+        }
+      };
+    case DataActionTypes.DELETE_INFORMATION_TYPE_SUCCESS:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content:
+            state.result.content &&
+            state.result.content.filter(
+              (c: InformationTypeView) =>
+                c.informationTypeId !== action.payload.result.informationTypeId
+            )
+        }
+      };
+    case DataActionTypes.DELETE_INFORMATION_TYPE_FAILURE:
+      return {
+        ...state,
+        result: {
+          ...state.result,
+          content:
+            state.result.content &&
+            state.result.content.map((c: InformationTypeView) =>
+              c.informationTypeId === action.payload.informationTypeId
+                ? {
+                    ...c,
+                    error: action.payload.error,
+                    pending: false
+                  }
+                : c
+            )
+        }
+      };
     case DataActionTypes.TOGGLE_ROW:
       return {
         ...state,

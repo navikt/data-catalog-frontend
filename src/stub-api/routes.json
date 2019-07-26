@@ -3,6 +3,9 @@
   "/backend/records/allRecords": "/data",
   "/backend/informationtype": "/informationtype",
   "/backend/informationtype?*": "/informationtype",
+
+  "/backend/informationtype/:informationTypeId": "/informationTypePutPostDelete/:informationTypeId",
+
   "/policy/policy": "/policy",
   "/policy/policy?*": "/policy",
   "/backend/codelist/purpose": "/purpose",
