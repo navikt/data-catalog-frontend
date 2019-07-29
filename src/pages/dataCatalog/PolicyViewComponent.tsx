@@ -45,7 +45,6 @@ class PolicyViewComponent extends React.Component<Props> {
   public render() {
     const addExtraProps = (
       content: Policy[],
-      isEdit: boolean,
       codeListResult: CodeListResult,
       informationTypeId: number,
       toggleEditView: Function,
@@ -55,7 +54,6 @@ class PolicyViewComponent extends React.Component<Props> {
         ? content.map((c: Policy) => {
             return {
               ...c,
-              isEdit,
               codeListResult,
               informationTypeId,
               toggleEditView,
@@ -68,7 +66,6 @@ class PolicyViewComponent extends React.Component<Props> {
         <Table
           data={addExtraProps(
             get(this.props, ['policy', 'result', 'content']) || [],
-            this.props.isEdit || false,
             this.props.codeListResult,
             this.props.informationTypeId,
             this.props.toggleEditView,
@@ -88,9 +85,8 @@ class PolicyViewComponent extends React.Component<Props> {
           searchAction={(query: any) =>
             fetchPolicyForInformationType(query, this.props.informationTypeId)
           }
-          isEdit={this.props.isEdit}
-          disabledEdit={true}
-          onEditClick={(e: any) => e}
+          isEdit={true}
+          onEditClick={this.props.toggleEditView}
           onAddClick={this.props.addBlankPolicy}
           onDeleteClick={this.props.deletePolicy}
         >

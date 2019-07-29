@@ -245,7 +245,9 @@ const renderRows = (
                     style={!d.isEdit ? {} : { color: 'grey' }}
                     key="btn-edit"
                     onClick={e => {
-                      !d.isEdit && onEditClick(d[idKey]);
+                      !d.isEdit && parentId
+                        ? onEditClick(parentId, d[idKey])
+                        : onEditClick(d[idKey]);
                       return e.stopPropagation();
                     }}
                     title={
