@@ -338,7 +338,7 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
                     ...e.policy,
                     result: {
                       ...(e.policy && e.policy.result),
-                      content: e.policy && [
+                      content:  [
                         {
                           policyId: -1,
                           informationType: {
@@ -351,7 +351,7 @@ const reducer: Reducer<any, DataActions> = (state = initialState, action) => {
                           isEdit: true,
                           isAdd: true
                         },
-                        ...e.policy.result.content
+                        ...(e.policy ? e.policy.result.content : [])
                       ]
                     }
                   }
