@@ -35,6 +35,14 @@ class PolicyComponentInner extends React.Component<
           style={{ marginLeft: '6px', marginRight: '6px', marginTop: '12px' }}
         >
           {/*{JSON.stringify(values)}*/}
+          {this.props.error && (
+            <div className="alert alert-danger alert-dismissible fade show">
+              <strong>Error! </strong> {this.props.error}
+              <button type="button" className="close" data-dismiss="alert">
+                &times;
+              </button>
+            </div>
+          )}
 
           {createOptionField(
             'purpose',

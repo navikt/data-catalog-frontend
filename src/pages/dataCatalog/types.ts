@@ -69,6 +69,7 @@ export interface InformationType extends Auditable {
   personalData?: boolean | string;
   isOpen?: boolean;
   isEdit?: boolean;
+  error?: string;
   category?: CodeList;
   producer?: CodeList[];
   system?: CodeList;
@@ -93,6 +94,7 @@ export interface Policy extends Auditable {
   isOpen?: boolean;
   isEdit?: boolean;
   isAdd?: boolean;
+  error?: string;
 }
 
 export interface InformationTypeView extends InformationType {

@@ -40,6 +40,15 @@ class InformationTypeComponentInner extends React.Component<
         key={this.props.informationTypeId}
         style={{ margin: '20px 10px 10px 10px' }}
       >
+        {this.props.error && (
+          <div className="alert alert-danger alert-dismissible fade show">
+            <strong>Error! </strong> {this.props.error}
+            <button type="button" className="close" data-dismiss="alert">
+              &times;
+            </button>
+          </div>
+        )}
+
         <div key={'part one'} className="row">
           <div className="col-md-12">
             {createInputField(
@@ -137,6 +146,7 @@ class InformationTypeComponentInner extends React.Component<
             )}
           </div>
         </div>
+
         {this.props.isEdit && (
           <Toolbar
             cancelOnClick={e => {
