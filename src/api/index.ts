@@ -80,3 +80,15 @@ export const restPut = (url: string, data: any, headers = {}) => {
     body: JSON.stringify(data)
   });
 };
+
+export const restDelete = (url: string, headers = {}) => {
+  return fetch(url, {
+    method: 'DELETE',
+    credentials: 'same-origin',
+    headers: {
+      ...commonHeaders,
+      [TOKEN]: getCookie('TOKEN'),
+      ...headers
+    }
+  });
+};

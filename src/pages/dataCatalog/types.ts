@@ -14,12 +14,18 @@ export const enum DataActionTypes {
   SAVE_INFORMATION_TYPE_REQUEST = '@data/SAVE_INFORMATION_TYPE_REQUEST',
   SAVE_INFORMATION_TYPE_SUCCESS = '@data/SAVE_INFORMATION_TYPE_SUCCESS',
   SAVE_INFORMATION_TYPE_FAILURE = '@data/SAVE_INFORMATION_TYPE_FAILURE',
+  DELETE_INFORMATION_TYPE_REQUEST = '@data/DELETE_INFORMATION_TYPE_REQUEST',
+  DELETE_INFORMATION_TYPE_SUCCESS = '@data/DELETE_INFORMATION_TYPE_SUCCESS',
+  DELETE_INFORMATION_TYPE_FAILURE = '@data/DELETE_INFORMATION_TYPE_FAILURE',
 
   TOGGLE_ROW_POLICY = '@data//TOGGLE_ROW_POLICY',
   ADD_POLICY = '@data//ADD_POLICY',
   SAVE_POLICY_REQUEST = '@data/SAVE_POLICY_REQUEST',
   SAVE_POLICY_SUCCESS = '@data/SAVE_POLICY_SUCCESS',
   SAVE_POLICY_FAILURE = '@data/SAVE_POLICY_FAILURE',
+  DELETE_POLICY_REQUEST = '@data/DELETE_POLICY_REQUEST',
+  DELETE_POLICY_SUCCESS = '@data/DELETE_POLICY_SUCCESS',
+  DELETE_POLICY_FAILURE = '@data/DELETE_POLICY_FAILURE',
   TOGGLE_EDIT_VIEW = '@data//TOGGLE_EDIT_VIEW',
 
   FETCH_POLICY_FOR_INFORMATION_TYPE_REQUEST = '@data/FETCH_POLICY_FOR_INFORMATION_TYPE_REQUEST',
@@ -63,6 +69,7 @@ export interface InformationType extends Auditable {
   personalData?: boolean | string;
   isOpen?: boolean;
   isEdit?: boolean;
+  error?: string;
   category?: CodeList;
   producer?: CodeList[];
   system?: CodeList;
@@ -78,11 +85,16 @@ export interface LegalBasis extends Auditable {
 
 export interface Policy extends Auditable {
   policyId: number;
+  informationType: {
+    informationTypeId: number;
+    name: string;
+  };
   purpose?: CodeList;
   legalBasisDescription?: string;
   isOpen?: boolean;
   isEdit?: boolean;
   isAdd?: boolean;
+  error?: string;
 }
 
 export interface InformationTypeView extends InformationType {

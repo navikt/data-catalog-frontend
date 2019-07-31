@@ -3,7 +3,10 @@ import { configSaga } from '../config/configSaga';
 import {
   getInformationTypeSaga,
   policyForInformationTypeSaga,
-  createInformationTypeSaga
+  createInformationTypeSaga,
+  createPolicySaga,
+  deleteInformationTypeSaga,
+  deletePolicySaga
 } from '../pages/dataCatalog/saga';
 import { getCodeListSaga } from '../pages/producers/saga';
 import { getPolicySaga } from '../pages/accessPolicies/saga';
@@ -15,6 +18,9 @@ export function* rootSaga() {
     call(policyForInformationTypeSaga),
     call(createInformationTypeSaga),
     call(getCodeListSaga),
-    call(getPolicySaga)
+    call(getPolicySaga),
+    call(createPolicySaga),
+    call(deleteInformationTypeSaga),
+    call(deletePolicySaga)
   ]);
 }
