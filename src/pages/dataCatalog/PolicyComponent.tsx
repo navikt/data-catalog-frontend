@@ -12,6 +12,7 @@ class PolicyComponentInner extends React.Component<
       codeListResult: CodeListResult;
       informationTypeId: number;
       toggleEditView: Function;
+      savePolicy: Function;
     },
     Policy
   >
@@ -23,24 +24,36 @@ class PolicyComponentInner extends React.Component<
       // touched,
       //handleSubmit,
       handleChange,
-      handleBlur
-      //setFieldValue,
+      handleBlur,
+      setFieldValue
       //handleReset
     } = this.props;
     return (
-      <div>
+      <div key={this.props.policyId}>
         <div
           className="col-md-12 col-sm-12"
           style={{ marginLeft: '6px', marginRight: '6px', marginTop: '12px' }}
         >
+          {/*{JSON.stringify(values)}*/}
+          {this.props.error && (
+            <div className="alert alert-danger alert-dismissible fade show">
+              <strong>Error! </strong> {this.props.error}
+              <button type="button" className="close" data-dismiss="alert">
+                &times;
+              </button>
+            </div>
+          )}
+
           {createOptionField(
-            'purposeDescription',
-            values.purpose ? values.purpose.code : '',
-            values.purpose ? values.purpose.description : '',
+            'purpose',
+            values.purpose && [values.purpose],
             (this.props.codeListResult && this.props.codeListResult.purpose) || [],
             handleChange,
             handleBlur,
-            this.props.isEdit || false
+            this.props.isEdit || false,
+            0,
+            false,
+            setFieldValue
           )}
         </div>
         <div
@@ -48,7 +61,7 @@ class PolicyComponentInner extends React.Component<
           style={{ marginLeft: '6px', marginRight: '6px' }}
         >
           {createInputField(
-            'legalBasis',
+            'legalBasisDescription',
             values.legalBasisDescription || '',
             handleChange,
             handleBlur,
@@ -57,9 +70,27 @@ class PolicyComponentInner extends React.Component<
         </div>
         {this.props.isEdit && (
           <Toolbar
-            cancelOnClick={() => this.props.toggleEditView(this.props.informationTypeId)}
+            cancelOnClick={e => {
+              e.preventDefault();
+              this.props.toggleEditView(
+                this.props.informationTypeId,
+                this.props.policyId
+              );
+              values.purpose = this.props.purpose;
+              return (values.legalBasisDescription = this.props.legalBasisDescription);
+            }}
             saveOnClick={e => {
-              return e.preventDefault();
+              e.preventDefault();
+              return this.props.savePolicy(
+                {
+                  policyId: this.props.policyId,
+                  informationType: this.props.informationType,
+                  purpose: values.purpose,
+                  legalBasisDescription: values.legalBasisDescription
+                },
+                this.props.informationTypeId,
+                this.props.policyId
+              );
             }}
           />
         )}
@@ -73,10 +104,12 @@ const PolicyComponent = withFormik<
     codeListResult: CodeListResult;
     informationTypeId: number;
     toggleEditView: Function;
+    savePolicy: Function;
   },
   Policy
 >({
   mapPropsToValues: (props: Policy) => ({
+    informationType: props.informationType,
     purpose: {
       code: (props.purpose && props.purpose.code) || '',
       description: (props.purpose && props.purpose.description) || ''

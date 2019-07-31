@@ -3,19 +3,23 @@ import * as React from 'react';
 import { ChangeEventHandler } from 'react';
 import { FocusEventHandler } from 'react';
 import { CodeList } from './types';
+import Select from 'react-select';
 
 function getLabel(description: string, code: string) {
-  return description === code
-    ? ': ' + description
-    : ': ' + description + '(' + code + ')';
+  return description === code ? ': ' + description : ': ' + code;
 }
 
-export const createOptionFieldBoolean = (
+export const createOptionField = (
   text: string,
+  value: CodeList[] | undefined,
+  data: CodeList[],
   handleChange: ChangeEventHandler,
   handleBlur: FocusEventHandler,
   isEdit: boolean = false,
-  code?: boolean | string
+  index: number = 0,
+  isMulti: boolean = false,
+  setFieldValue?: any,
+  isClearable: boolean = true
 ) => (
   <div key={text} className="row" style={{ marginBottom: '10px' }}>
     <div className={isEdit ? 'col-md-4 col-sm-12' : 'col-md-4 col-5'}>
@@ -24,69 +28,53 @@ export const createOptionFieldBoolean = (
 
     <div className={isEdit ? 'col-md-6 col-sm-12' : 'col-md-6 col-6'}>
       {isEdit ? (
-        <select
-          className="custom-select"
-          id={text}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        >
-          <option value={code ? 'true' : 'false'}>
-            {code ? I18n.t('dataCatalog.words.yes') : I18n.t('dataCatalog.words.no')}
-          </option>
-          <option key={1} value="true">
-            {I18n.t('dataCatalog.words.yes')}
-          </option>
-          <option key={0} value="false">
-            {I18n.t('dataCatalog.words.no')}
-          </option>
-        </select>
-      ) : code ? (
-        ': ' + I18n.t('dataCatalog.words.yes')
-      ) : (
-        ': ' + I18n.t('dataCatalog.words.no')
-      )}
-    </div>
-  </div>
-);
-
-export const createOptionField = (
-  text: string,
-  code: string,
-  description: string,
-  data: CodeList[],
-  handleChange: ChangeEventHandler,
-  handleBlur: FocusEventHandler,
-  isEdit: boolean = false,
-  index: number = 0
-) => (
-  <div key={text} className="row" style={{ marginBottom: '10px' }}>
-    <div className={isEdit ? 'col-md-4 col-sm-12' : 'col-md-4 col-5'}>
-      {index < 1 ? I18n.t('dataCatalog.pages.mainPage.' + text) : ''}
-    </div>
-
-    <div className={isEdit ? 'col-md-6 col-sm-12' : 'col-md-6 col-6'}>
-      {isEdit ? (
-        <select
-          className="custom-select"
+        <Select
+          getOptionLabel={(option: any) =>
+            option && option.value && option.label ? option.value : ''
+          }
           id={text + '.code'}
-          onChange={handleChange}
+          onChange={(option: any) =>
+            setFieldValue &&
+            setFieldValue(
+              text,
+              option
+                ? isMulti
+                  ? option.length > 0
+                    ? option.map((o: any) => ({ code: o.value, description: o.label }))
+                    : []
+                  : text === 'personalData'
+                  ? option.value === 'Ja' || option.value === 'Yes'
+                    ? true
+                    : false
+                  : { code: option.value, description: option.label }
+                : text === 'personalData'
+                ? false
+                : []
+            )
+          }
           onBlur={handleBlur}
-        >
-          <option value={code}>{description}</option>
-          {data &&
-            data.length >= 1 &&
-            data.map((d: CodeList) => (
-              <option key={d.code} value={d.code}>
-                {d.description}
-              </option>
-            ))}
-        </select>
+          options={data.map((d: CodeList) => ({ value: d.code, label: d.description }))}
+          isMulti={isMulti}
+          className="basic-multi-select"
+          classNamePrefix="select"
+          value={
+            value && value.map((d: CodeList) => ({ value: d.code, label: d.description }))
+          }
+          defaultValue={
+            value && value.map((d: CodeList) => ({ value: d.code, label: d.description }))
+          }
+          isClearable={isClearable}
+        />
       ) : (
-        getLabel(description, code)
+        value &&
+        value.map((v: CodeList) => (
+          <div title={v.description}>{getLabel(v.description, v.code)} </div>
+        ))
       )}
     </div>
   </div>
 );
+
 export const createInputField = (
   text: string,
   value: string,

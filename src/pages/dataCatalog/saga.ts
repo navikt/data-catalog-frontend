@@ -1,6 +1,6 @@
 import { all, call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 
-import { restGet, restPost, restPut } from '../../api';
+import { restGet, restPost, restPut, restDelete } from '../../api';
 import { ApiPath } from './modelsApi';
 import {
   fetchInformationType,
@@ -11,7 +11,16 @@ import {
   fetchPolicyForInformationTypeFailure,
   saveInformationType,
   saveInformationTypeSuccess,
-  saveInformationTypeFailure
+  saveInformationTypeFailure,
+  savePolicy,
+  savePolicySuccess,
+  savePolicyFailure,
+  deletePolicy,
+  deletePolicySuccess,
+  deletePolicyFailure,
+  deleteInformationType,
+  deleteInformationTypeSuccess,
+  deleteInformationTypeFailure
 } from './actions';
 import { DataActionTypes } from './types';
 
@@ -93,13 +102,23 @@ function* saveInformationTypeSaga(action: ReturnType<typeof saveInformationType>
       ApiPath.InformationTypePath,
       action.payload.informationType
     );
+    const json = yield res.json();
     if (res.ok) {
-      yield put(saveInformationTypeSuccess(action.payload.informationType));
+      yield put(
+        saveInformationTypeSuccess(json, action.payload.informationType.informationTypeId)
+      );
     } else {
-      yield put(saveInformationTypeFailure(yield res.json()));
+      yield put(
+        saveInformationTypeFailure(
+          yield res.json(),
+          action.payload.informationType.informationTypeId
+        )
+      );
     }
   } catch (error) {
-    yield put(saveInformationTypeFailure(error));
+    yield put(
+      saveInformationTypeFailure(error, action.payload.informationType.informationTypeId)
+    );
   }
 }
 
@@ -107,4 +126,104 @@ export function* createInformationTypeSaga() {
   yield all([
     takeLatest(DataActionTypes.SAVE_INFORMATION_TYPE_REQUEST, saveInformationTypeSaga)
   ]);
+}
+
+function* removeInformationTypeSaga(action: ReturnType<typeof deleteInformationType>) {
+  try {
+    const res = yield call(
+      restDelete,
+      ApiPath.InformationTypePath + '/' + action.payload.informationTypeId
+    );
+    const json = yield res.json();
+    if (res.ok) {
+      yield put(deleteInformationTypeSuccess(json, action.payload.informationTypeId));
+    } else {
+      yield put(
+        deleteInformationTypeFailure(yield res.json(), action.payload.informationTypeId)
+      );
+    }
+  } catch (error) {
+    yield put(deleteInformationTypeFailure(error, action.payload.informationTypeId));
+  }
+}
+
+export function* deleteInformationTypeSaga() {
+  yield all([
+    takeLatest(DataActionTypes.DELETE_INFORMATION_TYPE_REQUEST, removeInformationTypeSaga)
+  ]);
+}
+
+function* savePolicySaga(action: ReturnType<typeof savePolicy>) {
+  try {
+    const res = yield call(
+      action.payload.policy &&
+        action.payload.policy.policyId &&
+        action.payload.policy.policyId >= 0
+        ? restPut
+        : restPost,
+      ApiPath.PolicyForInformationTypePath,
+      action.payload.policy
+    );
+    const json = yield res.json();
+    if (res.ok) {
+      yield put(
+        savePolicySuccess(json, action.payload.informationTypeId, action.payload.policyId)
+      );
+    } else {
+      yield put(
+        savePolicyFailure(
+          yield res.json(),
+          action.payload.informationTypeId,
+          action.payload.policyId
+        )
+      );
+    }
+  } catch (error) {
+    yield put(
+      savePolicyFailure(error, action.payload.informationTypeId, action.payload.policyId)
+    );
+  }
+}
+
+export function* createPolicySaga() {
+  yield all([takeLatest(DataActionTypes.SAVE_POLICY_REQUEST, savePolicySaga)]);
+}
+
+function* removePolicySaga(action: ReturnType<typeof deletePolicy>) {
+  try {
+    const res = yield call(
+      restDelete,
+      ApiPath.PolicyForInformationTypePath + '/' + action.payload.policyId
+    );
+    const json = yield res.json();
+    if (res.ok) {
+      yield put(
+        deletePolicySuccess(
+          json,
+          action.payload.informationTypeId,
+          action.payload.policyId
+        )
+      );
+    } else {
+      yield put(
+        deletePolicyFailure(
+          yield res.json(),
+          action.payload.informationTypeId,
+          action.payload.policyId
+        )
+      );
+    }
+  } catch (error) {
+    yield put(
+      deletePolicyFailure(
+        error,
+        action.payload.informationTypeId,
+        action.payload.policyId
+      )
+    );
+  }
+}
+
+export function* deletePolicySaga() {
+  yield all([takeLatest(DataActionTypes.DELETE_POLICY_REQUEST, removePolicySaga)]);
 }

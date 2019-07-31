@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { CodeList, InformationType } from './types';
+import { InformationType } from './types';
 import {
   createInputField,
   createOptionField,
-  createOptionFieldBoolean,
   createTextAreaField
 } from './commonComponents';
 import { I18n } from 'react-i18nify';
@@ -30,8 +29,8 @@ class InformationTypeComponentInner extends React.Component<
       // touched,
       //handleSubmit,
       handleChange,
-      handleBlur
-      //setFieldValue,
+      handleBlur,
+      setFieldValue
       //handleReset
     } = this.props;
     return (
@@ -41,6 +40,15 @@ class InformationTypeComponentInner extends React.Component<
         key={this.props.informationTypeId}
         style={{ margin: '20px 10px 10px 10px' }}
       >
+        {this.props.error && (
+          <div className="alert alert-danger alert-dismissible fade show">
+            <strong>Error! </strong> {this.props.error}
+            <button type="button" className="close" data-dismiss="alert">
+              &times;
+            </button>
+          </div>
+        )}
+
         <div key={'part one'} className="row">
           <div className="col-md-12">
             {createInputField(
@@ -52,42 +60,70 @@ class InformationTypeComponentInner extends React.Component<
             )}
             {createOptionField(
               'system',
-              values.system ? values.system.code : '',
-              values.system ? values.system.description : '',
+              values.system && [values.system],
               this.props.codeListResult.system || [],
               handleChange,
               handleBlur,
-              this.props.isEdit
+              this.props.isEdit,
+              0,
+              false,
+              setFieldValue
             )}
-            {values.producer &&
-              values.producer.length > 0 &&
-              values.producer.map((p: CodeList, index: number) =>
-                createOptionField(
-                  'producer',
-                  p.code,
-                  p.description,
-                  this.props.codeListResult.producer || [],
-                  handleChange,
-                  handleBlur,
-                  this.props.isEdit,
-                  index
-                )
-              )}
             {createOptionField(
-              'category',
-              values.category ? values.category.code : '',
-              values.category ? values.category.description : '',
-              this.props.codeListResult.category || [],
-              handleChange,
-              handleBlur,
-              this.props.isEdit
-            )}
-            {createOptionFieldBoolean(
-              'personalData',
+              'producer',
+              values.producer,
+              this.props.codeListResult.producer || [],
               handleChange,
               handleBlur,
               this.props.isEdit,
-              values.personalData
+              1,
+              true,
+              setFieldValue
+            )}
+            {createOptionField(
+              'category',
+              values.category && [values.category],
+              this.props.codeListResult.category || [],
+              handleChange,
+              handleBlur,
+              this.props.isEdit,
+              0,
+              false,
+              setFieldValue
+            )}
+            {/*{JSON.stringify(values.description)}
+            {JSON.stringify(this.props.description)}*/}
+            {createOptionField(
+              'personalData',
+              values.personalData === null
+                ? undefined
+                : [
+                    {
+                      code: values.personalData
+                        ? I18n.t('dataCatalog.words.yes')
+                        : I18n.t('dataCatalog.words.no'),
+                      description: values.personalData
+                        ? I18n.t('dataCatalog.words.yes')
+                        : I18n.t('dataCatalog.words.no')
+                    }
+                  ],
+              [
+                {
+                  code: I18n.t('dataCatalog.words.yes'),
+                  description: I18n.t('dataCatalog.words.yes')
+                },
+                {
+                  code: I18n.t('dataCatalog.words.no'),
+                  description: I18n.t('dataCatalog.words.no')
+                }
+              ],
+              handleChange,
+              handleBlur,
+              this.props.isEdit,
+              0,
+              false,
+              setFieldValue,
+              false
             )}
           </div>
         </div>
@@ -110,9 +146,19 @@ class InformationTypeComponentInner extends React.Component<
             )}
           </div>
         </div>
+
         {this.props.isEdit && (
           <Toolbar
-            cancelOnClick={() => this.props.toggleEditView(this.props.informationTypeId)}
+            cancelOnClick={e => {
+              e.preventDefault();
+              this.props.toggleEditView(this.props.informationTypeId);
+              values.system = this.props.system;
+              values.producer = this.props.producer;
+              values.category = this.props.category;
+              values.name = this.props.name;
+              values.description = this.props.description;
+              return (values.personalData = this.props.personalData);
+            }}
             saveOnClick={e => {
               e.preventDefault();
               return this.props.saveInformationType({
@@ -135,23 +181,7 @@ class InformationTypeComponentInner extends React.Component<
                         )
                       : values.system && values.system.description
                 },
-                producer:
-                  values.producer /*{
-                  code: values.producer && values.producer.code,
-                  description:
-                    this.props.codeListResult.producer &&
-                    values.producer &&
-                    values.producer.code
-                      ? get(
-                          this.props.codeListResult.producer.find(
-                            p =>
-                              p.code.toUpperCase() ===
-                              (values.producer && values.producer.code.toUpperCase())
-                          ),
-                          'description'
-                        )
-                      : values.producer && values.producer.description
-                },*/,
+                producer: values.producer,
                 category: {
                   code: values.category && values.category.code,
                   description:
@@ -168,11 +198,8 @@ class InformationTypeComponentInner extends React.Component<
                         )
                       : values.category && values.category.description
                 },
-                personalData: values.personalData
-                  ? values.personalData === 'true'
-                    ? true
-                    : false
-                  : null
+                personalData:
+                  values.personalData && values.personalData === true ? true : false
               });
             }}
           />

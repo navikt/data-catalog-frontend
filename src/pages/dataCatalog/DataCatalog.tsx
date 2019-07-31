@@ -5,7 +5,8 @@ import {
   fetchInformationType,
   toggleEditView,
   toggleExpandRow,
-  addBlankInformationType
+  addBlankInformationType,
+  deleteInformationType
 } from './actions';
 import { InformationTypeView, Result } from './types';
 import { I18n } from 'react-i18nify';
@@ -25,6 +26,7 @@ interface PropsFromDispatch {
   toggleEditView: typeof toggleEditView;
   addBlankInformationType: typeof addBlankInformationType;
   isPending: boolean;
+  deleteInformationType: typeof deleteInformationType;
 }
 
 type Props = PropsFromState & PropsFromDispatch;
@@ -57,6 +59,7 @@ class DataCatalog extends React.Component<Props> {
             isEdit={true}
             onEditClick={this.props.toggleEditView}
             onAddClick={this.props.addBlankInformationType}
+            onDeleteClick={this.props.deleteInformationType}
           >
             <Column
               width="15%"
@@ -104,6 +107,7 @@ export default connect(
     fetchInformationType: fetchInformationType,
     onToggleClick: toggleExpandRow,
     toggleEditView,
-    addBlankInformationType
+    addBlankInformationType,
+    deleteInformationType
   }
 )(DataCatalog);

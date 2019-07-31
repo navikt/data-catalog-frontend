@@ -30,6 +30,7 @@ interface TableComponentProps {
   onEditClick: Function;
   disabledEdit?: boolean;
   onAddClick: Function;
+  onDeleteClick: Function;
 }
 
 const TableComponent = ({
@@ -52,7 +53,8 @@ const TableComponent = ({
   isEdit,
   onEditClick,
   disabledEdit,
-  onAddClick
+  onAddClick,
+  onDeleteClick
 }: TableComponentProps) => {
   const tableBodyClassName = 'Table-body' + (isLoading ? ' is-loading' : '');
 
@@ -94,6 +96,7 @@ const TableComponent = ({
             children,
             isLoading,
             onEditClick,
+            onDeleteClick,
             parentId,
             disabledEdit
           )}
@@ -180,6 +183,7 @@ const renderRows = (
   columns: any,
   isLoading: boolean,
   onEditClick: Function,
+  onDeleteClick: Function,
   parentId?: number,
   disabledEdit?: boolean
 ) => {
@@ -241,7 +245,9 @@ const renderRows = (
                     style={!d.isEdit ? {} : { color: 'grey' }}
                     key="btn-edit"
                     onClick={e => {
-                      !d.isEdit && onEditClick(d[idKey]);
+                      !d.isEdit && parentId
+                        ? onEditClick(parentId, d[idKey])
+                        : onEditClick(d[idKey]);
                       return e.stopPropagation();
                     }}
                     title={
@@ -254,14 +260,16 @@ const renderRows = (
                     <i className="fa fa-pencil" />
                   </a>
                 )}
-                {d.isEdit && d.isOpen && (
+                {d.isEdit && d.isOpen && d[idKey] !== -1 && (
                   <a
                     href="#"
                     className="Table-cell action-item mr-2"
                     data-toggle="tooltip"
                     key="btn-delete"
                     onClick={e => {
-                      alert(I18n.t('dataCatalog.words.doNotHaveSufficientRole'));
+                      parentId
+                        ? onDeleteClick(parentId, d[idKey])
+                        : onDeleteClick(d[idKey]);
                       return e.stopPropagation();
                     }}
                     title={
