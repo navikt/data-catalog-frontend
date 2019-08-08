@@ -19,6 +19,9 @@ jobs:
     - run:
         name: Test application
         command: npm run test
+    - run:
+        name: Build application
+        command: npm run build
     - save_cache:
         paths:
           - ~/usr/local/lib/node_modules # location depends on npm version

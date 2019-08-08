@@ -7,7 +7,7 @@ metadata:
     team: {{team}}
 spec:
   image: {{version}}
-  port: 3000
+  port: 80
   ingresses:
     - "https://datacatalog.nais.oera-q.local/datacatalog"
     - "https://www-q0.nav.no/datacatalog"

@@ -1,10 +1,3 @@
-FROM node:10
+FROM httpd:2.4
 
-# Create app directory
-WORKDIR /usr/src/app
-
-# Bundle app source
-COPY . .
-
-EXPOSE 3000
-CMD [ "npm", "start" ]
+ADD build /usr/local/apache2/htdocs/
