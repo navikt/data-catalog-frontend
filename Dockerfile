@@ -1,10 +1,3 @@
-FROM navikt/node-express:12.2.0
+FROM httpd:2.4
 
-COPY . /src
-WORKDIR /src
-
-RUN npm install
-
-RUN npm run build
-
-EXPOSE 3000
+ADD build /usr/local/apache2/htdocs/datacatalog/
