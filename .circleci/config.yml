@@ -22,7 +22,7 @@ jobs:
         command: npm run test
     - run:
         name: Build application
-        command: REACT_APP_CLIENT_ID=$REACT_APP_CLIENT_ID REACT_APP_TENANT=$REACT_APP_TENANT npm run build
+        command: npm run build
 
     - save_cache:
         paths:
