@@ -22,3 +22,5 @@ yarn-debug.log*
 yarn-error.log*
 
 /travis/datajegerne-private-key.pem
+
+.env*.local

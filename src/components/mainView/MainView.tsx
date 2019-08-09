@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as $ from 'jquery';
 import { I18n } from 'react-i18nify';
 import { connect } from 'react-redux';
+import { logout, userInfo } from '../../adal/adal';
 
 interface Props {
   leftMenu?: object;
@@ -108,6 +109,7 @@ class MainView extends React.Component<Props, State> {
                 }
                 aria-labelledby="userDropdown"
               >
+                <a className="dropdown-item">{userInfo()}</a>
                 <a className="dropdown-item">{I18n.t('dataCatalog.words.language')}</a>
                 <a className="dropdown-item" onClick={() => this.handleLanguage('no')}>
                   {this.menuText(this.checked('no'), 'NO')}
@@ -116,7 +118,9 @@ class MainView extends React.Component<Props, State> {
                   {this.menuText(this.checked('en'), 'EN')}
                 </a>
                 <div className="dropdown-divider" />
-                <a className="dropdown-item">{I18n.t('dataCatalog.words.logout')}</a>
+                <a className="dropdown-item" onClick={e => logout(e)}>
+                  {I18n.t('dataCatalog.words.logout')}
+                </a>
               </div>
             </li>
           </ul>
