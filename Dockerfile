@@ -1,15 +1,3 @@
-FROM node:10
+FROM httpd:2.4
 
-# Create app directory
-WORKDIR /usr/src/app
-
-# Install app dependencies
-COPY package*.json ./
-COPY tsconfig*.json ./
-COPY tslint.json ./
-
-# Bundle app source
-COPY . .
-
-EXPOSE 3000
-CMD [ "npm", "start" ]
+ADD build /usr/local/apache2/htdocs/datacatalog/
