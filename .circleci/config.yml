@@ -52,3 +52,19 @@ workflows:
             branches:
               only:
                 - master
+      - nais/deploy:
+          name: Deploy prod
+          context: NAIS deployment
+          build-and-push-docker-image: false
+          repo: navikt/data-catalog-frontend
+          image: navikt/data-catalog-frontend
+          github-app-id: 26100
+          nais-template: naiserator-prod.yaml
+          environment: prod-sbs
+          team: teamdatajegerne
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - prod
