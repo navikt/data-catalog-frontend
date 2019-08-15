@@ -9,17 +9,17 @@ spec:
   image: {{version}}
   port: 80
   ingresses:
-    - "https://datacatalog.nais.oera-q.local/datacatalog"
-    - "https://www-q0.nav.no/datacatalog"
+    - "https://datakatalog.nais.oera-q.local"
+    - "https://datakatalog-q0.nav.no"
   replicas:
     min: 1
     max: 1
     cpuThresholdPercentage: 50
   liveness:
-    path: datacatalog/index.html
+    path: index.html
     initialDelay: 10
   readiness:
-    path: datacatalog/index.html
+    path: index.html
     initialDelay: 10
   resources:
     limits:

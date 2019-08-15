@@ -9,17 +9,17 @@ spec:
   image: {{version}}
   port: 80
   ingresses:
-    - "https://datacatalog.prod-sbs.nais.io/datacatalog"
-    - "https://www.nav.no/datacatalog"
+    - "https://datakatalog.prod-sbs.nais.io"
+    - "https://datakatalog.nav.no"
   replicas:
     min: 1
     max: 1
     cpuThresholdPercentage: 50
   liveness:
-    path: datacatalog/index.html
+    path: index.html
     initialDelay: 10
   readiness:
-    path: datacatalog/index.html
+    path: index.html
     initialDelay: 10
   resources:
     limits:

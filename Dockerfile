@@ -8,7 +8,7 @@ COPY --from=navikt-common /dumb-init /dumb-init
 COPY run-nginx.sh /run-script.sh
 RUN chmod +x /entrypoint.sh /run-script.sh
 
-ADD build /usr/share/nginx/html/datacatalog/
+ADD build /usr/share/nginx/html/
 
 EXPOSE 80
 ENTRYPOINT ["/dumb-init", "--", "/entrypoint.sh"]
