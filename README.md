@@ -5,7 +5,9 @@ This is frontend open source project repository for the Data Catalog project. Yo
 
 # Settings
 To run the Azure authentication please create a `.env.local` file on root folder(outside src) and assign the values of below two environment variables. 
+
 `REACT_APP_CLIENT_ID='Add client id from Azure'`
+
 `REACT_APP_TENANT='Add tenant id from Azure'`
 
 After that application can be run locally by stub's.
